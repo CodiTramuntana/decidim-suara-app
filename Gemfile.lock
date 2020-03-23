@@ -59,6 +59,10 @@ GIT
     decidim-comments (0.20.0)
       decidim-core (= 0.20.0)
       jquery-rails (~> 4.3)
+    decidim-consultations (0.20.0)
+      decidim-admin (= 0.20.0)
+      decidim-comments (= 0.20.0)
+      decidim-core (= 0.20.0)
     decidim-core (0.20.0)
       active_link_to (~> 1.0)
       anchored (>= 1.1.0)
@@ -146,6 +150,17 @@ GIT
       decidim-core (= 0.20.0)
     decidim-generators (0.20.0)
       decidim-core (= 0.20.0)
+    decidim-initiatives (0.20.0)
+      decidim-admin (= 0.20.0)
+      decidim-comments (= 0.20.0)
+      decidim-core (= 0.20.0)
+      decidim-verifications (= 0.20.0)
+      kaminari (~> 1.1)
+      origami (~> 2.1)
+      virtus-multiparams (~> 0.1)
+      wicked (~> 1.3)
+      wicked_pdf (~> 1.4)
+      wkhtmltopdf-binary (~> 0.12)
     decidim-meetings (0.20.0)
       cells-erb (~> 0.1.0)
       cells-rails (~> 0.0.9)
@@ -304,6 +319,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    colorize (0.8.1)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -510,6 +526,8 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    origami (2.1.0)
+      colorize (~> 0.7)
     orm_adapter (0.5.0)
     paper_trail (10.3.1)
       activerecord (>= 4.2)
@@ -711,6 +729,8 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    virtus-multiparams (0.1.1)
+      virtus (~> 1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -725,8 +745,13 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    wicked (1.3.4)
+      railties (>= 3.0.7)
+    wicked_pdf (1.4.0)
+      activesupport
     wisper (2.0.1)
     wisper-rspec (1.1.0)
+    wkhtmltopdf-binary (0.12.5.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -737,7 +762,9 @@ DEPENDENCIES
   bootsnap (~> 1.3)
   byebug (~> 11.0)
   decidim!
+  decidim-consultations
   decidim-dev (= 0.20.0)
+  decidim-initiatives
   faker (~> 1.9)
   letter_opener_web (~> 1.3)
   listen (~> 3.1)
@@ -746,6 +773,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0)
   uglifier (~> 4.1)
   web-console (~> 3.5)
+  wicked_pdf
 
 RUBY VERSION
    ruby 2.5.3p105

@@ -7,12 +7,15 @@ DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "0.20-sta
 ruby RUBY_VERSION
 
 gem "decidim", DECIDIM_VERSION
+gem 'decidim-initiatives'
+gem 'decidim-consultations'
 
 gem "bootsnap", "~> 1.3"
 
 gem "puma", "~> 3.12.2"
 gem "uglifier", "~> 4.1"
 
+gem "wicked_pdf"
 gem "faker", "~> 1.9"
 
 group :development, :test do
