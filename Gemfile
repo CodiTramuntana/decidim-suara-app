@@ -17,6 +17,7 @@ gem "uglifier", "~> 4.1"
 gem 'figaro'
 gem 'whenever'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 gem "wicked_pdf"
 gem "faker", "~> 1.9"
