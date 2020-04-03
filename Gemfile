@@ -14,6 +14,7 @@ gem "bootsnap", "~> 1.3"
 
 gem "puma", "~> 3.12.2"
 gem "uglifier", "~> 4.1"
+gem 'figaro'
 
 gem "wicked_pdf"
 gem "faker", "~> 1.9"
