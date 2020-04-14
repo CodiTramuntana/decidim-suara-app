@@ -22,6 +22,8 @@ gem 'daemons'
 gem "wicked_pdf"
 gem "faker", "~> 1.9"
 
+gem 'savon', '~> 2.12.0'
+
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
