@@ -1,0 +1,4 @@
+es:
+  devise:
+    sap_session:
+      incorrect: La usuaria no está verificada en la plataforma SAP.
