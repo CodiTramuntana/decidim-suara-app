@@ -6,8 +6,8 @@
 # - username: the username of the user
 #
 class SapSessionApi
-  WSDL_URL = ENV.fetch('SAP_API_WSDL_URL') { '' }
-  SUPPORT_ACCOUNT = 'sergiurzayg.ext.coditramuntana'
+  WSDL_URL = ENV.fetch('SAP_API_WSDL_URL')
+  SUPPORT_ACCOUNT = ENV.fetch('SUPPORT_ACCOUNT')
 
   def initialize(username)
     @username = username
