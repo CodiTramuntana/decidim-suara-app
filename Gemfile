@@ -9,6 +9,9 @@ ruby RUBY_VERSION
 gem "decidim", DECIDIM_VERSION
 gem 'decidim-initiatives'
 gem 'decidim-consultations'
+gem 'decidim-verifications'
+
+gem 'virtus-multiparams'
 
 gem "bootsnap", "~> 1.3"
 

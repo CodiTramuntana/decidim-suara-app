@@ -2,3 +2,12 @@ es:
   devise:
     sap_session:
       incorrect: La usuaria no está verificada en la plataforma SAP.
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        name: Test.
+        explanation: Explicacion.
+    pages:
+      home:
+        hero:
+          participate: Prueba.

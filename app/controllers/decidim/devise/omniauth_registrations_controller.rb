@@ -15,8 +15,6 @@ module Decidim
         form_params = user_params_from_oauth_hash || params[:user]
 
         username = oauth_data[:info][:email].split("@")[0]
-        sap_session = SapSessionApi.new(username)
-        sap_session.call
 
         @form = form(OmniauthRegistrationForm).from_params(form_params)
         @form.email ||= verified_email
@@ -24,6 +22,7 @@ module Decidim
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
             if user.active_for_authentication? && sap_session.valid?
+              CensusAuthorization.call()
               sign_in_and_redirect user, event: :authentication
               set_flash_message :notice, :success, kind: @form.provider.capitalize
             else

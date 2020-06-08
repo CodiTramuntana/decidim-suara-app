@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        name: Test.
+        explanation: Explicacion.
+    pages:
+      home:
+        hero:
+          participate: Prueba.

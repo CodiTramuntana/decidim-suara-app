@@ -7,7 +7,6 @@
 #
 class SapSessionApi
   WSDL_URL = ENV.fetch('SAP_API_WSDL_URL')
-  SUPPORT_ACCOUNT = ENV.fetch('SUPPORT_ACCOUNT')
 
   def initialize(username)
     @username = username
@@ -21,17 +20,10 @@ class SapSessionApi
 
   def call
     response = @client.call(:z_hr_ess_get_employee, message: {IUser: @username})
-    @errors = response.to_hash[:z_hr_ess_get_employee_response][:e_errores]
+    @department_name = response.to_hash[:z_hr_ess_get_employee_response][:ltext]
   end
 
-  # Returns true for valid code
-  def valid?
-    @errors[:item][:codigo] == '0' || user_is_support_account
-  end
-
-  private
-
-  def user_is_support_account
-    @username == SUPPORT_ACCOUNT
+  def department_name
+    @department_name
   end
 end
