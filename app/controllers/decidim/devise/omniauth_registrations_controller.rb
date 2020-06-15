@@ -19,10 +19,12 @@ module Decidim
         @form = form(OmniauthRegistrationForm).from_params(form_params)
         @form.email ||= verified_email
 
+        debugger
+
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
             if user.active_for_authentication? && sap_session.valid?
-              CensusAuthorization.call()
+              CreateSapAuthorization.call(@form, username)
               sign_in_and_redirect user, event: :authentication
               set_flash_message :notice, :success, kind: @form.provider.capitalize
             else

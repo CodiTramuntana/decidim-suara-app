@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Decidim
-  class CreateCensusAuthorization < Rectify::Command
+  class CreateSapAuthorization < Rectify::Command
     # Public: Initializes the command.
     #
     # form - The form from which the data in this component comes from.
-    def initialize(username)
+    def initialize(form, username)
+      @form = form
       @username = username
     end
     # Public: Creates the Component.
@@ -14,14 +15,17 @@ module Decidim
     def call
       return broadcast(:invalid) if form.invalid?
 
-      transaction do
-        verify_department
-      end
+      verify_department
 
       broadcast(:ok)
     end
 
     private
+
+    attr_reader :form
+
+    def username
+    end
 
     def verify_department
       sap_session = SapSessionApi.new(username)
