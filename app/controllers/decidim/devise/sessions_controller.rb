@@ -10,6 +10,15 @@ module Decidim
 
       def create
         debugger
+        CreateSapAuthorization.call(@form, "ruben") do
+          on(:ok) do
+            flash[:alert] = t("account.update.error", scope: "decidim")
+          end
+
+          on(:invalid) do
+            flash[:alert] = t("account.update.error", scope: "decidim")
+          end
+        end
         super
       end
 

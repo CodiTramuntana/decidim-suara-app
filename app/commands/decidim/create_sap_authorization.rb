@@ -22,14 +22,10 @@ module Decidim
 
     private
 
-    attr_reader :form
-
-    def username
-    end
+    attr_reader :form, :username
 
     def verify_department
       sap_session = SapSessionApi.new(username)
-      sap_session.call
       department = sap_session.department_name
     end
 

@@ -16,9 +16,12 @@ class SapSessionApi
                 wsdl: WSDL_URL,
                 convert_request_keys_to: :none
               )
+    create_connection
   end
 
-  def call
+  private
+
+  def create_connection
     response = @client.call(:z_hr_ess_get_employee, message: {IUser: @username})
     @department_name = response.to_hash[:z_hr_ess_get_employee_response][:ltext]
   end
