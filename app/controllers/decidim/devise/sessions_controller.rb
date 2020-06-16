@@ -9,10 +9,15 @@ module Decidim
       before_action :check_sign_in_enabled, only: :create
 
       def create
-        debugger
-        CreateSapAuthorization.call(@form, "ruben") do
+        form = OpenStruct.new()
+        form.authorization = Decidim::AuthorizationHandler.handler_for(
+          'sap_authorization_handler',
+          user: current_user
+        )
+
+        CreateSapAuthorization.call(form, "ruben") do
           on(:ok) do
-            flash[:alert] = t("account.update.error", scope: "decidim")
+            flash[:success] = 'Has iniciado sesión correctamente!'
           end
 
           on(:invalid) do

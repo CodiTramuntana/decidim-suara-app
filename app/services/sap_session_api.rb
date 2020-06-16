@@ -6,6 +6,8 @@
 # - username: the username of the user
 #
 class SapSessionApi
+  attr_reader :department_name
+
   WSDL_URL = ENV.fetch('SAP_API_WSDL_URL')
 
   def initialize(username)
@@ -24,9 +26,5 @@ class SapSessionApi
   def create_connection
     response = @client.call(:z_hr_ess_get_employee, message: {IUser: @username})
     @department_name = response.to_hash[:z_hr_ess_get_employee_response][:ltext]
-  end
-
-  def department_name
-    @department_name
   end
 end

@@ -14,12 +14,6 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
 
   validates :department, presence: true
 
-  def document_number
-    return unless super
-
-    super.to_s.upcase
-  end
-
   # If you need to store any of the defined attributes in the authorization you
   # can do it here.
   #
@@ -27,14 +21,24 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   # it's created, and available though authorization.metadata
   def metadata
     {
-      district: response["distrito"],
-      census_section: response["seccionCensal"]
+      department: user_department
     }
   end
 
   def unique_id
     Digest::MD5.hexdigest(
-      "#{document_number}-#{Rails.application.secrets.secret_key_base}"
+      "#{username}-#{Rails.application.secrets.secret_key_base}"
     )
+  end
+
+  private
+
+  def user_department
+    sap_session = SapSessionApi.new(username)
+    department = sap_session.department_name
+  end
+
+  def username
+    user.email.split("@")[0]
   end
 end

@@ -27,9 +27,9 @@ module Decidim
 
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
-            if user.active_for_authentication? && sap_session.valid?
+            if user.active_for_authentication?
               CreateSapAuthorization.call(@form, username) do
-                on(:ok) do |author|
+                on(:ok) do |authorization|
                 end
 
                 on(:invalid) do

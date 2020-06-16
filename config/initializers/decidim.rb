@@ -125,8 +125,8 @@ Decidim.configure do |config|
   # }
 end
 
-Decidim::Verifications.register_workflow(:census_authorization_handler) do |workflow|
-  workflow.form = "CensusAuthorizationHandler"
+Decidim::Verifications.register_workflow(:sap_authorization_handler) do |workflow|
+  workflow.form = "SapAuthorizationHandler"
 
   workflow.options do |options|
     options.attribute :department, type: :string, required: true
