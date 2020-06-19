@@ -5,16 +5,17 @@ module Decidim
     # Public: Initializes the command.
     #
     # form - The form from which the data in this component comes from.
-    def initialize(form, username)
+    def initialize(form)
       @form = form
-      @username = username
     end
     # Public: Creates the Component.
     #
     # Broadcasts :ok if created, :invalid otherwise.
     def call
-      # return broadcast(:invalid) if form.invalid?
+      #return broadcast(:invalid) if form.invalid?
 
+      # join this line with the upper one with an or statement
+      return broadcast(:invalid) if form.authorization.invalid?
       create_authorization
 
       broadcast(:ok)
