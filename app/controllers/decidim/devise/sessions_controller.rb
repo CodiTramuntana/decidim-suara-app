@@ -12,10 +12,11 @@ module Decidim
         form = OpenStruct.new()
         form.authorization = Decidim::AuthorizationHandler.handler_for(
           'sap_authorization_handler',
-          user: current_user
+          user: Decidim::User.first, # replace with current_user when using it in omniauth controller
+          department: "hola"
         )
 
-        CreateSapAuthorization.call(form, "ruben") do
+        CreateSapAuthorization.call(form) do
           on(:ok) do
             flash[:success] = 'Has iniciado sesión correctamente!'
           end
