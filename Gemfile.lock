@@ -206,6 +206,15 @@ GIT
     decidim-verifications (0.20.0)
       decidim-core (= 0.20.0)
 
+GIT
+  remote: https://github.com/gencat/decidim-verifications-members_picker.git
+  revision: c72facbc79dd4c4d8753a1330a6978ad7259f746
+  tag: 0.0.2
+  specs:
+    decidim-verifications-members_picker (0.0.2)
+      decidim-core (>= 0.16.0)
+      decidim-verifications (>= 0.16.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -798,6 +807,7 @@ DEPENDENCIES
   decidim-consultations
   decidim-dev (= 0.20.0)
   decidim-initiatives
+  decidim-verifications-members_picker!
   delayed_job_active_record
   faker (~> 1.9)
   figaro
