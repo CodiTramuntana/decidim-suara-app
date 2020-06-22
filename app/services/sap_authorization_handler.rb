@@ -11,8 +11,9 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   include ActionView::Helpers::SanitizeHelper
 
   attribute :department, String
+  attribute :attrib, String
 
-  validates :department, presence: true, allow_nil: false
+  validates_presence_of :department, :attrib
 
   # If you need to store any of the defined attributes in the authorization you
   # can do it here.
@@ -21,7 +22,8 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   # it's created, and available though authorization.metadata
   def metadata
     {
-      department: department
+      department: department,
+      attrib: attrib
     }
   end
 
@@ -35,6 +37,7 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
 
   def department
     sap_session = SapSessionApi.new("rubenrubioe")
+    @attrib = "test"
     @department = sap_session.department_name
   end
 
