@@ -12,7 +12,7 @@ gem 'decidim-consultations'
 
 gem "bootsnap", "~> 1.3"
 
-gem "puma", "~> 3.12.2"
+gem "puma", "~> 3.12.6"
 gem "uglifier", "~> 4.1"
 gem 'figaro'
 gem 'whenever'
