@@ -18,6 +18,7 @@ gem 'figaro'
 gem 'whenever'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'decidim-verifications-members_picker', git: 'https://github.com/gencat/decidim-verifications-members_picker.git', tag: '0.0.2'
 
 gem "wicked_pdf"
 gem "faker", "~> 1.9"
