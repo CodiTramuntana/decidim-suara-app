@@ -15,12 +15,13 @@ gem 'virtus-multiparams'
 
 gem "bootsnap", "~> 1.3"
 
-gem "puma", "~> 3.12.2"
+gem "puma", "~> 3.12.6"
 gem "uglifier", "~> 4.1"
 gem 'figaro'
 gem 'whenever'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'decidim-verifications-members_picker', git: 'https://github.com/gencat/decidim-verifications-members_picker.git', tag: '0.0.2'
 
 gem "wicked_pdf"
 gem "faker", "~> 1.9"
