@@ -22,11 +22,11 @@ module Decidim
             if user.active_for_authentication?
               sign_in_and_redirect user, event: :authentication
               set_flash_message :notice, :success, kind: @form.provider.capitalize
-              @form.authorization = Decidim::AuthorizationHandler.handler_for(
+              authorization = Decidim::AuthorizationHandler.handler_for(
                 "sap_authorization_handler",
                 user: user
               )
-              CreateSapAuthorization.call(@form) do
+              CreateSapAuthorization.call(authorization) do
                 on(:ok) do
                 end
 

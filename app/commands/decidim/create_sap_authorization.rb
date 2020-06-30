@@ -4,15 +4,15 @@ module Decidim
   class CreateSapAuthorization < Rectify::Command
     # Public: Initializes the command.
     #
-    # form - The form from which the data in this component comes from.
-    def initialize(form)
-      @form = form
+    # authorization - The authorization from which the data in this component comes from.
+    def initialize(authorization)
+      @authorization = authorization
     end
     # Public: Creates the Component.
     #
     # Broadcasts :ok if created, :invalid otherwise.
     def call
-      return broadcast(:invalid) if form.authorization.invalid?
+      return broadcast(:invalid) if authorization.invalid?
 
       create_authorization
 
@@ -21,10 +21,10 @@ module Decidim
 
     private
 
-    attr_reader :form
+    attr_reader :authorization
 
     def create_authorization
-      Authorization.create_or_update_from(form.authorization)
+      Authorization.create_or_update_from(authorization)
     end
   end
 end
