@@ -14,22 +14,18 @@ module Decidim
       def create
         form_params = user_params_from_oauth_hash || params[:user]
 
-        username = oauth_data[:info][:email].split("@")[0]
-
         @form = form(OmniauthRegistrationForm).from_params(form_params)
         @form.email ||= verified_email
-        @form.authorization = Decidim::AuthorizationHandler.handler_for(
-            handler_name,
-            user: user
-          )
-
-        debugger
 
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
             if user.active_for_authentication?
-              CreateSapAuthorization.call(@form, username) do
-                on(:ok) do |authorization|
+              @form.authorization = Decidim::AuthorizationHandler.handler_for(
+                "sap_authorization_handler",
+                user: user
+              )
+              CreateSapAuthorization.call(@form) do
+                on(:ok) do
                 end
 
                 on(:invalid) do

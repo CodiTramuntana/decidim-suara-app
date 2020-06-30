@@ -14,8 +14,6 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :texto_ceco, String
   attribute :tipo_socio, String
 
-#  validates_presence_of :department, :attrib
-
   # If you need to store any of the defined attributes in the authorization you
   # can do it here.
   #
@@ -40,7 +38,7 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   attr_reader :sap_session
 
   def sap_session
-    @sap_session ||= SapSessionApi.new("rubenrubioe")
+    @sap_session ||= SapSessionApi.new(username)
   end
 
   def username
