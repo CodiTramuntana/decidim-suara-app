@@ -10,10 +10,11 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   include Virtus::Multiparams
   include ActionView::Helpers::SanitizeHelper
 
-  attribute :department, String
-  attribute :attrib, String
+  attribute :tipologia, String
+  attribute :texto_ceco, String
+  attribute :tipo_socio, String
 
-  validates_presence_of :department, :attrib
+#  validates_presence_of :department, :attrib
 
   # If you need to store any of the defined attributes in the authorization you
   # can do it here.
@@ -22,8 +23,9 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   # it's created, and available though authorization.metadata
   def metadata
     {
-      department: department,
-      attrib: attrib
+      tipologia: sap_session.tipologia,
+      texto_ceco: sap_session.texto_ceco,
+      tipo_socio: sap_session.tipo_socio
     }
   end
 
@@ -35,10 +37,10 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
 
   private
 
-  def department
-    sap_session = SapSessionApi.new("rubenrubioe")
-    @attrib = "test"
-    @department = sap_session.department_name
+  attr_reader :sap_session
+
+  def sap_session
+    @sap_session ||= SapSessionApi.new("rubenrubioe")
   end
 
   def username

@@ -33,9 +33,13 @@ en:
   hello: "Hello"
   decidim:
     authorization_handlers:
+      members_picker_authorization_handler:
+        name: Member picker
       sap_authorization_handler:
         fields:
-          department: Department
+          tipologia: Tipology
+          texto_ceco: Ceco text
+          tipo_socio: Affiliate type
         name: Sap authorization handler
         explanation: Explanation
     pages:

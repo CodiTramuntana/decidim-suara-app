@@ -129,7 +129,9 @@ Decidim::Verifications.register_workflow(:sap_authorization_handler) do |workflo
   workflow.form = "SapAuthorizationHandler"
 
   workflow.options do |options|
-    options.attribute :department, type: :string, required: true
+    options.attribute :tipologia, type: :string
+    options.attribute :texto_ceco, type: :string
+    options.attribute :tipo_socio, type: :string
   end
 end
 

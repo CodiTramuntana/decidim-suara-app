@@ -4,9 +4,13 @@ ca:
       incorrect: L'usuaria no está verificada a la plataforma SAP.
   decidim:
     authorization_handlers:
+      members_picker_authorization_handler:
+        name: Member picker
       sap_authorization_handler:
         fields:
-          department: Department
+          tipologia: Tipologia
+          texto_ceco: Text ceco
+          tipo_socio: Tipus soci
         name: Verificació amb SAP
         explanation: Explicació
     pages:
