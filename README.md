@@ -1,4 +1,4 @@
-# decidim_application
+# Decidim Suara
 
 Free Open-Source participatory democracy, citizen participation and open government for cities and organizations
 
