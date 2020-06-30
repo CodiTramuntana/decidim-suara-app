@@ -12,8 +12,7 @@ module Decidim
     #
     # Broadcasts :ok if created, :invalid otherwise.
     def call
-      return broadcast(:invalid) if form.invalid? ||
-                                    form.authorization.invalid?
+      return broadcast(:invalid) if form.authorization.invalid?
 
       create_authorization
 
