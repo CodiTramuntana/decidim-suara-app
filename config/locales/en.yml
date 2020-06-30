@@ -30,13 +30,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello"
   decidim:
     authorization_handlers:
-      census_authorization_handler:
-        name: Test.
-        explanation: Explicacion.
+      sap_authorization_handler:
+        fields:
+          department: Department
+        name: Sap authorization handler
+        explanation: Explanation
     pages:
       home:
         hero:
-          participate: Prueba.
+          participate: Participate
