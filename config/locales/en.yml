@@ -30,4 +30,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello"
+  decidim:
+    authorization_handlers:
+      members_picker_authorization_handler:
+        name: Member picker
+      sap_authorization_handler:
+        fields:
+          tipologia: Tipology
+          texto_ceco: Ceco text
+          tipo_socio: Affiliate type
+        name: Sap authorization handler
+        explanation: Explanation
+    pages:
+      home:
+        hero:
+          participate: Participate

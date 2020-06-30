@@ -125,5 +125,15 @@ Decidim.configure do |config|
   # }
 end
 
+Decidim::Verifications.register_workflow(:sap_authorization_handler) do |workflow|
+  workflow.form = "SapAuthorizationHandler"
+
+  workflow.options do |options|
+    options.attribute :tipologia, type: :string
+    options.attribute :texto_ceco, type: :string
+    options.attribute :tipo_socio, type: :string
+  end
+end
+
 Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale

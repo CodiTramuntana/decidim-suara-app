@@ -807,6 +807,7 @@ DEPENDENCIES
   decidim-consultations
   decidim-dev (= 0.20.0)
   decidim-initiatives
+  decidim-verifications
   decidim-verifications-members_picker!
   delayed_job_active_record
   faker (~> 1.9)
@@ -818,12 +819,13 @@ DEPENDENCIES
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
   uglifier (~> 4.1)
+  virtus-multiparams
   web-console (~> 3.5)
   whenever
   wicked_pdf
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.17.3

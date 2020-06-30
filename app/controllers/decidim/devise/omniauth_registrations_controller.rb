@@ -14,21 +14,30 @@ module Decidim
       def create
         form_params = user_params_from_oauth_hash || params[:user]
 
-        username = oauth_data[:info][:email].split("@")[0]
-        sap_session = SapSessionApi.new(username)
-        sap_session.call
-
         @form = form(OmniauthRegistrationForm).from_params(form_params)
         @form.email ||= verified_email
 
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
-            if user.active_for_authentication? && sap_session.valid?
+            if user.active_for_authentication?
               sign_in_and_redirect user, event: :authentication
               set_flash_message :notice, :success, kind: @form.provider.capitalize
+              @form.authorization = Decidim::AuthorizationHandler.handler_for(
+                "sap_authorization_handler",
+                user: user
+              )
+              CreateSapAuthorization.call(@form) do
+                on(:ok) do
+                end
+
+                on(:invalid) do
+                end
+              end
             else
+              expire_data_after_sign_in!
+              user.resend_confirmation_instructions unless user.confirmed?
               redirect_to decidim.root_path
-              flash[:notice] = t("devise.sap_session.incorrect")
+              flash[:notice] = t("devise.registrations.signed_up_but_unconfirmed")
             end
           end
 
@@ -57,7 +66,7 @@ module Decidim
 
       # Calling the `stored_location_for` method removes the key, so in order
       # to check if there's any pending redirect after login I need to call
-      # this metho*d and use the value to set a pending redirect. This is the
+      # this method and use the value to set a pending redirect. This is the
       # only way to do this without checking the session directly.
       def pending_redirect?(user)
         store_location_for(user, stored_location_for(user))
@@ -68,7 +77,7 @@ module Decidim
       end
 
       def action_missing(action_name)
-        return send(:create) if devise_mapping.omniauthable? && User.omniauth_providers.include?(action_name.to_sym)
+        return send(:create) if devise_mapping.omniauthable? && current_organization.enabled_omniauth_providers.keys.include?(action_name.to_sym)
 
         raise AbstractController::ActionNotFound, "The action '#{action_name}' could not be found for Decidim::Devise::OmniauthCallbacksController"
       end

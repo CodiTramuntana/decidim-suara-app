@@ -2,3 +2,18 @@ ca:
   devise:
     sap_session:
       incorrect: L'usuaria no está verificada a la plataforma SAP.
+  decidim:
+    authorization_handlers:
+      members_picker_authorization_handler:
+        name: Member picker
+      sap_authorization_handler:
+        fields:
+          tipologia: Tipologia
+          texto_ceco: Text ceco
+          tipo_socio: Tipus soci
+        name: Verificació amb SAP
+        explanation: Explicació
+    pages:
+      home:
+        hero:
+          participate: Participar

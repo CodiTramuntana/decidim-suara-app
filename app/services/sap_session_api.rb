@@ -6,8 +6,9 @@
 # - username: the username of the user
 #
 class SapSessionApi
+  attr_reader :tipologia, :texto_ceco, :tipo_socio
+
   WSDL_URL = ENV.fetch('SAP_API_WSDL_URL')
-  SUPPORT_ACCOUNT = ENV.fetch('SUPPORT_ACCOUNT')
 
   def initialize(username)
     @username = username
@@ -17,21 +18,16 @@ class SapSessionApi
                 wsdl: WSDL_URL,
                 convert_request_keys_to: :none
               )
-  end
-
-  def call
-    response = @client.call(:z_hr_ess_get_employee, message: {IUser: @username})
-    @errors = response.to_hash[:z_hr_ess_get_employee_response][:e_errores]
-  end
-
-  # Returns true for valid code
-  def valid?
-    @errors[:item][:codigo] == '0' || user_is_support_account
+    create_connection
   end
 
   private
 
-  def user_is_support_account
-    @username == SUPPORT_ACCOUNT
+  def create_connection
+    response = @client.call(:z_decidim_ess_get_employee, message: {IUser: @username})
+    response = response.to_hash[:z_decidim_ess_get_employee_response]
+    @tipologia = response[:e_ubicacioespai]
+    @texto_ceco = response[:e_kostl_txt]
+    @tipo_socio = response[:e_tipo_soc]
   end
 end
