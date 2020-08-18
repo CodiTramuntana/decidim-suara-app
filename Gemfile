@@ -11,6 +11,8 @@ gem 'decidim-initiatives', DECIDIM_VERSION
 gem 'decidim-consultations'
 gem 'decidim-verifications'
 
+gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-module-term_customizer'
+
 gem 'virtus-multiparams'
 
 gem "bootsnap", "~> 1.3"
