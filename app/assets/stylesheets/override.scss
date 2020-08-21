@@ -5,6 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 $grey_suara: #443F3F;
 $grey_suara_rgb: rgb(68,63,63);
@@ -212,6 +213,10 @@ a{
 
 .dropdown.menu > li.is-dropdown-submenu-parent > a::after{
   border-color: $grey_suara transparent transparent;
+}
+
+.card--widget .card-data .card-data__item:first-child, .card .card__text time{
+  font-family: 'Roboto Condensed', 'Roboto', Arial, 'Open Sans', sans-serif;
 }
 
 // FLOATING HELP
