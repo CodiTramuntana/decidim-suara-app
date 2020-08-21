@@ -3,6 +3,9 @@
 @import "decidim/utils/settings";
 @import "decidim/utils/settings";
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
 $grey_suara: #443F3F;
 $grey_suara_rgb: rgb(68,63,63);
 $orange_suara: #F88F58;
@@ -14,6 +17,11 @@ $anchor-color-hover: scale-color($orange_suara, $lightness: -14%);
 body{
   background: $white !important;
   background-color: $white !important;
+  font-family: 'Roboto', Arial, 'Open Sans', sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3{
+  font-family: 'Roboto Slab', 'Roboto', Arial, 'Open Sans', sans-serif;
 }
 
 // HEADER
