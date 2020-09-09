@@ -122,6 +122,36 @@ h1, .h1, h2, .h2, h3, .h3{
   }
 }
 
+// MOBILE
+@media only screen and (max-width: 639px){
+  .topbar__menu svg.icon{
+    fill: $grey_suara;
+  }
+  
+  .title-bar{
+    border-top: 2.125rem solid $white;
+  }
+  .off-canvas .close-button{
+    color: $grey_suara;
+  }
+  .off-canvas .close-button:focus{
+    border: none;
+  }
+  .navbar{
+    background: $white;
+  }
+  .off-canvas{
+    background-color: $white; 
+  }
+  .topbar__search svg{
+    color: $grey_suara;
+    opacity: 1;
+  }
+}
+// .topbar__dropmenu > ul > li > a{
+//   color: $white;
+// }
+
 // FOOTER
 /////////////////////////////////
 
