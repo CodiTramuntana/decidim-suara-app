@@ -142,6 +142,14 @@ h1, .h1, h2, .h2, h3, .h3{
   }
   .off-canvas{
     background-color: $white; 
+    .usermenu-off-canvas-holder .menu.usermenu-off-canvas li{
+      a{
+        color: $grey_suara;
+      }
+      &:hover{
+        a{ color: $orange_suara; }
+      } 
+    }
   }
   .topbar__search svg{
     color: $grey_suara;
