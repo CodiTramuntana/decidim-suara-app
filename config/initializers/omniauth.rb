@@ -11,7 +11,7 @@ def setup_provider_proc(provider, config_mapping = {})
       env["omniauth.strategy"].options[option_key] = provider_config[config_key]
     end
     # Overridden line
-    env['omniauth.strategy'].options.merge!({ prompt: "select_account" }) if provider == :google_oauth2
+    env['omniauth.strategy'].options.merge!({ prompt: "select_account" })
   end
 end
 
