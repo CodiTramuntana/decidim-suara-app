@@ -10,7 +10,7 @@ def setup_provider_proc(provider, config_mapping = {})
       env["omniauth.strategy"].options[option_key] = provider_config[config_key]
       env["omniauth.strategy"].options[option_key] = provider_config[config_key]
     end
-    # Overwridden line
+    # Overridden line
     env['omniauth.strategy'].options.merge!({ prompt: "select_account" })
   end
 end
