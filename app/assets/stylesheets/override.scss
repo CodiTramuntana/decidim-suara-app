@@ -257,6 +257,11 @@ a{
   font-family: 'Roboto Condensed', 'Roboto', Arial, 'Open Sans', sans-serif;
 }
 
+main.wrapper{
+  section#parent-assemblies{display: none !important;}
+  section#assemblies-chart{display: none !important;}
+}
+
 // FLOATING HELP
 //////////////////////
 .floating-helper__content{
