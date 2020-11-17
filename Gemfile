@@ -12,6 +12,7 @@ gem 'decidim-consultations', DECIDIM_VERSION
 gem 'decidim-verifications', DECIDIM_VERSION
 
 gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-module-term_customizer'
+gem "decidim-action_delegator", git: "https://github.com/coopdevs/decidim-module-action_delegator"
 
 gem 'virtus-multiparams'
 
