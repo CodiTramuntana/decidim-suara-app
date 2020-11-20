@@ -262,6 +262,10 @@ main.wrapper{
   section#assemblies-chart{display: none !important;}
 }
 
+#consultations .card.card--consultation .card__icondata{
+  display: none;
+}
+
 // FLOATING HELP
 //////////////////////
 .floating-helper__content{
