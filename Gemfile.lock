@@ -165,17 +165,6 @@ GIT
       decidim-core (= 0.21.0)
     decidim-generators (0.21.0)
       decidim-core (= 0.21.0)
-    decidim-initiatives (0.21.0)
-      decidim-admin (= 0.21.0)
-      decidim-comments (= 0.21.0)
-      decidim-core (= 0.21.0)
-      decidim-verifications (= 0.21.0)
-      kaminari (~> 1.2)
-      origami (~> 2.1)
-      virtus-multiparams (~> 0.1)
-      wicked (~> 1.3)
-      wicked_pdf (~> 1.4)
-      wkhtmltopdf-binary (~> 0.12)
     decidim-meetings (0.21.0)
       cells-erb (~> 0.1.0)
       cells-rails (~> 0.0.9)
@@ -347,7 +336,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    colorize (0.8.1)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -567,8 +555,6 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-    origami (2.1.0)
-      colorize (~> 0.7)
     orm_adapter (0.5.0)
     paper_trail (10.3.1)
       activerecord (>= 4.2)
@@ -805,13 +791,10 @@ GEM
     websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
-    wicked (1.3.4)
-      railties (>= 3.0.7)
     wicked_pdf (1.4.0)
       activesupport
     wisper (2.0.1)
     wisper-rspec (1.1.0)
-    wkhtmltopdf-binary (0.12.6.2)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -825,7 +808,6 @@ DEPENDENCIES
   decidim!
   decidim-consultations
   decidim-dev!
-  decidim-initiatives!
   decidim-term_customizer!
   decidim-verifications
   decidim-verifications-members_picker!
