@@ -16,6 +16,7 @@ gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-m
 gem 'virtus-multiparams'
 
 gem "bootsnap", "~> 1.3"
+gem 'deface'
 
 gem "puma", "~> 4.0"
 gem "uglifier", "~> 4.1"
