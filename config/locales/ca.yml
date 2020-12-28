@@ -1,4 +1,8 @@
 ca:
+  activemodel:
+    attributes:
+      question:
+        blank_vote: Habilitar vot en blac per aquesta pregunta
   devise:
     sap_session:
       incorrect: L'usuaria no está verificada a la plataforma SAP.
