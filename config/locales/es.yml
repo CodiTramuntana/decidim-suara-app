@@ -3,6 +3,8 @@ es:
     attributes:
       question:
         blank_vote: Habilitar el voto en blanco para esta pregunta
+      response:
+        blank_vote: Voto en blanco
   devise:
     sap_session:
       incorrect: La usuaria no está verificada en la plataforma SAP.
