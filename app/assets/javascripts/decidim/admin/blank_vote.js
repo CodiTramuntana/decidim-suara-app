@@ -1,20 +1,6 @@
-const PLACEHOLDERS_ES = [
-  'Voto en blanco',
-  'Blank vote',
-  'Vot en blanc'
-];
-
-const PLACEHOLDERS_CA = [
-  'Vot en blanc',
-  'Blank vote',
-  'Voto en blanco'
-];
-
-const PLACEHOLDERS_EN = [
-  'Blank vote',
-  'Vot en blanc',
-  'Voto en blanco'
-];
+const PLACEHOLDER_ES = 'Voto en blanco';
+const PLACEHOLDER_CA = 'Vot en blanc';
+const PLACEHOLDER_EN = 'Blank vote';
 
 function blankVote(element) {
   if (element.checked === true) {
@@ -25,15 +11,21 @@ function blankVote(element) {
 }
 
 function getInputTitles (blankVote) {
-  const languageElement = document.getElementById('admin-user-menu');
-  const language = languageElement.parentElement.getAttribute("aria-label");
+  const languageTitles = document.getElementById('response-title-tabs').getElementsByTagName('li');
 
-  if (language === 'Castellano') {
-    PLACEHOLDERS_ES.forEach((element, index) => { putTitle(element, index, blankVote); });
-  } else if (language === 'English') {
-    PLACEHOLDERS_EN.forEach((element, index) => { putTitle(element, index, blankVote); });
-  } else {
-    PLACEHOLDERS_CA.forEach((element, index) => { putTitle(element, index, blankVote); });
+  for (let i = 0; i < languageTitles.length; i++) {
+    let element = languageTitles[i];
+    switch (element.innerText) {
+      case 'Castellano':
+        putTitle(PLACEHOLDER_ES, i, blankVote);
+        break;
+      case 'Català':
+        putTitle(PLACEHOLDER_CA, i, blankVote);
+        break;
+      case 'English':
+        putTitle(PLACEHOLDER_EN, i, blankVote);
+        break;
+    }
   }
 }
 
