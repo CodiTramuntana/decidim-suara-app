@@ -1,5 +1,5 @@
 function blankVote(element) {
-  let translations = JSON.parse(element.getAttribute("value"));
+  let translations = JSON.parse(element.getAttribute("data-attribute"));
 
   if (element.checked === true) {
     getInputTitles(true, translations);
@@ -9,8 +9,8 @@ function blankVote(element) {
 }
 
 function getInputTitles (blankVote, translations) {
-  for (let i = 0; i < Object.keys(translations.data).length; i++) { 
-    putTitle(Object.values(translations.data)[i], Object.keys(translations.data)[i], blankVote); 
+  for (let i = 0; i < Object.keys(translations).length; i++) { 
+    putTitle(Object.values(translations)[i], Object.keys(translations)[i], blankVote); 
   }
 }
 
