@@ -9,27 +9,14 @@ function blankVote(element) {
 }
 
 function getInputTitles (blankVote, translations) {
-  const languageTitles = document.getElementById('response-title-tabs').getElementsByTagName('li');
-
-  for (let i = 0; i < languageTitles.length; i++) {
-    let element = languageTitles[i];
-    switch (element.innerText) {
-      case 'Castellano':
-        putTitle(translations.data.es, i, blankVote);
-        break;
-      case 'Català':
-        putTitle(translations.data.ca, i, blankVote);
-        break;
-      case 'English':
-        putTitle(translations.data.en, i, blankVote);
-        break;
-    }
+  for (let i = 0; i < Object.keys(translations.data).length; i++) { 
+    putTitle(Object.values(translations.data)[i], Object.keys(translations.data)[i], blankVote); 
   }
 }
 
-function putTitle(element, index, blankVote) {
+function putTitle(element, locale, blankVote) {
   let title = '';
-  title = document.getElementById(`response-title-tabs-title-panel-${index}`).firstChild;
+  title = document.getElementById(`response_title_${locale}`);
   title.value = element;
   title.readOnly = blankVote;
 }
