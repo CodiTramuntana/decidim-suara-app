@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_084203) do
+ActiveRecord::Schema.define(version: 2020_12_21_093337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -445,6 +445,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_084203) do
     t.integer "min_votes"
     t.integer "response_groups_count", default: 0, null: false
     t.jsonb "instructions"
+    t.boolean "blank_vote"
     t.index ["decidim_consultation_id"], name: "index_consultations_questions_on_consultation_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_question_slug_and_organization", unique: true
     t.index ["decidim_scope_id"], name: "index_decidim_consultations_questions_on_decidim_scope_id"
@@ -469,6 +470,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_084203) do
     t.datetime "updated_at", null: false
     t.integer "votes_count", default: 0, null: false
     t.bigint "decidim_consultations_response_group_id"
+    t.boolean "blank_vote"
     t.index ["decidim_consultations_questions_id"], name: "index_consultations_responses_on_consultation_questions"
     t.index ["decidim_consultations_response_group_id"], name: "index_consultations_response_groups_on_consultation_responses"
   end
