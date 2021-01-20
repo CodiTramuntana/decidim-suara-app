@@ -17,6 +17,7 @@ gem "decidim-action_delegator", git: "https://github.com/coopdevs/decidim-module
 gem 'virtus-multiparams'
 
 gem "bootsnap", "~> 1.3"
+gem 'deface'
 
 gem "puma", "~> 4.0"
 gem "uglifier", "~> 4.1"
