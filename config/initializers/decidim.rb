@@ -41,7 +41,7 @@ Decidim.configure do |config|
   # that an organization's administrator injects malicious scripts to spy on or
   # take over user accounts.
   #
-  config.enable_html_header_snippets = false
+  config.enable_html_header_snippets = true
 
   # SMS gateway configuration
   #
@@ -137,3 +137,4 @@ end
 
 Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale
+Decidim.force_ssl = false
