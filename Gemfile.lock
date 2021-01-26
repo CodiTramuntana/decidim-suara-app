@@ -850,10 +850,10 @@ DEPENDENCIES
   daemons
   decidim!
   decidim-action_delegator!
-  decidim-consultations
+  decidim-consultations!
   decidim-dev!
   decidim-term_customizer!
-  decidim-verifications
+  decidim-verifications!
   decidim-verifications-members_picker!
   deface
   delayed_job_active_record
