@@ -30,6 +30,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activemodel:
+    attributes:
+      question:
+        blank_vote: Enable blank vote for this question
+      response:
+        blank_vote: Blank vote
   hello: "Hello"
   decidim:
     authorization_handlers:
