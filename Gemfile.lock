@@ -176,17 +176,6 @@ GIT
       decidim-core (= 0.22.0)
     decidim-generators (0.22.0)
       decidim-core (= 0.22.0)
-    decidim-initiatives (0.22.0)
-      decidim-admin (= 0.22.0)
-      decidim-comments (= 0.22.0)
-      decidim-core (= 0.22.0)
-      decidim-verifications (= 0.22.0)
-      kaminari (~> 1.2, >= 1.2.1)
-      origami (~> 2.1)
-      virtus-multiparams (~> 0.1)
-      wicked (~> 1.3)
-      wicked_pdf (~> 1.4)
-      wkhtmltopdf-binary (~> 0.12)
     decidim-meetings (0.22.0)
       cells-erb (~> 0.1.0)
       cells-rails (~> 0.0.9)
@@ -296,7 +285,7 @@ GEM
       nokogiri
     anchored (1.1.0)
     arel (9.0.0)
-    ast (2.4.1)
+    ast (2.4.2)
     autoprefixer-rails (8.6.5)
       execjs
     axiom-types (0.1.1)
@@ -323,13 +312,13 @@ GEM
     browser (2.7.1)
     builder (3.2.4)
     byebug (11.1.3)
-    capybara (3.34.0)
+    capybara (3.35.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      regexp_parser (~> 1.5)
+      regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     carrierwave (1.3.1)
       activemodel (>= 4.0.0)
@@ -359,12 +348,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    colorize (0.8.1)
     concurrent-ruby (1.1.8)
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    css_parser (1.7.1)
+    css_parser (1.8.0)
       addressable
     daemons (1.3.1)
     date_validator (0.9.0)
@@ -459,7 +447,7 @@ GEM
     graphiql-rails (1.4.11)
       railties
       sprockets-rails
-    graphql (1.11.7)
+    graphql (1.12.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
     hashdiff (1.0.1)
@@ -567,8 +555,10 @@ GEM
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.1-x86_64-linux)
+      racc (~> 1.4)
     nori (2.6.0)
-    oauth (0.5.4)
+    oauth (0.5.5)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -597,8 +587,6 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-    origami (2.1.0)
-      colorize (~> 0.7)
     orm_adapter (0.5.0)
     paper_trail (10.3.1)
       activerecord (>= 4.2)
@@ -623,7 +611,7 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
-    rack-attack (6.3.1)
+    rack-attack (6.4.0)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -678,7 +666,7 @@ GEM
       wisper (>= 1.6.1)
     redcarpet (3.5.1)
     redis (4.2.5)
-    regexp_parser (1.8.2)
+    regexp_parser (2.0.3)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
@@ -773,8 +761,8 @@ GEM
     social-share-button (1.2.3)
       coffee-rails
     socksify (1.7.1)
-    spreadsheet (1.2.6)
-      ruby-ole (>= 1.0)
+    spreadsheet (1.2.7)
+      ruby-ole
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -795,7 +783,7 @@ GEM
     temple (0.8.2)
     terminal-table (2.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
-    thor (1.0.1)
+    thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tomlrb (2.0.1)
@@ -845,18 +833,16 @@ GEM
     websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
-    wicked (1.3.4)
-      railties (>= 3.0.7)
-    wicked_pdf (1.4.0)
+    wicked_pdf (2.1.0)
       activesupport
     wisper (2.0.1)
     wisper-rspec (1.1.0)
-    wkhtmltopdf-binary (0.12.6.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (~> 1.3)
@@ -864,11 +850,10 @@ DEPENDENCIES
   daemons
   decidim!
   decidim-action_delegator!
-  decidim-consultations!
+  decidim-consultations
   decidim-dev!
-  decidim-initiatives!
   decidim-term_customizer!
-  decidim-verifications!
+  decidim-verifications
   decidim-verifications-members_picker!
   deface
   delayed_job_active_record
@@ -891,4 +876,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.17.3
+   2.2.0
