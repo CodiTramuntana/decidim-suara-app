@@ -7,7 +7,6 @@ DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/
 ruby RUBY_VERSION
 
 gem "decidim", DECIDIM_VERSION
-gem 'decidim-initiatives', DECIDIM_VERSION
 gem 'decidim-consultations', DECIDIM_VERSION
 gem 'decidim-verifications', DECIDIM_VERSION
 
