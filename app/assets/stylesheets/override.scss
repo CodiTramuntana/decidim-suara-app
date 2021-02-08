@@ -7,10 +7,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
+$grey-light-suara: #e7e6e6;
 $grey_suara: #443F3F;
 $grey_suara_rgb: rgb(68,63,63);
 $orange_suara: #F88F58;
 $orange_suara_rgb: rgb(248,143,88);
+$orange-suara-dark: #dd5211;
 
 $anchor-color: $grey_suara;
 $anchor-color-hover: scale-color($orange_suara, $lightness: -14%);
@@ -108,7 +110,7 @@ h1, .h1, h2, .h2, h3, .h3{
 /////////////////////////////////
 
 .navbar{
-  background: $light-gray-dark;
+  background: $grey-light-suara;
 }
 
 .main-nav__link--active a{
@@ -117,8 +119,8 @@ h1, .h1, h2, .h2, h3, .h3{
 .main-nav__link a{
   color: $grey_suara_rgb;
   &:hover{
-    background: rgba($grey_suara_rgb, 0.02);
-    color: $orange_suara;
+    background: $orange-suara-dark;
+    color: #fff;
   }
 }
 
@@ -216,10 +218,33 @@ a{
   }
 }
 
+.button.expanded.button--sc.home-section__cta,
+.button.small.hollow.card__button {
+  background-color: $orange_suara;
+  color: #fff;
+}
+
+.card--full__image {
+  .button.expanded.button--sc {
+    display: none;
+  }
+}
+
 .card--list__data__icon:hover .icon, .card--list__data__icon--lg:hover .icon{
   fill: $anchor-color-hover;
 }
 
+.card.card--full.card--process {
+  border: 1px solid $grey-light-suara;
+}
+
+.process-nav__link {
+  color: $orange_suara-dark;
+
+  &:hover {
+    color: $grey_suara;
+  }
+}
 
 .button.hollow.secondary:hover, .button.hollow.secondary:focus{
   border-color: $anchor-color-hover;
@@ -260,6 +285,15 @@ a{
 main.wrapper{
   section#parent-assemblies{display: none !important;}
   section#assemblies-chart{display: none !important;}
+}
+
+.section.past_meetings,
+.section.highlighted_results {
+  display: none;
+}
+
+.callout.alert.callout--full {
+  display: none;
 }
 
 // FLOATING HELP
