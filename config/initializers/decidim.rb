@@ -2,7 +2,7 @@
 
 Decidim.configure do |config|
   config.application_name = "Decidim Suara"
-  config.mailer_sender = "Rails.application.secrets.email"
+  config.mailer_sender = Rails.application.secrets.smtp_sender
   config.maximum_attachment_size = 150.megabytes
 
   # Change these lines to set your preferred locales
