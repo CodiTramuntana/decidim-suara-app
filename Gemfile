@@ -2,20 +2,21 @@
 
 source "https://rubygems.org"
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.21-stable" }
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.22-stable" }
 
 ruby RUBY_VERSION
 
 gem "decidim", DECIDIM_VERSION
-gem 'decidim-initiatives', DECIDIM_VERSION
-gem 'decidim-consultations'
-gem 'decidim-verifications'
+gem 'decidim-consultations', DECIDIM_VERSION
+gem 'decidim-verifications', DECIDIM_VERSION
 
 gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-module-term_customizer'
+gem "decidim-action_delegator", git: "https://github.com/coopdevs/decidim-module-action_delegator"
 
 gem 'virtus-multiparams'
 
 gem "bootsnap", "~> 1.3"
+gem 'deface'
 
 gem "puma", "~> 4.0"
 gem "uglifier", "~> 4.1"
