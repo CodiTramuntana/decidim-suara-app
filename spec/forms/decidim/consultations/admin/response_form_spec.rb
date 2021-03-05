@@ -34,7 +34,8 @@ module Decidim
               "title_es" => title[:es],
               "title_ca" => title[:ca],
               "decidim_consultations_response_group_id" => response_group,
-              "blank_vote" => blank_vote
+              "blank_vote" => blank_vote,
+              "question_slug" => question.slug
             }
           }
         end

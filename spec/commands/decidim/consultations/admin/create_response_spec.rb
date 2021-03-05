@@ -16,7 +16,8 @@ module Decidim
               title_es: "Voto en blanco",
               title_en: "Blank vote",
               title_ca: "Vot en blanc",
-              blank_vote: true
+              blank_vote: true,
+              question_slug: question.slug
             }
           }
         end
