@@ -15,5 +15,5 @@ Decidim::Assembly.class_eval do
     else
       public_spaces
     end
-  end  
+  end
 end

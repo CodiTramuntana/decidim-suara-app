@@ -8,23 +8,23 @@
 class SapSessionApi
   attr_reader :tipologia, :texto_ceco, :tipo_socio
 
-  WSDL_URL = ENV.fetch('SAP_API_WSDL_URL')
+  WSDL_URL = ENV.fetch("SAP_API_WSDL_URL")
 
   def initialize(username)
     @username = username
     @client = Savon.client(
-                env_namespace: :soapenv,
-                namespace_identifier: :urn,
-                wsdl: WSDL_URL,
-                convert_request_keys_to: :none
-              )
+      env_namespace: :soapenv,
+      namespace_identifier: :urn,
+      wsdl: WSDL_URL,
+      convert_request_keys_to: :none
+    )
     create_connection
   end
 
   private
 
   def create_connection
-    response = @client.call(:z_decidim_ess_get_employee, message: {IUser: @username})
+    response = @client.call(:z_decidim_ess_get_employee, message: { IUser: @username })
     response = response.to_hash[:z_decidim_ess_get_employee_response]
     @tipologia = response[:e_ubicacioespai]
     @texto_ceco = response[:e_kostl_txt]

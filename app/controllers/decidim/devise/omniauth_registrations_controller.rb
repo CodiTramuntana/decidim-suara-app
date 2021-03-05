@@ -27,8 +27,8 @@ module Decidim
                 user: user
               )
               CreateSapAuthorization.call(authorization) do
-                on(:ok) do end
-                on(:invalid) do end
+                on(:ok) {}
+                on(:invalid) {}
               end
             else
               expire_data_after_sign_in!

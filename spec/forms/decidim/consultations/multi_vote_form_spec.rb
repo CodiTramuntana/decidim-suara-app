@@ -27,7 +27,7 @@ module Decidim
 
       it { is_expected.to be_valid }
 
-      context 'when one reponse is a blank vote' do
+      context "when one reponse is a blank vote" do
         let(:responses) { [response_blank_vote.id] }
 
         it { is_expected.to be_valid }

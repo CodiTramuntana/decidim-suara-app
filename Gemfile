@@ -2,34 +2,34 @@
 
 source "https://rubygems.org"
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.22-stable" }
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim", branch: "release/0.22-stable" }.freeze
 
 ruby RUBY_VERSION
 
 gem "decidim", DECIDIM_VERSION
-gem 'decidim-consultations', DECIDIM_VERSION
-gem 'decidim-verifications', DECIDIM_VERSION
+gem "decidim-consultations", DECIDIM_VERSION
+gem "decidim-verifications", DECIDIM_VERSION
 
-gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-module-term_customizer'
 gem "decidim-action_delegator", git: "https://github.com/coopdevs/decidim-module-action_delegator"
+gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-module-term_customizer"
 
-gem 'virtus-multiparams'
+gem "virtus-multiparams"
 
 gem "bootsnap", "~> 1.3"
-gem 'deface'
+gem "deface"
 
+gem "daemons"
+gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.2"
+gem "delayed_job_active_record"
+gem "figaro"
 gem "puma", "~> 4.0"
 gem "uglifier", "~> 4.1"
-gem 'figaro'
-gem 'whenever'
-gem 'delayed_job_active_record'
-gem 'daemons'
-gem 'decidim-verifications-members_picker', git: 'https://github.com/gencat/decidim-verifications-members_picker.git', tag: '0.0.2'
+gem "whenever"
 
-gem "wicked_pdf"
 gem "faker", "~> 1.9"
+gem "wicked_pdf"
 
-gem 'savon', '~> 2.12.0'
+gem "savon", "~> 2.12.0"
 
 gem "rails", "< 6"
 

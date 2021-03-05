@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 module Decidim
   module Consultations
@@ -13,9 +13,9 @@ module Decidim
         let(:params) do
           {
             response: {
-              title_es: 'Voto en blanco',
-              title_en: 'Blank vote',
-              title_ca: 'Vot en blanc',
+              title_es: "Voto en blanco",
+              title_en: "Blank vote",
+              title_ca: "Vot en blanc",
               blank_vote: true
             }
           }
@@ -28,22 +28,22 @@ module Decidim
         end
         let(:form) { ResponseForm.from_params(params).with_context(context) }
 
-        context 'when the form is not valid' do
+        context "when the form is not valid" do
           before do
             expect(form).to receive(:invalid?).and_return(true)
           end
 
-          it 'broadcasts invalid' do
+          it "broadcasts invalid" do
             expect { subject.call }.to broadcast(:invalid)
           end
         end
 
-        context 'when everything is ok' do
-          it 'creates a response' do
+        context "when everything is ok" do
+          it "creates a response" do
             expect { subject.call }.to change { Decidim::Consultations::Response.count }.by(1)
           end
 
-          it 'broadcasts ok' do
+          it "broadcasts ok" do
             expect { subject.call }.to broadcast(:ok)
           end
         end
