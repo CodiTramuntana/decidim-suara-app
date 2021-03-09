@@ -52,3 +52,12 @@ en:
       home:
         hero:
           participate: Participate
+  mailer:
+    suara:
+      invitation_instructions:
+        accept: You can access by clicking
+        contact_with: For any question contact with
+        credentials: and entering your Suara email and password.
+        here: HERE
+        space_already: A new virtual participation space is now available at %{application}.
+        waiting_for_you: We will wait for you!

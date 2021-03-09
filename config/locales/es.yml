@@ -23,3 +23,12 @@ es:
       home:
         hero:
           participate: Participar
+  mailer:
+    suara:
+      invitation_instructions:
+        accept: Puedes acceder haciendo clic
+        contact_with: Para cualquier duda contacta con
+        credentials: e introduciendo tu correo y contraseña de Suara.
+        here: AQUÍ
+        space_already: Ya hay disponible un nuevo espacio de participación virtual en %{application}.
+        waiting_for_you: ¡Te esperamos!

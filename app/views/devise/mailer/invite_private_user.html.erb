@@ -1,0 +1,15 @@
+<p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.name) %></p>
+
+<p>
+  <% if @resource.invited_by.present? %>
+    <%= t("devise.mailer.invitation_instructions.invited_you_as_private_user", invited_by: @resource.invited_by.name, application: @resource.organization.name) %>
+  <% else %>
+    <%= t("mailer.suara.invitation_instructions.space_already", application: @resource.organization.name) %>
+  <% end %>
+</p>
+
+<p><%= t("mailer.suara.invitation_instructions.accept") %> <%= link_to t("mailer.suara.invitation_instructions.here"), accept_invitation_url(@resource, invitation_token: @token, host: @resource.organization.host) %> <%= t("mailer.suara.invitation_instructions.credentials") %></p>
+
+<p><%= t("mailer.suara.invitation_instructions.contact_with") %> <%= mail_to "participa@suara.coop" %>.</p>
+
+<p><%= t("mailer.suara.invitation_instructions.waiting_for_you") %></p>
