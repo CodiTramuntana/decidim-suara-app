@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 module Decidim
   module Consultations
@@ -19,24 +19,24 @@ module Decidim
         let(:question) { create :question }
         let(:info) do
           {
-            en: 'Information',
-            es: 'Información',
-            ca: 'Informaci'
+            en: "Information",
+            es: "Información",
+            ca: "Informaci"
           }
         end
         let(:blank_vote) { true }
         let(:attributes) do
           {
-            'question' => {
-              'title_en' => info[:en],
-              'title_es' => info[:es],
-              'title_ca' => info[:ca],
-              'blank_vote' => blank_vote
+            "question" => {
+              "title_en" => info[:en],
+              "title_es" => info[:es],
+              "title_ca" => info[:ca],
+              "blank_vote" => blank_vote
             }
           }
         end
 
-        context 'when everything is OK' do
+        context "when everything is OK" do
           it { is_expected.to be_valid }
         end
       end
