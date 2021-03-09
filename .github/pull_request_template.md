@@ -1,15 +1,9 @@
 #### :tophat: What? Why?
 
-
-#### :pushpin: Related Issues
-- Related to #?
-- Fixes #?
-
 #### :clipboard: Subtasks
-- [ ] Add `CHANGELOG` entry
+- [ ] Add tests
 - [ ] Add documentation regarding the feature 
 - [ ] Add/modify seeds
-- [ ] Add tests
 - [ ] Another subtask
 
 ### :camera: Screenshots (optional)
