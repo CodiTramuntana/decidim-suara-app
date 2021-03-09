@@ -35,8 +35,6 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
 
   private
 
-  attr_reader :sap_session
-
   def sap_session
     @sap_session ||= SapSessionApi.new(username)
   end

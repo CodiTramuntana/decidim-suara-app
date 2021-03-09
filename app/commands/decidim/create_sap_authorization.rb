@@ -8,6 +8,7 @@ module Decidim
     def initialize(authorization)
       @authorization = authorization
     end
+
     # Public: Creates the Component.
     #
     # Broadcasts :ok if created, :invalid otherwise.

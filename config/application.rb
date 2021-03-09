@@ -1,6 +1,8 @@
-require_relative 'boot'
+# frozen_string_literal: true
 
-require 'rails/all'
+require_relative "boot"
+
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -17,7 +19,7 @@ module DecidimApplication
     # the framework and any gems in your application.
     # Make decorators available
     config.to_prepare do
-      Dir.glob(Rails.root + 'app/decorators/**/*_decorator*.rb').each do |c|
+      Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
         require_dependency(c)
       end
     end

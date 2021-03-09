@@ -1,18 +1,20 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
+# frozen_string_literal: true
 
-require File.expand_path('../config/environment', __dir__)
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+require "spec_helper"
+ENV["RAILS_ENV"] ||= "test"
+
+require File.expand_path("../config/environment", __dir__)
 
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
+require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Allow generating a dummy application to test your module
-require 'decidim/dev'
-Decidim::Dev.dummy_app_path = File.expand_path(File.join(__dir__, '..'))
-require 'decidim/dev/test/base_spec_helper'
+require "decidim/dev"
+Decidim::Dev.dummy_app_path = File.expand_path(File.join(__dir__, ".."))
+require "decidim/dev/test/base_spec_helper"
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.

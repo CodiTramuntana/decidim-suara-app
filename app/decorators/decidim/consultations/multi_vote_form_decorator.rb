@@ -10,7 +10,7 @@ Decidim::Consultations::MultiVoteForm.class_eval do
 
     errors.add(
       :responses,
-      I18n.t('activerecord.errors.models.decidim/consultations/vote.attributes.question.invalid_num_votes')
+      I18n.t("activerecord.errors.models.decidim/consultations/vote.attributes.question.invalid_num_votes")
     )
   end
 end

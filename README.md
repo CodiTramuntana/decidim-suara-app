@@ -20,3 +20,13 @@ user.save!
 6. Fill the rest of the form and submit it.
 
 You're good to go!
+
+## Testing
+
+Run `rake decidim:generate_external_test_app` to generate a dummy application.
+
+Require missing factories in `spec/factories.rb`
+
+Add `require "rails_helper"` to your specs and execute them from the **root directory**, i.e.:
+
+`bundle exec rspec spec`
