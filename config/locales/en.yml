@@ -54,6 +54,7 @@ en:
           participate: Participate
   mailer:
     suara:
+      footer_text: Virtual Participation Plan 2021
       invitation_instructions:
         accept: You can access by clicking
         contact_with: For any question contact with
@@ -61,3 +62,5 @@ en:
         here: HERE
         space_already: A new virtual participation space is now available at %{application}.
         waiting_for_you: We will wait for you!
+      logo_text: Get informed, participate and decide
+      name: PLATAFORMA ENSUARA'T
