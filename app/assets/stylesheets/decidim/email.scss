@@ -1708,6 +1708,10 @@ body {
   font-family: 'Roboto', Arial, 'Open Sans', sans-serif;
 }
 
+td.decidim-bar {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.44);
+}
+
 table.body th.decidim-bar,
 table.body td.decidim-bar{
   padding: 10px 0;
