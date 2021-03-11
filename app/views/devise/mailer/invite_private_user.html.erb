@@ -1,0 +1,9 @@
+<p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.name) %></p>
+
+<p><%= t("mailer.suara.invitation_instructions.space_already") %></p>
+
+<p><%= t("mailer.suara.invitation_instructions.accept") %> <%= link_to t("mailer.suara.invitation_instructions.here"), accept_invitation_url(@resource, invitation_token: @token, host: @resource.organization.host) %> <%= t("mailer.suara.invitation_instructions.credentials") %></p>
+
+<p><%= t("mailer.suara.invitation_instructions.contact_with") %> <%= mail_to "participacio@suara.coop" %>.</p>
+
+<p><%= t("mailer.suara.invitation_instructions.waiting_for_you") %></p>

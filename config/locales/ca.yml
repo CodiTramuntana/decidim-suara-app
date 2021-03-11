@@ -23,3 +23,15 @@ ca:
       home:
         hero:
           participate: Participar
+  mailer:
+    suara:
+      footer_text: Pla de Participació Virtual 2021
+      invitation_instructions:
+        accept: Pots accedir-hi fent clic
+        contact_with: Per a qualsevol dubte contacta amb
+        credentials: i introduint el teu correu i contrasenya de Suara.
+        here: AQUÍ
+        space_already: Ja hi ha disponible un nou espai de participació virtual a la plataforma Ensuara't.
+        waiting_for_you: T'esperem!
+      logo_text: Informa't, participa i decideix
+      name: PLATAFORMA ENSUARA'T
