@@ -3,18 +3,23 @@
 Decidim.configure do |config|
   config.application_name = "Decidim Suara"
   config.mailer_sender = Rails.application.secrets.smtp_sender
-  config.maximum_attachment_size = 150.megabytes
 
   # Change these lines to set your preferred locales
   config.default_locale = :en
   config.available_locales = [:en, :ca, :es]
 
   # Geocoder configuration
-  # config.geocoder = {
-  #   static_map_url: "https://image.maps.cit.api.here.com/mia/1.6/mapview",
-  #   here_app_id: Rails.application.secrets.geocoder[:here_app_id],
-  #   here_app_code: Rails.application.secrets.geocoder[:here_app_code]
-  # }
+  # Decidim.configure do |config|
+  #   config.maps = {
+  #     provider: :here,
+  #     api_key: Rails.application.secrets.maps[:api_key],
+  #     static: { url: "https://image.maps.ls.hereapi.com/mia/1.6/mapview" }
+  #   }
+  #   config.geocoder = {
+  #     timeout: 5,
+  #     units: :km
+  #   }
+  # end
 
   # Custom resource reference generator method
   # config.reference_generator = lambda do |resource, component|

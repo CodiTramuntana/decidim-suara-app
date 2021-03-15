@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim", branch: "release/0.22-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim", branch: "release/0.23-stable" }.freeze
 
 ruby RUBY_VERSION
 
@@ -10,7 +10,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 gem "decidim-verifications", DECIDIM_VERSION
 
-gem "decidim-action_delegator", git: "https://github.com/coopdevs/decidim-module-action_delegator"
+gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator"
 gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-module-term_customizer"
 
 gem "virtus-multiparams"
