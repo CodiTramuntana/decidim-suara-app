@@ -22,9 +22,13 @@ ca:
         name: Member picker
       sap_authorization_handler:
         fields:
+          ceco: Ceco
+          ceco_txt: Ceco_txt
+          derechovoto: Derechovoto
+          estat_soci: Estat_soci
+          estat_ocup: Estat_ocup
+          grup_empleados: Grup_empleados
           tipologia: Tipologia
-          texto_ceco: Text ceco
-          tipo_socio: Tipus soci
         name: Verificació amb SAP
         explanation: Explicació
     pages:

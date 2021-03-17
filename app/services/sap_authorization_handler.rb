@@ -10,9 +10,13 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   include Virtus::Multiparams
   include ActionView::Helpers::SanitizeHelper
 
+  attribute :ceco, String
+  attribute :ceco_txt, String
   attribute :tipologia, String
-  attribute :texto_ceco, String
-  attribute :tipo_socio, String
+  attribute :grup_empleados, String
+  attribute :estat_soci, String
+  attribute :derechovoto, String
+  attribute :estat_ocup, String
 
   # If you need to store any of the defined attributes in the authorization you
   # can do it here.
@@ -21,25 +25,29 @@ class SapAuthorizationHandler < Decidim::AuthorizationHandler
   # it's created, and available though authorization.metadata
   def metadata
     {
+      ceco: sap_session.ceco,
+      ceco_txt: sap_session.ceco_txt,
       tipologia: sap_session.tipologia,
-      texto_ceco: sap_session.texto_ceco,
-      tipo_socio: sap_session.tipo_socio
+      grup_empleados: sap_session.grup_empleados,
+      estat_soci: sap_session.estat_soci,
+      derechovoto: sap_session.derechovoto,
+      estat_ocup: sap_session.estat_ocup
     }
   end
 
   def unique_id
     Digest::MD5.hexdigest(
-      "#{username}-#{Rails.application.secrets.secret_key_base}"
+      "#{email}-#{Rails.application.secrets.secret_key_base}"
     )
   end
 
   private
 
   def sap_session
-    @sap_session ||= SapSessionApi.new(username)
+    @sap_session ||= SapSessionApi.new(email)
   end
 
-  def username
-    user.email.split("@")[0]
+  def email
+    user.email
   end
 end
