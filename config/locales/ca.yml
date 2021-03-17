@@ -1,6 +1,14 @@
 ca:
   activemodel:
     attributes:
+      assembly:
+        ceco: CECO
+        ceco_txt: CECO_TXT
+        derechovoto: DERECHOVOTO
+        estat_ocup: ESTAT_OCUP
+        estat_soci: ESTAT_SOCI
+        grup_empleados: GRUP_EMPLEADOS
+        tipologia: TIPOLOGIA
       question:
         blank_vote: Habilitar vot en blac per aquesta pregunta
       response:
@@ -23,6 +31,8 @@ ca:
       home:
         hero:
           participate: Participar
+  permissions:
+    title: Permisos
   mailer:
     suara:
       footer_text: Pla de Participació Virtual 2021
