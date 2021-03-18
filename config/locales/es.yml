@@ -9,6 +9,14 @@ es:
         estat_soci: ESTAT_SOCI
         grup_empleados: GRUP_EMPLEADOS
         tipologia: TIPOLOGIA
+      participatory_process:
+        ceco: CECO
+        ceco_txt: CECO_TXT
+        derechovoto: DERECHOVOTO
+        estat_ocup: ESTAT_OCUP
+        estat_soci: ESTAT_SOCI
+        grup_empleados: GRUP_EMPLEADOS
+        tipologia: TIPOLOGIA
       question:
         blank_vote: Habilitar el voto en blanco para esta pregunta
       response:
