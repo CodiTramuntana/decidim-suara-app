@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_151209) do
+ActiveRecord::Schema.define(version: 2021_03_22_080623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -444,6 +444,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_151209) do
     t.date "end_voting_date", null: false
     t.date "results_published_at"
     t.string "introductory_image"
+    t.jsonb "suara_permissions"
     t.index ["decidim_highlighted_scope_id"], name: "index_decidim_consultations_on_decidim_highlighted_scope_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_consultation_slug_and_organization", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_consultations_on_decidim_organization_id"

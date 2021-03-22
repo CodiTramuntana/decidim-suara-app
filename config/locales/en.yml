@@ -40,6 +40,14 @@ en:
         estat_soci: ESTAT_SOCI
         grup_empleados: GRUP_EMPLEADOS
         tipologia: TIPOLOGIA
+      consultation:
+        ceco: CECO
+        ceco_txt: CECO_TXT
+        derechovoto: DERECHOVOTO
+        estat_ocup: ESTAT_OCUP
+        estat_soci: ESTAT_SOCI
+        grup_empleados: GRUP_EMPLEADOS
+        tipologia: TIPOLOGIA
       participatory_process:
         ceco: CECO
         ceco_txt: CECO_TXT
