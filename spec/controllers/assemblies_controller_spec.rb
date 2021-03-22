@@ -61,7 +61,7 @@ module Decidim
           let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
           let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
 
-          it "includes only promoted" do
+          it "includes all promoted" do
             expect(controller.helpers.promoted_assemblies).to include(promoted)
             expect(controller.helpers.promoted_assemblies).to include(promoted_with_filter)
             expect(controller.helpers.promoted_assemblies).to include(promoted_without_filter)
@@ -69,7 +69,7 @@ module Decidim
         end
 
         context "when user isn't admin and has permissions" do
-          it "includes only parent assemblies with permissions filters" do
+          it "includes assemblies with permissions filters and without permissions" do
             expect(controller.helpers.promoted_assemblies).to include(promoted_with_filter)
             expect(controller.helpers.promoted_assemblies).to include(promoted_without_filter)
           end
@@ -78,7 +78,7 @@ module Decidim
         context "when user isn't admin and has not permissions" do
           let!(:authorization) {}
 
-          it "includes only parent assemblies with permissions filters" do
+          it "includes only assemblies without permissions filters" do
             expect(controller.helpers.promoted_assemblies).to contain_exactly(promoted_without_filter)
           end
         end
@@ -91,7 +91,7 @@ module Decidim
           let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
           let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
 
-          it "includes only parent assemblies" do
+          it "includes all parent assemblies" do
             expect(controller.helpers.parent_assemblies).to include(promoted)
             expect(controller.helpers.parent_assemblies).to include(promoted_with_filter)
             expect(controller.helpers.parent_assemblies).to include(promoted_without_filter)
@@ -99,7 +99,7 @@ module Decidim
         end
 
         context "when user isn't admin and has permissions" do
-          it "includes only parent assemblies with permissions filters" do
+          it "includes only parent assemblies with permissions filters and without permissions" do
             expect(controller.helpers.parent_assemblies).to include(promoted_with_filter)
             expect(controller.helpers.parent_assemblies).to include(promoted_without_filter)
           end
@@ -108,7 +108,7 @@ module Decidim
         context "when user isn't admin and has not permissions" do
           let!(:authorization) {}
 
-          it "includes only parent assemblies with permissions filters" do
+          it "includes only parent assemblies without permissions filters" do
             expect(controller.helpers.parent_assemblies).to contain_exactly(promoted_without_filter)
           end
         end

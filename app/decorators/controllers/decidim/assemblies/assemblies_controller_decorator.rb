@@ -12,7 +12,7 @@ Decidim::Assemblies::AssembliesController.class_eval do
       @promoted_assemblies ||= published_assemblies | Decidim::Assemblies::PromotedAssemblies.new
     else
       promoted_assemblies ||= published_assemblies | Decidim::Assemblies::PromotedAssemblies.new
-      permissions(promoted_assemblies).sort_by(&:weight)
+      @promoted_assemblies = Decidim::Assembly.where(id: permissions(promoted_assemblies).map(&:id)).order(weight: :asc)
     end
   end
 
@@ -22,7 +22,7 @@ Decidim::Assemblies::AssembliesController.class_eval do
     if current_user.admin?
       search.results.parent_assemblies.order(weight: :asc, promoted: :desc)
     else
-      permissions(search.results.parent_assemblies).sort_by { |a| a.promoted ? 0 : 1 }.sort_by(&:weight)
+      @promoted_assemblies = Decidim::Assembly.where(id: permissions(search.results.parent_assemblies).map(&:id)).order(weight: :asc, promoted: :desc)
     end
   end
 end

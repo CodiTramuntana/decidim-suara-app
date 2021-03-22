@@ -14,7 +14,12 @@ module FilterParticipatorySpacesHelper
 
   def filter_permissions(participatory_spaces, user_permissions)
     with_permissions = participatory_spaces.reject { |space| query_permissions(space) }
-    with_permissions.reject! { |space| Hash[*(space.suara_permissions.map { |sp| sp } & user_permissions&.map { |us| us }).flatten].values.all?(&:blank?) }
+
+    if with_permissions.present?
+      with_permissions = with_permissions.reject { |space| Hash[*(space.suara_permissions.map { |sp| sp } & user_permissions&.map { |us| us }).flatten].values.all?(&:blank?) }
+    end
+
+    with_permissions
   end
 
   def query_permissions(space)
