@@ -1,5 +1,7 @@
 {
-  "name": "decidim_application",
+  "name": "decidim_suara_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "quill-html-edit-button": "^1.0.16"
+  }
 }
