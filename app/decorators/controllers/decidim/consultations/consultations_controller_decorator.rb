@@ -6,22 +6,13 @@ Decidim::Consultations::ConsultationsController.class_eval do
   include FilterParticipatorySpacesHelper
 
   def consultations
-    if current_user.present?
-      if current_user.admin?
-        consultation_results
-      else
-        @consultations = permissions(reorder(search.results))
-        @consultations = Decidim::Consultation.where(id: @consultations.map(&:id))
-        @consultations = paginate(@consultations)
-      end
+    if current_user.admin?
+      @consultations = search.results
+      @consultations = reorder(@consultations)
     else
-      consultation_results
+      @consultations = permissions(reorder(search.results))
+      @consultations = Decidim::Consultation.where(id: @consultations.map(&:id))
     end
-  end
-
-  def consultation_results
-    @consultations = search.results
-    @consultations = reorder(@consultations)
     @consultations = paginate(@consultations)
   end
 end

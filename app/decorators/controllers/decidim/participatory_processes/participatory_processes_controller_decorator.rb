@@ -6,8 +6,6 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   include FilterParticipatorySpacesHelper
 
   def promoted_participatory_processes
-    return [] unless current_user
-
     if current_user.admin?
       @promoted_participatory_processes ||= published_processes | Decidim::ParticipatoryProcesses::PromotedParticipatoryProcesses.new
     else
@@ -18,8 +16,6 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   end
 
   def participatory_processes
-    return [] unless current_user
-
     if current_user.admin?
       @participatory_processes ||= filtered_processes.groupless
     else
@@ -29,8 +25,6 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   end
 
   def participatory_process_groups
-    return [] unless current_user
-
     if current_user.admin?
       @participatory_process_groups ||= Decidim::ParticipatoryProcessGroup
                                         .where(id: filtered_processes.grouped.group_ids)

@@ -6,8 +6,6 @@ Decidim::Assemblies::AssembliesController.class_eval do
   include FilterParticipatorySpacesHelper
 
   def promoted_assemblies
-    return [] unless current_user
-
     if current_user.admin?
       @promoted_assemblies ||= published_assemblies | Decidim::Assemblies::PromotedAssemblies.new
     else
@@ -17,8 +15,6 @@ Decidim::Assemblies::AssembliesController.class_eval do
   end
 
   def parent_assemblies
-    return [] unless current_user
-
     if current_user.admin?
       search.results.parent_assemblies.order(weight: :asc, promoted: :desc)
     else
