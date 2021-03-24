@@ -2,7 +2,6 @@
 
 # This decorator add suara permissions fields to assembly form
 Decidim::Assemblies::Admin::AssemblyForm.class_eval do
-  attribute :suara_permissions, String
   attribute :ceco, String
   attribute :ceco_txt, String
   attribute :tipologia, String

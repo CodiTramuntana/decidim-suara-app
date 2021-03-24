@@ -2,7 +2,6 @@
 
 # This decorator add suara permissions fields to consultations form
 Decidim::Consultations::Admin::ConsultationForm.class_eval do
-  attribute :suara_permissions, String
   attribute :ceco, String
   attribute :ceco_txt, String
   attribute :tipologia, String
