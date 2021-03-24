@@ -5,19 +5,24 @@
 Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   include FilterParticipatorySpacesHelper
 
+  private
+
+  alias_method :original_promoted_participatory_processes, :promoted_participatory_processes
+  alias_method :original_participatory_processes, :participatory_processes
+  alias_method :original_participatory_process_groups, :participatory_process_groups
+
   def promoted_participatory_processes
     if current_user.admin?
-      @promoted_participatory_processes ||= published_processes | Decidim::ParticipatoryProcesses::PromotedParticipatoryProcesses.new
+      original_promoted_participatory_processes
     else
-      promoted_participatory_processes ||= published_processes | Decidim::ParticipatoryProcesses::PromotedParticipatoryProcesses.new
-      permissions(promoted_participatory_processes).sort_by(&:weight)
+      permissions(original_promoted_participatory_processes).sort_by(&:weight)
 
     end
   end
 
   def participatory_processes
     if current_user.admin?
-      @participatory_processes ||= filtered_processes.groupless
+      original_participatory_processes
     else
       participatory_processes ||= filtered_processes.groupless
       participatory_processes.present? ? permissions(participatory_processes) : []
@@ -26,8 +31,7 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
 
   def participatory_process_groups
     if current_user.admin?
-      @participatory_process_groups ||= Decidim::ParticipatoryProcessGroup
-                                        .where(id: filtered_processes.grouped.group_ids)
+      original_participatory_process_groups
     else
       filter_processes = permissions(filtered_processes).map(&:decidim_participatory_process_group_id)
       @participatory_process_groups ||= Decidim::ParticipatoryProcessGroup.where(id: filter_processes)

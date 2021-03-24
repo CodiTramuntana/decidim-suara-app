@@ -5,14 +5,17 @@
 Decidim::Consultations::ConsultationsController.class_eval do
   include FilterParticipatorySpacesHelper
 
+  private
+
+  alias_method :original_consultations, :consultations
+
   def consultations
     if current_user.admin?
-      @consultations = search.results
-      @consultations = reorder(@consultations)
+      original_consultations
     else
       @consultations = permissions(reorder(search.results))
       @consultations = Decidim::Consultation.where(id: @consultations.map(&:id))
+      @consultations = paginate(@consultations)
     end
-    @consultations = paginate(@consultations)
   end
 end

@@ -2,16 +2,12 @@
 
 # This decorator add suara permissions fields to update consultation command
 Decidim::Consultations::Admin::UpdateConsultation.class_eval do
+  private
+
+  alias_method :original_attributes, :attributes
+
   def attributes
-    {
-      title: form.title,
-      subtitle: form.subtitle,
-      description: form.description,
-      slug: form.slug,
-      highlighted_scope: form.highlighted_scope,
-      introductory_video_url: form.introductory_video_url,
-      start_voting_date: form.start_voting_date,
-      end_voting_date: form.end_voting_date,
+    suara_permissions = {
       ceco: form.ceco,
       ceco_txt: form.ceco_txt,
       tipologia: form.tipologia,
@@ -19,6 +15,8 @@ Decidim::Consultations::Admin::UpdateConsultation.class_eval do
       estat_soci: form.estat_soci,
       derechovoto: form.derechovoto,
       estat_ocup: form.estat_ocup
-    }.merge(uploader_attributes)
+    }
+
+    original_attributes.merge(suara_permissions)
   end
 end
