@@ -4,19 +4,13 @@
 Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.class_eval do
   include FilterParticipatorySpacesHelper
 
+  alias_method :original_highlighted_assemblies, :highlighted_assemblies
+
   def highlighted_assemblies
     @highlighted_assemblies ||= if current_user.admin?
-                                  Decidim::Assemblies::OrganizationPrioritizedAssemblies
-                                    .new(current_organization, current_user)
-                                    .query
-                                    .includes([:organization])
-                                    .limit(max_results)
+                                  original_highlighted_assemblies
                                 else
-                                  permissions(Decidim::Assemblies::OrganizationPrioritizedAssemblies
-                                    .new(current_organization, current_user)
-                                    .query
-                                    .includes([:organization])
-                                    .limit(max_results))
+                                  permissions(original_highlighted_assemblies)
                                 end
   end
 end

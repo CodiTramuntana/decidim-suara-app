@@ -4,17 +4,13 @@
 Decidim::Consultations::ContentBlocks::HighlightedConsultationsCell.class_eval do
   include FilterParticipatorySpacesHelper
 
+  alias_method :original_highlighted_consultations, :highlighted_consultations
+
   def highlighted_consultations
     @highlighted_consultations ||= if current_user.admin?
-                                     Decidim::Consultations::OrganizationActiveConsultations
-                                       .new(current_organization)
-                                       .query
-                                       .limit(max_results)
+                                     original_highlighted_consultations
                                    else
-                                     permissions(Decidim::Consultations::OrganizationActiveConsultations
-                                      .new(current_organization)
-                                      .query
-                                      .limit(max_results))
+                                     permissions(original_highlighted_consultations)
                                    end
   end
 end

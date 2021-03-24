@@ -4,19 +4,13 @@
 Decidim::ParticipatoryProcesses::ContentBlocks::HighlightedProcessesCell.class_eval do
   include FilterParticipatorySpacesHelper
 
+  alias_method :original_highlighted_processes, :highlighted_processes
+
   def highlighted_processes
     @highlighted_processes ||= if current_user.admin?
-                                 (
-                                   Decidim::ParticipatoryProcesses::OrganizationPublishedParticipatoryProcesses.new(current_organization, current_user) |
-                                   Decidim::ParticipatoryProcesses::HighlightedParticipatoryProcesses.new |
-                                   Decidim::ParticipatoryProcesses::FilteredParticipatoryProcesses.new("active")
-                                 ).query.includes([:organization]).limit(max_results)
+                                 original_highlighted_processes
                                else
-                                 permissions((
-                                    Decidim::ParticipatoryProcesses::OrganizationPublishedParticipatoryProcesses.new(current_organization, current_user) |
-                                    Decidim::ParticipatoryProcesses::HighlightedParticipatoryProcesses.new |
-                                    Decidim::ParticipatoryProcesses::FilteredParticipatoryProcesses.new("active")
-                                  ).query.includes([:organization]).limit(max_results))
+                                 permissions(original_highlighted_processes)
                                end
   end
 end
