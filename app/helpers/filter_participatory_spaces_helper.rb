@@ -16,7 +16,9 @@ module FilterParticipatorySpacesHelper
     with_permissions = participatory_spaces.reject { |space| query_permissions(space) }
 
     if with_permissions.present?
-      with_permissions = with_permissions.reject { |space| Hash[*(space.suara_permissions.map { |sp| sp } & user_permissions&.map { |us| us }).flatten].values.all?(&:blank?) }
+      with_permissions = with_permissions.select do |space|
+        space.suara_permissions.delete_if { |_k, v| v.nil? || v.blank? } <= user_permissions&.delete_if { |_k, v| v.nil? || v.blank? }
+      end
     end
 
     with_permissions
