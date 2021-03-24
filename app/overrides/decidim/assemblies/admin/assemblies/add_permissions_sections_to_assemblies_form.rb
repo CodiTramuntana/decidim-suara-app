@@ -1,4 +1,6 @@
-Deface::Override.new(virtual_path: "decidim/assemblies/admin/assemblies/_form",
+# frozen_string_literal: true
+
+Deface::Override.new(virtual_path: +"decidim/assemblies/admin/assemblies/_form",
                      name: "add_permissions_sections_to_assemblies_form",
                      insert_after: "div.card-section:last-child",
                      text: "

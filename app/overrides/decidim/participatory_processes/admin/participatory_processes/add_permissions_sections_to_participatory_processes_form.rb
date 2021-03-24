@@ -1,4 +1,6 @@
-Deface::Override.new(virtual_path: "decidim/participatory_processes/admin/participatory_processes/_form",
+# frozen_string_literal: true
+
+Deface::Override.new(virtual_path: +"decidim/participatory_processes/admin/participatory_processes/_form",
                      name: "add_permissions_sections_to_participatory_processes_form",
                      insert_after: "div.card-section:last-child",
                      text: "
