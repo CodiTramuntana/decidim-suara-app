@@ -25,6 +25,6 @@ module FilterParticipatorySpacesHelper
   end
 
   def query_permissions(space)
-    space.suara_permissions.nil? || space.suara_permissions.values.all?(&:empty?)
+    space.suara_permissions.nil? || space.suara_permissions.values.all?(&:blank?)
   end
 end
