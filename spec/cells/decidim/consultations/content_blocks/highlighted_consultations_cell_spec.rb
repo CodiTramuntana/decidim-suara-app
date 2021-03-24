@@ -18,7 +18,7 @@ module Decidim
         let!(:consultation_with_other_filter) { create(:consultation, :active, organization: organization, suara_permissions: { ceco: "a", ceco_txt: "b" }) }
         let!(:consultation_without_filter) { create(:consultation, :active, organization: organization, suara_permissions: { ceco: "", ceco_txt: "" }) }
 
-        controller Decidim::PagesController
+        controller Decidim::HomepageController
 
         before do
           allow(controller).to receive(:current_organization).and_return(organization)

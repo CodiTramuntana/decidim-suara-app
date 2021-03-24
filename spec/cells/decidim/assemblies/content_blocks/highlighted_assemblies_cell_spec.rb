@@ -18,7 +18,7 @@ module Decidim
         let!(:assembly_with_other_filter) { create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: "a", ceco_txt: "b" }) }
         let!(:assembly_without_filter) { create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: "", ceco_txt: "" }) }
 
-        controller Decidim::PagesController
+        controller Decidim::HomepageController
 
         before do
           allow(controller).to receive(:current_organization).and_return(organization)

@@ -18,7 +18,7 @@ module Decidim
         let!(:participatory_process_with_other_filter) { create(:participatory_process, :published, :promoted, organization: organization, suara_permissions: { ceco: "a", ceco_txt: "b" }) }
         let!(:participatory_process_without_filter) { create(:participatory_process, :published, :promoted, organization: organization, suara_permissions: { ceco: "", ceco_txt: "" }) }
 
-        controller Decidim::PagesController
+        controller Decidim::HomepageController
 
         before do
           allow(controller).to receive(:current_organization).and_return(organization)
