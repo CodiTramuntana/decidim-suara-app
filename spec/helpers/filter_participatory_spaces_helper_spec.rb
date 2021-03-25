@@ -26,12 +26,12 @@ describe FilterParticipatorySpacesHelper do
     end
   end
 
-  describe "filter_permissions" do
-    context "when user not has permissions" do
+  describe "filter_by_permissions" do
+    context "when the user doesn't have permissions" do
       let(:metadata) { {} }
 
-      it "not get assemblies" do
-        expect(helper.filter_permissions(participatory_spaces, authorization.metadata)).to match_array([])
+      it "doesn't have any assembly" do
+        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
       end
     end
 
@@ -39,29 +39,29 @@ describe FilterParticipatorySpacesHelper do
       let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt", tipologia: "tipo", grup_empleados: "grup", estat_soci: "soci", derechovoto: "derecho", estat_ocup: "ocup" } }
 
       it "get assemblies with the same permissions as user" do
-        expect(helper.filter_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0], participatory_spaces[1])
+        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0], participatory_spaces[1])
       end
     end
 
     context "when user only has two permissions" do
       it "get assemblies with the same permissions as user" do
-        expect(helper.filter_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0])
+        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0])
       end
     end
 
     context "when user has all permissions but differents to space permissions" do
       let(:metadata) { { ceco: "e", ceco_txt: "e", tipologia: "e", grup_empleados: "e", estat_soci: "e", derechovoto: "e", estat_ocup: "e" } }
 
-      it "not get assemblies" do
-        expect(helper.filter_permissions(participatory_spaces, authorization.metadata)).to match_array([])
+      it "doesn't have any assembly" do
+        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
       end
     end
 
     context "when user has some permissions but differents to space permissions" do
       let(:metadata) { { ceco: "e", ceco_txt: "e" } }
 
-      it "not get assemblies" do
-        expect(helper.filter_permissions(participatory_spaces, authorization.metadata)).to match_array([])
+      it "doesn't have any assembly" do
+        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
       end
     end
   end
