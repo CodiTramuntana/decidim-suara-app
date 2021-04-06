@@ -32,6 +32,30 @@
 en:
   activemodel:
     attributes:
+      assembly:
+        ceco: CECO
+        ceco_txt: CECO_TXT
+        derechovoto: DERECHOVOTO
+        estat_ocup: ESTAT_OCUP
+        estat_soci: ESTAT_SOCI
+        grup_empleados: GRUP_EMPLEADOS
+        tipologia: TIPOLOGIA
+      consultation:
+        ceco: CECO
+        ceco_txt: CECO_TXT
+        derechovoto: DERECHOVOTO
+        estat_ocup: ESTAT_OCUP
+        estat_soci: ESTAT_SOCI
+        grup_empleados: GRUP_EMPLEADOS
+        tipologia: TIPOLOGIA
+      participatory_process:
+        ceco: CECO
+        ceco_txt: CECO_TXT
+        derechovoto: DERECHOVOTO
+        estat_ocup: ESTAT_OCUP
+        estat_soci: ESTAT_SOCI
+        grup_empleados: GRUP_EMPLEADOS
+        tipologia: TIPOLOGIA
       question:
         blank_vote: Enable blank vote for this question
       response:
@@ -43,15 +67,21 @@ en:
         name: Member picker
       sap_authorization_handler:
         fields:
-          tipologia: Tipology
-          texto_ceco: Ceco text
-          tipo_socio: Affiliate type
+          ceco: Ceco
+          ceco_txt: Ceco_txt
+          derechovoto: Derechovoto
+          estat_soci: Estat_soci
+          estat_ocup: Estat_ocup
+          grup_empleados: Grup_empleados
+          tipologia: Tipologia
         name: Sap authorization handler
         explanation: Explanation
     pages:
       home:
         hero:
           participate: Participate
+  permissions:
+    title: Permissions
   mailer:
     suara:
       footer_text: Virtual Participation Plan 2021

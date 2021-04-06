@@ -6,12 +6,12 @@
 # - username: the username of the user
 #
 class SapSessionApi
-  attr_reader :tipologia, :texto_ceco, :tipo_socio
+  attr_reader :ceco, :ceco_txt, :tipologia, :grup_empleados, :estat_soci, :derechovoto, :estat_ocup
 
   WSDL_URL = ENV.fetch("SAP_API_WSDL_URL")
 
-  def initialize(username)
-    @username = username
+  def initialize(email)
+    @email = email
     @client = Savon.client(
       env_namespace: :soapenv,
       namespace_identifier: :urn,
@@ -24,10 +24,14 @@ class SapSessionApi
   private
 
   def create_connection
-    response = @client.call(:z_decidim_ess_get_employee, message: { IUser: @username })
-    response = response.to_hash[:z_decidim_ess_get_employee_response]
-    @tipologia = response[:e_ubicacioespai]
-    @texto_ceco = response[:e_kostl_txt]
-    @tipo_socio = response[:e_tipo_soc]
+    response = @client.call(:z_hr_ess_decidim_personas, message: { IMail: @email })
+    response = response.to_hash[:z_hr_ess_decidim_personas_response]
+    @ceco = response[:ceco]
+    @ceco_txt = response[:ceco_txt]
+    @tipologia = response[:tipologia]
+    @grup_empleados = response[:grup_empleados]
+    @estat_soci = response[:estat_soci]
+    @derechovoto = response[:derechovoto]
+    @estat_ocup = response[:estat_ocup]
   end
 end
