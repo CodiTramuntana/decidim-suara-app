@@ -10,7 +10,7 @@ namespace :sap do
       )
       Decidim::CreateSapAuthorization.call(authorization) do
         on(:ok) do
-          Rails.logger.info "UpdateMetadata: --- INFO: USER with #id: #{user.id} doesn't have any metadata." if authorization.reload.metadata.values.compact.empty?
+          Rails.logger.info "UpdateMetadata: --- INFO: USER with #id: #{user.id} doesn't have any metadata." if authorization.metadata.values.compact.empty?
         end
         on(:invalid) do
           Rails.logger.info "UpdateMetadata: --- INFO: authorization is invalid and can't be created for the user #id: #{user.id}."
