@@ -296,6 +296,14 @@ main.wrapper{
   display: none;
 }
 
+#consultations .card.card--consultation .card__icondata{
+  display: none;
+}
+
+div.section#highlighted-questions{
+  display: none;
+}
+
 // FLOATING HELP
 //////////////////////
 .floating-helper__content{
