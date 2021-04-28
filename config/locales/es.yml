@@ -47,6 +47,12 @@ es:
           tipologia: Tipologia
         name: Verificación con SAP
         explanation: Explicación.
+    meetings:
+      meetings:
+        filters:
+          hours: Horas
+          hours_values:
+            before_thirteen_am: Antes de las 13am
     pages:
       home:
         hero:

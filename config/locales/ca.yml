@@ -47,6 +47,12 @@ ca:
           tipologia: Tipologia
         name: Verificació amb SAP
         explanation: Explicació
+    meetings:
+      meetings:
+        filters:
+          hours: Hores
+          hours_values:
+            before_thirteen_am: Abans de les 13am
     pages:
       home:
         hero:

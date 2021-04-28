@@ -76,6 +76,12 @@ en:
           tipologia: Tipologia
         name: Sap authorization handler
         explanation: Explanation
+    meetings:
+      meetings:
+        filters:
+          hours: Hours
+          hours_values:
+            before_thirteen_am: Before 13am
     pages:
       home:
         hero:
