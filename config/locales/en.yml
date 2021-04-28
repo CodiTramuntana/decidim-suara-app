@@ -82,6 +82,16 @@ en:
           hours: Hours
           hours_values:
             before_thirteen_am: Before 13am
+          weekdays: Weekday
+          weekdays_select: Select weekday
+          weekdays_values:
+            monday: Monday
+            tuesday: Tuesday
+            wednesday: Wednesday
+            thursday: Thursday
+            friday: Friday
+            saturday: Saturday
+            sunday: Sunday
     pages:
       home:
         hero:

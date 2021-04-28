@@ -26,6 +26,14 @@ module Decidim::Meetings
         )
       end
 
+      let!(:meeting3) do
+        create(
+          :meeting,
+          component: component,
+          start_time: Time.zone.parse("2021-04-26T14:00:00")
+        )
+      end
+
       context "with hour" do
         let(:params) { default_params.merge(hour: hour) }
 
@@ -41,7 +49,27 @@ module Decidim::Meetings
           let(:hour) { [""] }
 
           it "returns all meetings" do
-            expect(subject).to match_array [meeting1, meeting2]
+            expect(subject).to match_array [meeting1, meeting2, meeting3]
+          end
+        end
+      end
+
+      context "with day" do
+        let(:params) { default_params.merge(day: day) }
+
+        context "when is monday" do
+          let(:day) { ["monday"] }
+
+          it "only returns that are in monday" do
+            expect(subject).to match_array [meeting3]
+          end
+        end
+
+        context "when no day" do
+          let(:day) { [""] }
+
+          it "returns all meetings" do
+            expect(subject).to match_array [meeting1, meeting2, meeting3]
           end
         end
       end

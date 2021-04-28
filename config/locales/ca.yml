@@ -53,6 +53,16 @@ ca:
           hours: Hores
           hours_values:
             before_thirteen_am: Abans de les 13am
+          weekdays: Dia de la setmana
+          weekdays_select: Selecciona un dia
+          weekdays_values:
+            monday: Dilluns
+            tuesday: Dimarts
+            wednesday: Dimecres
+            thursday: Dijous
+            friday: Divendres
+            saturday: Dissabte
+            sunday: Diumenge
     pages:
       home:
         hero:

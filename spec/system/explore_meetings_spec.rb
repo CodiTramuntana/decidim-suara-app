@@ -33,6 +33,18 @@ describe "Explore meetings", :slow, type: :system do
         expect(page).to have_css(".card--meeting", count: 2)
         expect(page).to have_content(translated(out_hour_meeting.title))
       end
+
+      it "allows filtering by day" do
+        monday_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-26T11:00:00"))
+        visit_component
+
+        within ".day_days_select_filter" do
+          find("option[value='monday']").click
+        end
+
+        expect(page).to have_css(".card--meeting", count: 1)
+        expect(page).to have_content(translated(monday_meeting.title))
+      end
     end
   end
 end

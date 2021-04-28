@@ -31,4 +31,11 @@
   <% end %>
 
   <%= form.check_boxes_tree :hour, filter_hours_values, legend_title: t(".hours") %>
+
+  <%= form.days_select :day,
+                      filter_weekdays_values,
+                      legend_title: t(".weekdays"),
+                      label: "",
+                      selected: filter.day,
+                      include_blank: t(".weekdays_select") %>
 <% end %>

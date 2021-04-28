@@ -53,6 +53,16 @@ es:
           hours: Horas
           hours_values:
             before_thirteen_am: Antes de las 13am
+          weekdays: Weekday
+          weekdays_select: Selecciona un día
+          weekdays_values:
+            monday: Lunes
+            tuesday: Martes
+            wednesday: Miércoles
+            thursday: Jueves
+            friday: Viernes
+            saturday: Sábado
+            sunday: Domingo
     pages:
       home:
         hero:
