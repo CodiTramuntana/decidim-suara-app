@@ -51,7 +51,7 @@ ca:
       meetings:
         settings:
           global:
-            enable_cards_visualization: Llistat amb cards
+            enable_cards_visualization: Habilitar les trobades en el format tradicional de targetes
     meetings:
       meetings:
         filters:

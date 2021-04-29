@@ -51,7 +51,7 @@ es:
       meetings:
         settings:
           global:
-            enable_cards_visualization: Listado con cards
+            enable_cards_visualization: Habilitar los encuentros en el formato tradicional de tarjetas
     meetings:
       meetings:
         filters:

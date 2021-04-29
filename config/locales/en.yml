@@ -80,7 +80,7 @@ en:
       meetings:
         settings:
           global:
-            enable_cards_visualization: Enable cards visualization
+            enable_cards_visualization: Enable meetings in traditional card format
     meetings:
       meetings:
         filters:
