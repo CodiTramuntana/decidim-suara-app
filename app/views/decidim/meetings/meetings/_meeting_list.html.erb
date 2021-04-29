@@ -1,0 +1,21 @@
+<div class="meeting-list">
+  <% month_list = [*1..12] %>
+  <% month_list.each do |month|%>
+    <% month_meetings = month_meetings(meetings, month) %>
+    <% if month_meetings.present? %>
+      <h5 class="month"><%= t(".months.#{month}")%></h5>
+      <% month_meetings.each do |meeting| %>
+        <ul>
+          <li>
+            <div class="element">
+              <span class="title"><%= link_to translated_attribute(meeting.title), meeting_path(meeting.id) %></span>
+              -
+              <span class="date"><%= (meeting.start_time).strftime("%d/%m/%Y %H:%M") %></span>
+              <%= cell "decidim/meetings/join_meeting_button", meeting, big_button: false, show_remaining_slots: false %>
+            </div>
+          </li>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

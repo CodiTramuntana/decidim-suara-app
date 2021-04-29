@@ -47,6 +47,11 @@ es:
           tipologia: Tipologia
         name: Verificación con SAP
         explanation: Explicación.
+    components:
+      meetings:
+        settings:
+          global:
+            enable_cards_visualization: Listado con cards
     meetings:
       meetings:
         filters:
@@ -63,6 +68,20 @@ es:
             friday: Viernes
             saturday: Sábado
             sunday: Domingo
+        meeting_list:
+          months:
+            1: enero
+            2: Febrero
+            3: Marzo
+            4: Abril
+            5: Mayo
+            6: Junio
+            7: Julio
+            8: Agosto
+            9: Septiembre
+            10: Octubre
+            11: Noviembre
+            12: Diciembre
     pages:
       home:
         hero:

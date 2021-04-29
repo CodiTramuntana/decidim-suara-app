@@ -310,3 +310,29 @@ main.wrapper{
   background-color: rgba($orange_suara_rgb, 0.1);
 }
 
+// MEETINGS LIST
+.meeting-list {
+  .element {
+    display: flex;
+  }
+
+  .title {
+    margin-right: 12px;
+  }
+
+  .date {
+    margin-left: 12px;
+  }
+
+  .month {
+    font-weight: bold;
+  }
+
+  form {
+    padding-left: 8px;
+    
+    button {
+      color: $orange_suara;
+    }
+  }
+}

@@ -19,4 +19,8 @@ Decidim::Meetings::ApplicationHelper.class_eval do
 
     days
   end
+
+  def month_meetings(meetings, month)
+    meetings.where("extract(month from start_time) = ?", month)
+  end
 end
