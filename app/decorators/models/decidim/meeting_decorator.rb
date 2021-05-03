@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Decidim::Meetings::Meeting.class_eval do
-  scope :thirteen_am, -> { where("start_time::time < ?", "13:00:00") }
+  scope :thirteen_am, -> { where("start_time::time < ?", Time.zone.parse("13:00:00").strftime("%H:%M:%S")) }
 
   scope :monday, -> { where("extract(dow from start_time) = ?", 1) }
   scope :tuesday, -> { where("extract(dow from start_time) = ?", 2) }
