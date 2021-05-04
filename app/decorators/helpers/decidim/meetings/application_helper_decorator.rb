@@ -21,6 +21,6 @@ Decidim::Meetings::ApplicationHelper.class_eval do
   end
 
   def month_meetings(meetings, month)
-    meetings.where("extract(month from start_time) = ?", month)
+    meetings.where("extract(month from start_time) = ?", month).order(start_time: :asc)
   end
 end
