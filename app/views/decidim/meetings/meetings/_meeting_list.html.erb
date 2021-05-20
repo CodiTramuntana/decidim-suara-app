@@ -11,7 +11,7 @@
               <span class="title"><%= link_to translated_attribute(meeting.title), meeting_path(meeting.id) %></span>
               -
               <span class="date"><%= (meeting.start_time).strftime("%d/%m/%Y %H:%M") %></span>
-              <%= cell "decidim/meetings/join_meeting_button", meeting, big_button: false, show_remaining_slots: false %>
+              <%= cell "decidim/meetings/join_meeting_button", meeting, big_button: false, show_remaining_slots: true %>
             </div>
           </li>
         </ul>
