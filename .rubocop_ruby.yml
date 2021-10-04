@@ -733,6 +733,9 @@ Style/OptionHash:
     - params
     - parameters
 
+Style/OptionalBooleanParameter:
+  Enabled: false
+
 # Allow safe assignment in conditions.
 Style/ParenthesesAroundCondition:
   AllowSafeAssignment: true
@@ -1226,6 +1229,9 @@ RSpec/LeakyConstantDeclaration:
   Enabled: false
 
 RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
 inherit_from: .rubocop_rails.yml

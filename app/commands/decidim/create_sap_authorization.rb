@@ -6,6 +6,7 @@ module Decidim
     #
     # authorization - The authorization from which the data in this component comes from.
     def initialize(authorization)
+      super(authorization)
       @authorization = authorization
     end
 

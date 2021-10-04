@@ -69,7 +69,7 @@ module Decidim
 
           describe "when the form is not valid" do
             before do
-              expect(form).to receive(:invalid?).and_return(true)
+              allow(form).to receive(:invalid?).and_return(true)
             end
 
             it "broadcasts invalid" do
@@ -86,7 +86,7 @@ module Decidim
 
           describe "when the participatory process is not valid" do
             before do
-              expect(form).to receive(:invalid?).and_return(false)
+              allow(form).to receive(:invalid?).and_return(false)
               expect(my_process).to receive(:valid?).at_least(:once).and_return(false)
               my_process.errors.add(:hero_image, "Image too big")
               my_process.errors.add(:banner_image, "Image too big")

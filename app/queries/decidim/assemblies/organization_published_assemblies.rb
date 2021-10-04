@@ -5,6 +5,7 @@ module Decidim
     # This query class filters published assemblies given an organization.
     class OrganizationPublishedAssemblies < Rectify::Query
       def initialize(organization, user = nil)
+        super(organization)
         @organization = organization
         @user = user
       end
