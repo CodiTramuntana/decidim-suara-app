@@ -17,13 +17,13 @@
 /yarn-error.log
 
 .byebug_history
+.rspec-failures
 
 # Ignore public uploads
 public/uploads
 /test/*
 # Ignore application configuration
 /config/application.yml
-/RailsApplication1/nbproject/private/
 # Ignore deploy secrets
 /config/deploy.rb
 /config/deploy/*
