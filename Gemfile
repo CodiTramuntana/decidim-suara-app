@@ -26,7 +26,7 @@ gem "puma"
 gem "uglifier", "~> 4.1"
 gem "whenever"
 
-gem "faker", "~> 1.9"
+gem "faker", "~> 2.14.0"
 gem "wicked_pdf"
 
 gem "savon", "~> 2.12.0"
