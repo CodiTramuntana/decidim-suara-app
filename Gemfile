@@ -22,7 +22,7 @@ gem "daemons"
 gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.2"
 gem "delayed_job_active_record"
 gem "figaro"
-gem "puma", "~> 4.0"
+gem "puma", "~> 4.3"
 gem "uglifier", "~> 4.1"
 gem "whenever"
 
