@@ -330,6 +330,13 @@ div.section#highlighted-questions{
 
   .date {
     margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .link {
+    margin-right: 12px;
+    text-decoration: underline;
+    color: $orange-suara-dark;
   }
 
   .month {
@@ -339,7 +346,7 @@ div.section#highlighted-questions{
   form {
     padding-left: 8px;
     padding-right: 8px;
-    
+
     button {
       color: $orange_suara;
     }
