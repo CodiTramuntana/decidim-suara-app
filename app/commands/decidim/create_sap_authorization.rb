@@ -5,10 +5,11 @@ module Decidim
     # Public: Initializes the command.
     #
     # authorization - The authorization from which the data in this component comes from.
+    # rubocop:disable Lint/MissingSuper
     def initialize(authorization)
-      super(authorization)
       @authorization = authorization
     end
+    # rubocop:enable Lint/MissingSuper
 
     # Public: Creates the Component.
     #
