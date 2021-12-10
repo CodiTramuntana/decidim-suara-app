@@ -7,16 +7,15 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
 
   private
 
-  alias_method :original_promoted_participatory_processes, :promoted_participatory_processes
+  alias_method :original_promoted_collection, :promoted_collection
   alias_method :original_participatory_processes, :participatory_processes
   alias_method :original_participatory_process_groups, :participatory_process_groups
 
-  def promoted_participatory_processes
+  def promoted_collection
     if current_user&.admin?
-      original_promoted_participatory_processes
+      original_promoted_collection
     else
-      permissions(original_promoted_participatory_processes).sort_by(&:weight)
-
+      Decidim::ParticipatoryProcesses::FilteredByPermissionsAndSorted.new(current_user, original_promoted_collection)
     end
   end
 
