@@ -53,16 +53,16 @@ module Decidim
           let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
 
           it "includes all promoted" do
-            expect(controller.helpers.promoted_participatory_processes).to include(promoted)
-            expect(controller.helpers.promoted_participatory_processes).to include(promoted_with_filter)
-            expect(controller.helpers.promoted_participatory_processes).to include(promoted_without_filter)
+            expect(controller.helpers.collection).to include(promoted)
+            expect(controller.helpers.collection).to include(promoted_with_filter)
+            expect(controller.helpers.collection).to include(promoted_without_filter)
           end
         end
 
         context "when user isn't admin and has permissions" do
           it "includes only processes with permissions filters and without permissions" do
-            expect(controller.helpers.promoted_participatory_processes).to include(promoted_with_filter)
-            expect(controller.helpers.promoted_participatory_processes).to include(promoted_without_filter)
+            expect(controller.helpers.collection).to include(promoted_with_filter)
+            expect(controller.helpers.collection).to include(promoted_without_filter)
           end
         end
 
@@ -70,7 +70,7 @@ module Decidim
           let!(:authorization) {}
 
           it "includes only processes without permissions filters" do
-            expect(controller.helpers.promoted_participatory_processes).to contain_exactly(promoted_without_filter)
+            expect(controller.helpers.collection).to contain_exactly(promoted_without_filter)
           end
         end
       end
