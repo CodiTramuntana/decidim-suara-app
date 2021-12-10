@@ -7,7 +7,7 @@ Decidim::ParticipatoryProcesses::ProcessFiltersCell.class_eval do
   alias_method :original_process_count_by_filter, :process_count_by_filter
 
   def process_count_by_filter
-    if current_user.admin?
+    if current_user&.admin?
       original_process_count_by_filter
     else
       @process_count_by_filter = %w(active upcoming past).inject({}) do |collection_by_filter, filter_name|

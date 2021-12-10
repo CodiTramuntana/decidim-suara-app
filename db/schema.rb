@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_072447) do
     t.string "facebook_handler"
     t.string "youtube_handler"
     t.string "github_handler"
+    t.jsonb "suara_permissions"
     t.bigint "decidim_assemblies_type_id"
     t.integer "weight", default: 1, null: false
     t.jsonb "suara_permissions"
@@ -990,8 +991,8 @@ ActiveRecord::Schema.define(version: 2021_07_01_072447) do
     t.string "id_documents_methods", default: ["online"], array: true
     t.jsonb "id_documents_explanation_text", default: {}
     t.boolean "user_groups_enabled", default: false, null: false
-    t.jsonb "smtp_settings"
     t.jsonb "colors", default: {}
+    t.jsonb "smtp_settings"
     t.boolean "force_users_to_authenticate_before_access_organization", default: false
     t.jsonb "omniauth_settings"
     t.boolean "rich_text_editor_in_public_views", default: false
@@ -1090,6 +1091,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_072447) do
     t.boolean "private_space", default: false
     t.string "reference"
     t.bigint "decidim_area_id"
+    t.jsonb "suara_permissions"
     t.bigint "decidim_scope_type_id"
     t.boolean "show_metrics", default: true
     t.integer "weight", default: 1, null: false
@@ -1512,11 +1514,11 @@ ActiveRecord::Schema.define(version: 2021_07_01_072447) do
     t.integer "following_count", default: 0, null: false
     t.integer "followers_count", default: 0, null: false
     t.string "notification_types", default: "all", null: false
+    t.datetime "officialized_at"
+    t.jsonb "officialized_as"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.datetime "officialized_at"
-    t.jsonb "officialized_as"
     t.datetime "admin_terms_accepted_at"
     t.string "session_token"
     t.string "direct_message_types", default: "all", null: false

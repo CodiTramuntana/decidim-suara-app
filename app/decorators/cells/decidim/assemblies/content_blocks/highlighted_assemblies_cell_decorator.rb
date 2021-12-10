@@ -7,7 +7,7 @@ Decidim::Assemblies::ContentBlocks::HighlightedAssembliesCell.class_eval do
   alias_method :original_highlighted_assemblies, :highlighted_assemblies
 
   def highlighted_assemblies
-    @highlighted_assemblies ||= if current_user.admin?
+    @highlighted_assemblies ||= if current_user&.admin?
                                   original_highlighted_assemblies
                                 else
                                   permissions(original_highlighted_assemblies)

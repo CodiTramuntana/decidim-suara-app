@@ -7,7 +7,7 @@ Decidim::ParticipatoryProcesses::ContentBlocks::HighlightedProcessesCell.class_e
   alias_method :original_highlighted_processes, :highlighted_processes
 
   def highlighted_processes
-    @highlighted_processes ||= if current_user.admin?
+    @highlighted_processes ||= if current_user&.admin?
                                  original_highlighted_processes
                                else
                                  permissions(original_highlighted_processes)
