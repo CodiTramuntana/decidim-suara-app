@@ -10,7 +10,7 @@ Decidim::Consultations::ConsultationsController.class_eval do
   alias_method :original_consultations, :consultations
 
   def consultations
-    if current_user.admin?
+    if current_user&.admin?
       original_consultations
     else
       @consultations = permissions(reorder(search.results))

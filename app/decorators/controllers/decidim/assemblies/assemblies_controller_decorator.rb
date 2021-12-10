@@ -11,7 +11,7 @@ Decidim::Assemblies::AssembliesController.class_eval do
   alias_method :original_parent_assemblies, :parent_assemblies
 
   def promoted_assemblies
-    if current_user.admin?
+    if current_user&.admin?
       original_promoted_assemblies
     else
       @promoted_assemblies = Decidim::Assembly.where(id: permissions(original_promoted_assemblies).map(&:id)).order(weight: :asc)
@@ -19,7 +19,7 @@ Decidim::Assemblies::AssembliesController.class_eval do
   end
 
   def parent_assemblies
-    if current_user.admin?
+    if current_user&.admin?
       original_parent_assemblies
     else
       @promoted_assemblies = Decidim::Assembly.where(id: permissions(original_parent_assemblies).map(&:id)).order(weight: :asc, promoted: :desc)

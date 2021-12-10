@@ -12,7 +12,7 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   alias_method :original_participatory_process_groups, :participatory_process_groups
 
   def promoted_participatory_processes
-    if current_user.admin?
+    if current_user&.admin?
       original_promoted_participatory_processes
     else
       permissions(original_promoted_participatory_processes).sort_by(&:weight)
@@ -21,7 +21,7 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   end
 
   def participatory_processes
-    if current_user.admin?
+    if current_user&.admin?
       original_participatory_processes
     else
       participatory_processes ||= filtered_processes.groupless
@@ -30,7 +30,7 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   end
 
   def participatory_process_groups
-    if current_user.admin?
+    if current_user&.admin?
       original_participatory_process_groups
     else
       filter_processes = permissions(filtered_processes).map(&:decidim_participatory_process_group_id)
