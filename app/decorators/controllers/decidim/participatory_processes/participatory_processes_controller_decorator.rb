@@ -8,7 +8,7 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
   alias_method :original_show, :show
   def show
     original_show
-    render status: :forbidden unless suara_permissions_match?(current_user, current_participatory_space)
+    render status: :forbidden unless current_user.admin? || suara_permissions_match?(current_user, current_participatory_space)
   end
 
   private

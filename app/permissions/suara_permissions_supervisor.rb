@@ -4,8 +4,6 @@ module SuaraPermissionsSupervisor
 
   # Checks whether the given `user` has the same permissions as the given `participatory_space`.
   def suara_permissions_match?(user, participatory_space)
-    return true if user.admin?
-
     user_auth = Decidim::Authorization.find_by(decidim_user_id: user.id)
     user_permissions = user_auth&.metadata || {}
     space_permissions= participatory_space.suara_permissions

@@ -12,7 +12,7 @@ module Decidim
       let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
       let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
 
-      let!(:published_with_filter) do
+      let!(:published_with_permissions) do
         create(
           :consultation,
           :published,
@@ -21,7 +21,7 @@ module Decidim
         )
       end
 
-      let!(:published_without_filter) do
+      let!(:published_without_permissions) do
         create(
           :consultation,
           :published,
@@ -30,7 +30,7 @@ module Decidim
         )
       end
 
-      let!(:published_with_other_filter) do
+      let!(:published_with_other_permissions) do
         create(
           :consultation,
           :published,
@@ -50,16 +50,16 @@ module Decidim
           let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
 
           it "includes all consultations" do
-            expect(controller.helpers.consultations).to include(published_with_filter)
-            expect(controller.helpers.consultations).to include(published_without_filter)
-            expect(controller.helpers.consultations).to include(published_with_other_filter)
+            expect(controller.helpers.consultations).to include(published_with_permissions)
+            expect(controller.helpers.consultations).to include(published_without_permissions)
+            expect(controller.helpers.consultations).to include(published_with_other_permissions)
           end
         end
 
         context "when user isn't admin and has permissions" do
           it "includes consultations with permissions filters and without permissions" do
-            expect(controller.helpers.collection).to include(published_with_filter)
-            expect(controller.helpers.collection).to include(published_without_filter)
+            expect(controller.helpers.collection).to include(published_with_permissions)
+            expect(controller.helpers.collection).to include(published_without_permissions)
           end
         end
 
@@ -67,14 +67,65 @@ module Decidim
           let!(:authorization) {}
 
           it "includes consultations with permissions filters and without permissions" do
-            expect(controller.helpers.collection).to include(published_with_filter)
-            expect(controller.helpers.collection).to include(published_without_filter)
+            expect(controller.helpers.collection).to include(published_with_permissions)
+            expect(controller.helpers.collection).to include(published_without_permissions)
           end
         end
       end
 
       it "does not raise error to call current_participatory_space" do
         expect { controller.send(:current_participatory_space) }.not_to raise_error
+      end
+
+      describe "#show" do
+        context "when user is admin" do
+          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
+
+          it "can access processes with all kind of permissions" do
+            get :show, params: {slug: published_with_permissions.slug}
+            expect(response).to have_http_status(:success)
+            get :show, params: {slug: published_with_other_permissions.slug}
+            expect(response).to have_http_status(:success)
+            get :show, params: {slug: published_without_permissions.slug}
+            expect(response).to have_http_status(:success)
+          end
+        end
+
+        context "when user is NOT admin but HAS permissions" do
+          it "can access processes with same permissions" do
+            get :show, params: {slug: published_with_permissions.slug}
+            expect(response).to have_http_status(:success)
+          end
+
+          it "can access processes without permissions" do
+            get :show, params: {slug: published_without_permissions.slug}
+            expect(response).to have_http_status(:success)
+          end
+
+          it "can not access processes with different" do
+            get :show, params: {slug: published_with_other_permissions.slug}
+            expect(response).to have_http_status(:forbidden)
+          end
+        end
+
+        context "when user is NOT admin and does NOT have permissions" do
+          let!(:authorization) {}
+
+          it "can access processes without permissions" do
+            get :show, params: {slug: published_without_permissions.slug}
+            expect(response).to have_http_status(:success)
+          end
+
+          it "can not access processes with some permissions" do
+            get :show, params: {slug: published_with_other_permissions.slug}
+            expect(response).to have_http_status(:forbidden)
+          end
+
+          it "can not access processes with different" do
+            get :show, params: {slug: published_with_permissions.slug}
+            expect(response).to have_http_status(:forbidden)
+          end
+        end
       end
     end
   end

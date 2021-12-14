@@ -5,6 +5,12 @@
 Decidim::Consultations::ConsultationsController.class_eval do
   include SuaraPermissionsSupervisor
 
+  alias_method :original_show, :show
+  def show
+    original_show
+    render status: :forbidden unless current_user.admin? || suara_permissions_match?(current_user, current_participatory_space)
+  end
+
   private
 
   alias_method :original_consultations, :consultations
