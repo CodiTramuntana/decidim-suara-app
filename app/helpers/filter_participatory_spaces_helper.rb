@@ -9,11 +9,11 @@ module FilterParticipatorySpacesHelper
   end
 
   def without_permissions(participatory_spaces)
-    participatory_spaces.select { |space| query_permissions(space) }
+    participatory_spaces.select { |space| blank_permissions?(space) }
   end
 
   def filter_by_permissions(participatory_spaces, user_permissions)
-    with_permissions = participatory_spaces.reject { |space| query_permissions(space) }
+    with_permissions = participatory_spaces.reject { |space| blank_permissions?(space) }
 
     if with_permissions.present?
       with_permissions = with_permissions.select do |space|
@@ -25,7 +25,7 @@ module FilterParticipatorySpacesHelper
     with_permissions
   end
 
-  def query_permissions(space)
+  def blank_permissions?(space)
     space.suara_permissions.nil? || space.suara_permissions.values.all?(&:blank?)
   end
 end
