@@ -46,7 +46,7 @@ module Decidim
       end
 
       describe "POST create" do
-        context "even when user is admin" do
+        context "when user is admin" do
           let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
           let(:comment_params) do
             {

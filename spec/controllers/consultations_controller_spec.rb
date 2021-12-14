@@ -82,28 +82,28 @@ module Decidim
           let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
 
           it "can access processes with all kind of permissions" do
-            get :show, params: {slug: published_with_permissions.slug}
+            get :show, params: { slug: published_with_permissions.slug }
             expect(response).to have_http_status(:success)
-            get :show, params: {slug: published_with_other_permissions.slug}
+            get :show, params: { slug: published_with_other_permissions.slug }
             expect(response).to have_http_status(:success)
-            get :show, params: {slug: published_without_permissions.slug}
+            get :show, params: { slug: published_without_permissions.slug }
             expect(response).to have_http_status(:success)
           end
         end
 
         context "when user is NOT admin but HAS permissions" do
           it "can access processes with same permissions" do
-            get :show, params: {slug: published_with_permissions.slug}
+            get :show, params: { slug: published_with_permissions.slug }
             expect(response).to have_http_status(:success)
           end
 
           it "can access processes without permissions" do
-            get :show, params: {slug: published_without_permissions.slug}
+            get :show, params: { slug: published_without_permissions.slug }
             expect(response).to have_http_status(:success)
           end
 
           it "can not access processes with different" do
-            get :show, params: {slug: published_with_other_permissions.slug}
+            get :show, params: { slug: published_with_other_permissions.slug }
             expect(response).to have_http_status(:forbidden)
           end
         end
@@ -112,17 +112,17 @@ module Decidim
           let!(:authorization) {}
 
           it "can access processes without permissions" do
-            get :show, params: {slug: published_without_permissions.slug}
+            get :show, params: { slug: published_without_permissions.slug }
             expect(response).to have_http_status(:success)
           end
 
           it "can not access processes with some permissions" do
-            get :show, params: {slug: published_with_other_permissions.slug}
+            get :show, params: { slug: published_with_other_permissions.slug }
             expect(response).to have_http_status(:forbidden)
           end
 
           it "can not access processes with different" do
-            get :show, params: {slug: published_with_permissions.slug}
+            get :show, params: { slug: published_with_permissions.slug }
             expect(response).to have_http_status(:forbidden)
           end
         end

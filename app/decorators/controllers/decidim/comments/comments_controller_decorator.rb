@@ -9,8 +9,7 @@ Decidim::Comments::CommentsController.class_eval do
 
   def create
     return render status: :forbidden unless suara_permissions_match?(current_user, commentable.participatory_space)
+
     original_create
   end
-
-  private
 end

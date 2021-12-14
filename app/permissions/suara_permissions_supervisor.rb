@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module SuaraPermissionsSupervisor
-
   # Checks whether the given `user` has the same permissions as the given `participatory_space`.
   def suara_permissions_match?(user, participatory_space)
     user_auth = Decidim::Authorization.find_by(decidim_user_id: user.id)

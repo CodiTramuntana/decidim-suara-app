@@ -12,6 +12,4 @@ Decidim::Components::BaseController.class_eval do
     # so current_user is mandatory, there are no anonymous users
     render status: :forbidden unless current_user && (current_user.admin? || suara_permissions_match?(current_user, current_participatory_space))
   end
-
-  private
 end

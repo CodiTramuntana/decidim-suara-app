@@ -113,56 +113,56 @@ module Decidim
           end
         end
 
-      describe "#show" do
-        context "when user is admin" do
-          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
+        describe "#show" do
+          context "when user is admin" do
+            let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
 
-          it "can access processes with all kind of permissions" do
-            get :show, params: {slug: promoted.slug}
-            expect(response).to have_http_status(:success)
-            get :show, params: {slug: promoted_with_permissions.slug}
-            expect(response).to have_http_status(:success)
-            get :show, params: {slug: promoted_without_permissions.slug}
-            expect(response).to have_http_status(:success)
+            it "can access processes with all kind of permissions" do
+              get :show, params: { slug: promoted.slug }
+              expect(response).to have_http_status(:success)
+              get :show, params: { slug: promoted_with_permissions.slug }
+              expect(response).to have_http_status(:success)
+              get :show, params: { slug: promoted_without_permissions.slug }
+              expect(response).to have_http_status(:success)
+            end
+          end
+
+          context "when user is NOT admin but HAS permissions" do
+            it "can access processes with same permissions" do
+              get :show, params: { slug: promoted_with_permissions.slug }
+              expect(response).to have_http_status(:success)
+            end
+
+            it "can access processes without permissions" do
+              get :show, params: { slug: promoted_without_permissions.slug }
+              expect(response).to have_http_status(:success)
+            end
+
+            it "can not access processes with different" do
+              get :show, params: { slug: promoted.slug }
+              expect(response).to have_http_status(:forbidden)
+            end
+          end
+
+          context "when user is NOT admin and does NOT have permissions" do
+            let!(:authorization) {}
+
+            it "can access processes without permissions" do
+              get :show, params: { slug: promoted_without_permissions.slug }
+              expect(response).to have_http_status(:success)
+            end
+
+            it "can not access processes with some permissions" do
+              get :show, params: { slug: promoted_with_permissions.slug }
+              expect(response).to have_http_status(:forbidden)
+            end
+
+            it "can not access processes with different" do
+              get :show, params: { slug: promoted.slug }
+              expect(response).to have_http_status(:forbidden)
+            end
           end
         end
-
-        context "when user is NOT admin but HAS permissions" do
-          it "can access processes with same permissions" do
-            get :show, params: {slug: promoted_with_permissions.slug}
-            expect(response).to have_http_status(:success)
-          end
-
-          it "can access processes without permissions" do
-            get :show, params: {slug: promoted_without_permissions.slug}
-            expect(response).to have_http_status(:success)            
-          end
-
-          it "can not access processes with different" do
-            get :show, params: {slug: promoted.slug}
-            expect(response).to have_http_status(:forbidden)            
-          end
-        end
-
-        context "when user is NOT admin and does NOT have permissions" do
-          let!(:authorization) {}
-
-          it "can access processes without permissions" do
-            get :show, params: {slug: promoted_without_permissions.slug}
-            expect(response).to have_http_status(:success)            
-          end
-
-          it "can not access processes with some permissions" do
-            get :show, params: {slug: promoted_with_permissions.slug}
-            expect(response).to have_http_status(:forbidden)
-          end
-
-          it "can not access processes with different" do
-            get :show, params: {slug: promoted.slug}
-            expect(response).to have_http_status(:forbidden)            
-          end
-        end
-      end
       end
     end
   end

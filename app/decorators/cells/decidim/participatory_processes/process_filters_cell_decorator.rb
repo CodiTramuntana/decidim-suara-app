@@ -12,9 +12,9 @@ Decidim::ParticipatoryProcesses::ProcessFiltersCell.class_eval do
     else
       @process_count_by_filter = %w(active upcoming past).inject({}) do |collection_by_filter, filter_name|
         filtered_processes = filtered_processes(filter_name).results
-        filtered_processes_ids = filtered_processes.present? ? filter_by_suara_permissions(filtered_processes(filter_name).results).map(&:decidim_participatory_process_group_id) : []
+        filtered_ids = filtered_processes.present? ? filter_by_suara_permissions(filtered_processes(filter_name).results).map(&:decidim_participatory_process_group_id) : []
         processes = filtered_processes.groupless.present? ? filter_by_suara_permissions(filtered_processes(filter_name).results.groupless) : []
-        groups = Decidim::ParticipatoryProcessGroup.where(id: filtered_processes_ids)
+        groups = Decidim::ParticipatoryProcessGroup.where(id: filtered_ids)
         collection_by_filter.merge(filter_name => processes.count + groups.count)
       end
       @process_count_by_filter["all"] = @process_count_by_filter.values.sum
