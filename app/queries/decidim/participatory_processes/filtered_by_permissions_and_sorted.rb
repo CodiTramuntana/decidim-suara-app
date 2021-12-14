@@ -8,6 +8,7 @@ module Decidim
       include FilterParticipatorySpacesHelper
 
       def initialize(current_user, participatory_processes_query)
+        super
         @current_user= current_user
         @participatory_processes_query = participatory_processes_query
       end
