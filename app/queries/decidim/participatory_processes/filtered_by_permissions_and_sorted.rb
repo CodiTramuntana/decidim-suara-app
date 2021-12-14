@@ -5,7 +5,7 @@ module Decidim
     # This query orders assemblies by importance, prioritizing promoted
     # assemblies.
     class FilteredByPermissionsAndSorted < Rectify::Query
-      include FilterParticipatorySpacesHelper
+      include SuaraPermissionsSupervisor
 
       def initialize(current_user, participatory_processes_query)
         @current_user= current_user
@@ -15,7 +15,7 @@ module Decidim
       attr_reader :current_user
 
       def query
-        permissions(@participatory_processes_query).sort_by(&:weight)
+        filter_by_suara_permissions(@participatory_processes_query).sort_by(&:weight)
       end
     end
   end

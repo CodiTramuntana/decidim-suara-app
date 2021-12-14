@@ -1,7 +1,19 @@
 # frozen_string_literal: true
 
-module FilterParticipatorySpacesHelper
-  def permissions(participatory_spaces)
+module SuaraPermissionsSupervisor
+
+  # Checks whether the given `user` has the same permissions as the given `participatory_space`.
+  def suara_permissions_match?(user, participatory_space)
+    return true if user.admin?
+
+    user_auth = Decidim::Authorization.find_by(decidim_user_id: user.id)
+    user_permissions = user_auth&.metadata || {}
+    space_permissions= participatory_space.suara_permissions
+    # space permissions should be a subgroup of user permissions (ignoring empty keys)
+    space_permissions.delete_if { |_k, v| v.nil? || v.blank? } <= user_permissions&.delete_if { |_k, v| v.nil? || v.blank? }
+  end
+
+  def filter_by_suara_permissions(participatory_spaces)
     user_auth = Decidim::Authorization.find_by(decidim_user_id: current_user)
     user_permissions = user_auth.present? && user_auth.metadata.present? ? user_auth.metadata : {}
 

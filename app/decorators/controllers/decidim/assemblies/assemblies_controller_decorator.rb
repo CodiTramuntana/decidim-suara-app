@@ -3,7 +3,13 @@
 # This decorator change the behavior of the promoted and parent assemblies
 # to check permissions if you are not an admin user.
 Decidim::Assemblies::AssembliesController.class_eval do
-  include FilterParticipatorySpacesHelper
+  include SuaraPermissionsSupervisor
+
+  alias_method :original_show, :show
+  def show
+    original_show
+    render status: :forbidden unless suara_permissions_match?(current_user, current_participatory_space)
+  end
 
   private
 
@@ -14,7 +20,7 @@ Decidim::Assemblies::AssembliesController.class_eval do
     if current_user&.admin?
       original_promoted_assemblies
     else
-      @promoted_assemblies = Decidim::Assembly.where(id: permissions(original_promoted_assemblies).map(&:id)).order(weight: :asc)
+      @promoted_assemblies = Decidim::Assembly.where(id: filter_by_suara_permissions(original_promoted_assemblies).map(&:id)).order(weight: :asc)
     end
   end
 
@@ -22,7 +28,7 @@ Decidim::Assemblies::AssembliesController.class_eval do
     if current_user&.admin?
       original_parent_assemblies
     else
-      @promoted_assemblies = Decidim::Assembly.where(id: permissions(original_parent_assemblies).map(&:id)).order(weight: :asc, promoted: :desc)
+      @promoted_assemblies = Decidim::Assembly.where(id: filter_by_suara_permissions(original_parent_assemblies).map(&:id)).order(weight: :asc, promoted: :desc)
     end
   end
 end

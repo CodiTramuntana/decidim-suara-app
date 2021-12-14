@@ -32,7 +32,7 @@ module Decidim
         )
       end
 
-      let!(:promoted_without_permisssions) do
+      let!(:promoted_without_permissions) do
         create(
           :participatory_process,
           :published,
@@ -55,14 +55,14 @@ module Decidim
           it "includes all promoted" do
             expect(controller.helpers.collection).to include(promoted)
             expect(controller.helpers.collection).to include(promoted_with_permissions)
-            expect(controller.helpers.collection).to include(promoted_without_permisssions)
+            expect(controller.helpers.collection).to include(promoted_without_permissions)
           end
         end
 
         context "when user isn't admin and has permissions" do
           it "includes only processes with permissions filters and without permissions" do
             expect(controller.helpers.collection).to include(promoted_with_permissions)
-            expect(controller.helpers.collection).to include(promoted_without_permisssions)
+            expect(controller.helpers.collection).to include(promoted_without_permissions)
           end
         end
 
@@ -70,7 +70,7 @@ module Decidim
           let!(:authorization) {}
 
           it "includes only processes without permissions filters" do
-            expect(controller.helpers.collection).to contain_exactly(promoted_without_permisssions)
+            expect(controller.helpers.collection).to contain_exactly(promoted_without_permissions)
           end
         end
       end
@@ -84,7 +84,7 @@ module Decidim
             expect(response).to have_http_status(:success)
             get :show, params: {slug: promoted_with_permissions.slug}
             expect(response).to have_http_status(:success)
-            get :show, params: {slug: promoted_without_permisssions.slug}
+            get :show, params: {slug: promoted_without_permissions.slug}
             expect(response).to have_http_status(:success)
           end
         end
@@ -96,7 +96,7 @@ module Decidim
           end
 
           it "can access processes without permissions" do
-            get :show, params: {slug: promoted_without_permisssions.slug}
+            get :show, params: {slug: promoted_without_permissions.slug}
             expect(response).to have_http_status(:success)            
           end
 
@@ -110,7 +110,7 @@ module Decidim
           let!(:authorization) {}
 
           it "can access processes without permissions" do
-            get :show, params: {slug: promoted_without_permisssions.slug}
+            get :show, params: {slug: promoted_without_permissions.slug}
             expect(response).to have_http_status(:success)            
           end
 
