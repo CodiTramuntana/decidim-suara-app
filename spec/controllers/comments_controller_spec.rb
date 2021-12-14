@@ -62,7 +62,6 @@ module Decidim
             it "can only comment on places where she has permissions" do
               post :create, xhr: true, params: { comment: comment_params }
               expect(subject).to render_template(:create)
-              # expect(response).to have_http_status(:success)
             end
           end
 
