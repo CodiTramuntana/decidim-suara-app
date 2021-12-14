@@ -29,7 +29,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 unless Rails.env.development? || Rails.env.test?
   default_num_workers= `free -h|grep Mem|cut -d ":" -f 2|cut -d "G" -f 1`.to_i + 1
   workers ENV.fetch("WEB_CONCURRENCY") { default_num_workers }
-# workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+  # workers ENV.fetch("WEB_CONCURRENCY") { 2 }
 end
 
 # Use the `preload_app!` method when specifying a `workers` number.
