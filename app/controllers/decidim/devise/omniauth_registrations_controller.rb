@@ -16,6 +16,7 @@ module Decidim
 
         @form = form(OmniauthRegistrationForm).from_params(form_params)
         @form.email ||= verified_email
+        @form.nickname ||= verified_email.split("@").first.parameterize(separator: "_")
 
         CreateOmniauthRegistration.call(@form, verified_email) do
           on(:ok) do |user|
@@ -94,7 +95,6 @@ module Decidim
           provider: oauth_data[:provider],
           uid: oauth_data[:uid],
           name: oauth_data[:info][:name],
-          nickname: oauth_data[:info][:nickname],
           oauth_signature: OmniauthRegistrationForm.create_signature(oauth_data[:provider], oauth_data[:uid]),
           avatar_url: oauth_data[:info][:image],
           raw_data: oauth_hash
