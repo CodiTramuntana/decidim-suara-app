@@ -103,7 +103,7 @@ module Decidim
 
           before do
             allow(Decidim::ActionLogger).to receive(:log).and_return(true)
-            expect(Decidim::Assembly).to receive(:create).and_return(invalid_assembly)
+            allow(Decidim::Assembly).to receive(:create).and_return(invalid_assembly)
           end
 
           it "broadcasts invalid" do
