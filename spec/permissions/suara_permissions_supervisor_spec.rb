@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe SuaraPermissionsSupervisor do
+  include SuaraPermissionsSupervisor
+  let(:supervisor) { self }
   let(:organization) { create(:organization) }
   let(:current_user) { create(:user, :confirmed, organization: organization) }
   let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
