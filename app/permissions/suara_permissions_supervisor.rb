@@ -37,4 +37,16 @@ module SuaraPermissionsSupervisor
   def blank_permissions?(space)
     space.suara_permissions.nil? || space.suara_permissions.values.all?(&:blank?)
   end
+
+  # ----------------------------------------------------------------
+
+  private
+
+  # ----------------------------------------------------------------
+
+  def admin_or_with_suara_permissions?(user, participatory_space)
+    return false unless user
+
+    user.admin? || suara_permissions_match?(user, participatory_space)
+  end
 end

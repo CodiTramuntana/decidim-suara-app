@@ -10,6 +10,6 @@ Decidim::Components::BaseController.class_eval do
   def check_suara_permissions
     # Suara requires users to be logged in to access the contents of the platform
     # so current_user is mandatory, there are no anonymous users
-    render status: :forbidden unless current_user && (current_user.admin? || suara_permissions_match?(current_user, current_participatory_space))
+    render status: :forbidden unless admin_or_with_suara_permissions?(current_user, current_participatory_space)
   end
 end
