@@ -34,7 +34,7 @@ module Decidim
           :consultation,
           :published,
           organization: organization,
-          suara_permissions: { ceco: "a", ceco_txt: "b" }
+          suara_permissions: { ceco: "ceco", ceco_txt: "b" }
         )
       end
 

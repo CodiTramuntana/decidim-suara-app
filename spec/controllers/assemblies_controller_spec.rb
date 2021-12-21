@@ -27,7 +27,7 @@ module Decidim
           :published,
           :promoted,
           organization: organization,
-          suara_permissions: { ceco: "a", ceco_txt: "b" }
+          suara_permissions: { ceco: "ceco", ceco_txt: "b" }
         )
       end
 
@@ -138,7 +138,7 @@ module Decidim
               expect(response).to have_http_status(:success)
             end
 
-            it "can not access processes with different" do
+            it "can not access processes with different permissions" do
               get :show, params: { slug: promoted.slug }
               expect(response).to have_http_status(:forbidden)
             end
@@ -157,7 +157,7 @@ module Decidim
               expect(response).to have_http_status(:forbidden)
             end
 
-            it "can not access processes with different" do
+            it "can not access processes with different permissions" do
               get :show, params: { slug: promoted.slug }
               expect(response).to have_http_status(:forbidden)
             end
