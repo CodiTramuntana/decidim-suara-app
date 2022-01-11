@@ -2,7 +2,9 @@
 
 require "rails_helper"
 
-describe FilterParticipatorySpacesHelper do
+describe SuaraPermissionsSupervisor do
+  include SuaraPermissionsSupervisor
+  let(:supervisor) { self }
   let(:organization) { create(:organization) }
   let(:current_user) { create(:user, :confirmed, organization: organization) }
   let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
@@ -22,7 +24,7 @@ describe FilterParticipatorySpacesHelper do
 
   describe "without_permissions" do
     it "get assembly without any permissions" do
-      expect(helper.without_permissions(participatory_spaces)).to contain_exactly(participatory_spaces[4], participatory_spaces[5], participatory_spaces[6], participatory_spaces[7])
+      expect(supervisor.without_permissions(participatory_spaces)).to contain_exactly(participatory_spaces[4], participatory_spaces[5], participatory_spaces[6], participatory_spaces[7])
     end
   end
 
@@ -31,7 +33,7 @@ describe FilterParticipatorySpacesHelper do
       let(:metadata) { {} }
 
       it "doesn't have any assembly" do
-        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
+        expect(supervisor.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
       end
     end
 
@@ -39,13 +41,13 @@ describe FilterParticipatorySpacesHelper do
       let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt", tipologia: "tipo", grup_empleados: "grup", estat_soci: "soci", derechovoto: "derecho", estat_ocup: "ocup" } }
 
       it "get assemblies with the same permissions as user" do
-        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0], participatory_spaces[1])
+        expect(supervisor.filter_by_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0], participatory_spaces[1])
       end
     end
 
     context "when user only has two permissions" do
       it "get assemblies with the same permissions as user" do
-        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0])
+        expect(supervisor.filter_by_permissions(participatory_spaces, authorization.metadata)).to contain_exactly(participatory_spaces[0])
       end
     end
 
@@ -53,7 +55,7 @@ describe FilterParticipatorySpacesHelper do
       let(:metadata) { { ceco: "e", ceco_txt: "e", tipologia: "e", grup_empleados: "e", estat_soci: "e", derechovoto: "e", estat_ocup: "e" } }
 
       it "doesn't have any assembly" do
-        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
+        expect(supervisor.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
       end
     end
 
@@ -61,7 +63,7 @@ describe FilterParticipatorySpacesHelper do
       let(:metadata) { { ceco: "e", ceco_txt: "e" } }
 
       it "doesn't have any assembly" do
-        expect(helper.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
+        expect(supervisor.filter_by_permissions(participatory_spaces, authorization.metadata)).to be_empty
       end
     end
   end

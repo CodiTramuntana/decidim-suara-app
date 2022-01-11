@@ -3,7 +3,13 @@
 # This decorator change the behavior of the promoted and group participatory processes
 # to check permissions if you are not an admin user.
 Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
-  include FilterParticipatorySpacesHelper
+  include SuaraPermissionsSupervisor
+
+  alias_method :original_show, :show
+  def show
+    original_show
+    render status: :forbidden unless admin_or_with_suara_permissions?(current_user, current_participatory_space)
+  end
 
   private
 
@@ -24,7 +30,7 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
       original_participatory_processes
     else
       participatory_processes ||= filtered_processes.groupless
-      participatory_processes.present? ? permissions(participatory_processes) : []
+      participatory_processes.present? ? filter_by_suara_permissions(participatory_processes) : []
     end
   end
 
@@ -32,8 +38,8 @@ Decidim::ParticipatoryProcesses::ParticipatoryProcessesController.class_eval do
     if current_user&.admin?
       original_participatory_process_groups
     else
-      filter_processes = permissions(filtered_processes).map(&:decidim_participatory_process_group_id)
-      @participatory_process_groups ||= Decidim::ParticipatoryProcessGroup.where(id: filter_processes)
+      permitted_processes = filter_by_suara_permissions(filtered_processes).map(&:decidim_participatory_process_group_id)
+      @participatory_process_groups ||= Decidim::ParticipatoryProcessGroup.where(id: permitted_processes)
     end
   end
 end

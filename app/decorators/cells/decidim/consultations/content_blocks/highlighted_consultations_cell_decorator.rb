@@ -2,7 +2,7 @@
 
 # This decorator filter consultations by permissions in home content block.
 Decidim::Consultations::ContentBlocks::HighlightedConsultationsCell.class_eval do
-  include FilterParticipatorySpacesHelper
+  include SuaraPermissionsSupervisor
 
   alias_method :original_highlighted_consultations, :highlighted_consultations
 
@@ -10,7 +10,7 @@ Decidim::Consultations::ContentBlocks::HighlightedConsultationsCell.class_eval d
     @highlighted_consultations ||= if current_user.admin?
                                      original_highlighted_consultations
                                    else
-                                     permissions(original_highlighted_consultations)
+                                     filter_by_suara_permissions(original_highlighted_consultations)
                                    end
   end
 end

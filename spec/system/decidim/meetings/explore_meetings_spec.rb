@@ -5,6 +5,8 @@ require "rails_helper"
 describe "Explore meetings", :slow, type: :system do
   include_context "with a component"
   let(:manifest_name) { "meetings" }
+  # using admin to avoid supervisor permissions checking
+  let(:user) { create :user, :admin, :confirmed, organization: organization }
 
   before do
     component_scope = create :scope, parent: participatory_process.scope
@@ -20,6 +22,7 @@ describe "Explore meetings", :slow, type: :system do
 
         in_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T11:00:00"))
         out_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T16:00:00"))
+        sign_in user
         visit_component
 
         within ".hour_check_boxes_tree_filter" do
@@ -41,6 +44,7 @@ describe "Explore meetings", :slow, type: :system do
         component_settings = component["settings"]["global"].merge!(enable_cards_visualization: true)
         component.update!(settings: component_settings)
         monday_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-26T11:00:00"))
+        sign_in user
         visit_component
 
         within ".day_days_select_filter" do
@@ -58,6 +62,7 @@ describe "Explore meetings", :slow, type: :system do
         component.update!(settings: component_settings)
         in_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T11:00:00"))
         out_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T16:00:00"))
+        sign_in user
         visit_component
 
         within ".hour_check_boxes_tree_filter" do
@@ -79,6 +84,7 @@ describe "Explore meetings", :slow, type: :system do
         component_settings = component["settings"]["global"].merge!(enable_cards_visualization: false)
         component.update!(settings: component_settings)
         monday_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-26T11:00:00"))
+        sign_in user
         visit_component
 
         within ".day_days_select_filter" do
