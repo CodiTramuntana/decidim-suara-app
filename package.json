@@ -1,7 +1,27 @@
 {
-  "name": "decidim_suara_app",
+  "name": "app",
   "private": true,
   "dependencies": {
-    "quill-html-edit-button": "^1.0.16"
+    "@decidim/browserslist-config": "file:packages/browserslist-config",
+    "@decidim/core": "file:packages/core",
+    "@decidim/elections": "file:packages/elections",
+    "@decidim/webpacker": "file:packages/webpacker"
+  },
+  "version": "0.1.0",
+  "engines": {
+    "node": "16.9.1"
+  },
+  "babel": {
+    "presets": [
+      "./node_modules/@rails/webpacker/package/babel/preset.js"
+    ]
+  },
+  "browserslist": [
+    "extends @decidim/browserslist-config"
+  ],
+  "devDependencies": {
+    "@decidim/dev": "file:packages/dev",
+    "@decidim/eslint-config": "file:packages/eslint-config",
+    "@decidim/stylelint-config": "file:packages/stylelint-config"
   }
 }

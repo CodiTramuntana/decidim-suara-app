@@ -8,25 +8,6 @@ Decidim.configure do |config|
   config.default_locale = :en
   config.available_locales = [:en, :ca, :es]
 
-  # Geocoder configuration
-  # Decidim.configure do |config|
-  #   config.maps = {
-  #     provider: :here,
-  #     api_key: Rails.application.secrets.maps[:api_key],
-  #     static: { url: "https://image.maps.ls.hereapi.com/mia/1.6/mapview" }
-  #   }
-  #   config.geocoder = {
-  #     timeout: 5,
-  #     units: :km
-  #   }
-  # end
-
-  # Custom resource reference generator method
-  # config.reference_generator = lambda do |resource, component|
-  #   # Implement your custom method to generate resources references
-  #   "1234-#{resource.id}"
-  # end
-
   # Currency unit
   # config.currency_unit = "€"
 
@@ -143,6 +124,9 @@ Decidim::Verifications.register_workflow(:sap_authorization_handler) do |workflo
     options.attribute :estat_ocup, type: :string
   end
 end
+
+# Inform Decidim about the assets folder
+Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
 
 Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale
