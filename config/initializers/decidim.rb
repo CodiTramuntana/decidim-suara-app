@@ -3,7 +3,7 @@
 Decidim.configure do |config|
   config.application_name = "Decidim Clean APP"
 
-  config.mailer_sender = "decidim@decideix.com"
+  config.mailer_sender = Rails.application.secrets.smtp_username
 
   # Change these lines to set your preferred locales
   config.default_locale = :ca
@@ -17,6 +17,9 @@ Decidim.configure do |config|
     static: { url: "https://image.maps.ls.hereapi.com/mia/1.6/mapview" }
   }
 end
+
+# Inform Decidim about the assets folder
+Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
 
 Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale
