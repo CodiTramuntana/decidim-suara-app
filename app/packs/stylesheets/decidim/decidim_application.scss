@@ -5,3 +5,358 @@
 // To override CSS variables or Foundation settings use _decidim-settings.scss
 //
 // By default this is empty.
+
+@import "stylesheets/decidim/variables";
+@import "foundation-sites/scss/foundation";
+@import "stylesheets/decidim/utils/settings";
+@import "stylesheets/decidim/utils/settings";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+$grey-light-suara: #e7e6e6;
+$grey_suara: #443F3F;
+$grey_suara_rgb: rgb(68,63,63);
+$orange_suara: #F88F58;
+$orange_suara_rgb: rgb(248,143,88);
+$orange-suara-dark: #dd5211;
+
+$anchor-color: $grey_suara;
+$anchor-color-hover: scale-color($orange_suara, $lightness: -14%);
+
+body{
+  background: $white !important;
+  background-color: $white !important;
+  font-family: 'Roboto', Arial, 'Open Sans', sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3{
+  font-family: 'Roboto Slab', 'Roboto', Arial, 'Open Sans', sans-serif;
+}
+
+// HEADER
+/////////////////////////////////
+.title-bar {
+  background: $white;
+}
+
+.topbar__search input, .topbar__search input:focus, .topbar__search input::placeholder{
+  background: $white;
+  color: $grey_suara;
+}
+
+.topbar__search input, .topbar__search input:focus{
+  border: 1px solid $medium-gray;
+}
+
+.logo-wrapper span{
+  color: $grey_suara !important;
+  &:before{
+    border-left-color: $grey_suara !important;
+  }
+}
+
+.topbar__dropmenu > ul > li > a{
+  color: $grey_suara;
+  &::after{
+    border-top-color: $grey_suara !important;
+  }
+}
+
+.topbar__user__login a{
+  color: $grey_suara;
+  &:hover{
+    color: $orange_suara;
+  }
+  &::before{
+    border-left: $grey_suara;
+  }
+}
+
+.dropdown.menu .is-active > a{
+  color: $orange_suara;
+  &::after{
+    border-top-color: $orange_suara !important;
+  }
+}
+
+
+.topbar__dropmenu .is-dropdown-submenu li a{
+  color: $grey_suara;
+  &:hover{
+    color: $orange_suara;
+  }
+}
+
+.topbar__dropmenu .is-dropdown-submenu{
+  &::after{
+    border-bottom-color: rgba($orange_suara, .05);
+  }
+  & li:hover{
+    background-color: rgba($orange_suara, .05);
+  }
+}
+
+.topbar__edit__link a{
+  color: $grey_suara;
+  &:hover{
+    color: $orange_suara;
+  }
+}
+
+.topbar__notifications, .topbar__conversations{
+  & .icon{
+    fill: $grey_suara;
+  }
+  &:hover .icon{
+    fill: $orange_suara;
+  }
+}
+
+// MENU
+/////////////////////////////////
+
+.navbar{
+  background: $grey-light-suara;
+}
+
+.main-nav__link--active a{
+  color: $grey_suara;
+}
+.main-nav__link a{
+  color: $grey_suara_rgb;
+  &:hover{
+    background: $orange-suara-dark;
+    color: #fff;
+  }
+}
+
+// MOBILE
+@media only screen and (max-width: 639px){
+  .topbar__menu svg.icon{
+    fill: $grey_suara;
+  }
+  
+  .title-bar{
+    border-top: 2.125rem solid $white;
+  }
+  .off-canvas .close-button{
+    color: $grey_suara;
+  }
+  .off-canvas .close-button:focus{
+    border: none;
+  }
+  .navbar{
+    background: $white;
+  }
+  .off-canvas{
+    background-color: $white; 
+    .usermenu-off-canvas-holder .menu.usermenu-off-canvas li{
+      a{
+        color: $grey_suara;
+      }
+      &:hover{
+        a{ color: $orange_suara; }
+      } 
+    }
+  }
+  .topbar__search svg{
+    color: $grey_suara;
+    opacity: 1;
+  }
+}
+// .topbar__dropmenu > ul > li > a{
+//   color: $white;
+// }
+
+// FOOTER
+/////////////////////////////////
+
+.main-footer{
+  background-color: $white;
+}
+
+.main-footer a{
+  color: $grey_suara;
+  
+  &:hover{
+    color: $orange_suara;
+  }
+}
+.mini-footer a:hover{
+  color: $orange_suara;
+}
+
+// CONTENT
+////////////////////
+
+.home-section:nth-of-type(2n){
+  background-color: $white;
+}
+
+a{
+  color: $anchor-color;
+  &:hover{
+    color: $anchor-color-hover;
+  }
+  &:focus{
+    color: $anchor-color-hover;
+  }
+}
+
+.author-data .author__name{
+    color: $orange_suara;
+    &:hover{
+      color: $orange_suara;
+    }
+}
+
+.card__link{
+    color: $anchor-color;
+    &:hover{
+      color: $anchor-color-hover;
+    }
+}
+
+.link{
+  color: $anchor-color;
+  &:hover{
+    color: $anchor-color-hover;
+  }
+}
+
+.button.expanded.button--sc.home-section__cta,
+.button.small.hollow.card__button {
+  background-color: $orange_suara;
+  color: #fff;
+}
+
+.card--full__image {
+  .button.expanded.button--sc {
+    display: none;
+  }
+}
+
+.card--list__data__icon:hover .icon, .card--list__data__icon--lg:hover .icon{
+  fill: $anchor-color-hover;
+}
+
+.card.card--full.card--process {
+  border: 1px solid $grey-light-suara;
+}
+
+.process-nav__link {
+  color: $orange_suara-dark;
+
+  &:hover {
+    color: $grey_suara;
+  }
+}
+
+.button.hollow.secondary:hover, .button.hollow.secondary:focus{
+  border-color: $anchor-color-hover;
+  color: $anchor-color-hover;
+}
+
+.accountability .categories .categories--group .card__link .category--line strong{
+  color: $anchor-color;
+}
+.accountability .categories .categories--group .card__link:hover strong{
+  color: $anchor-color-hover;
+}
+
+.author-data a:hover, .author-data button:hover{
+  color: $anchor-color-hover;
+}
+
+.pagination .current{
+  background-color: $anchor-color-hover;
+}
+
+.orgchart .as-text{
+  fill: $anchor-color-hover;
+}
+
+#profile-tabs.tabs .tabs-title a{
+  color: $anchor-color;
+}
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a::after{
+  border-color: $grey_suara transparent transparent;
+}
+
+.card--widget .card-data .card-data__item:first-child, .card .card__text time{
+  font-family: 'Roboto Condensed', 'Roboto', Arial, 'Open Sans', sans-serif;
+}
+
+main.wrapper{
+  section#parent-assemblies{display: none !important;}
+  section#assemblies-chart{display: none !important;}
+}
+
+.section.past_meetings,
+.section.highlighted_results {
+  display: none;
+}
+
+.callout.alert.callout--full {
+  display: none;
+}
+
+#consultations .card.card--consultation .card__icondata{
+  display: none;
+}
+
+div.section#highlighted-questions{
+  display: none;
+}
+
+// FLOATING HELP
+//////////////////////
+.floating-helper__content{
+  border-top-color: $orange_suara; 
+  background-color: rgba($orange_suara_rgb, 0.1);
+}
+.floating-helper__content-close{
+  background-color: $orange_suara;
+}
+.floating-helper__icon-big{
+  color: $orange_suara;
+  background-color: rgba($orange_suara_rgb, 0.1);
+}
+
+// MEETINGS LIST
+.meeting-list {
+  .element {
+    display: flex;
+  }
+
+  .title {
+    margin-right: 12px;
+  }
+
+  .date {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  .link {
+    margin-right: 12px;
+    text-decoration: underline;
+    color: $orange-suara-dark;
+  }
+
+  .month {
+    font-weight: bold;
+  }
+
+  form {
+    padding-left: 8px;
+    padding-right: 8px;
+
+    button {
+      color: $orange_suara;
+    }
+  }
+}

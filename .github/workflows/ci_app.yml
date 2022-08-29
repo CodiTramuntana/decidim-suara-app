@@ -31,6 +31,7 @@ jobs:
         ports: ["6379:6379"]
     env:
       DB_TEST_DATABASE: app-test
+      DB_DATABASE: app
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       DB_HOST: localhost

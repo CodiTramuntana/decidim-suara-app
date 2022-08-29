@@ -10,11 +10,12 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 gem "decidim-verifications", DECIDIM_VERSION
 
-gem "decidim-action_delegator", path: "/home/oliver/prog/decidim/modules/decidim-module-action_delegator"
+gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "upgrade/decidim-0_25"
 gem "virtus-multiparams"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.2"
-gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-module-term_customizer"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.25-stable"
 
 gem "deface"
 gem "wicked_pdf"
