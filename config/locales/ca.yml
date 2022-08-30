@@ -86,6 +86,12 @@ ca:
       home:
         hero:
           participate: Participar
+  layouts:
+    decidim:
+      admin:
+        question:
+          attachments: Adjunts
+          categories: Categories
   permissions:
     title: Permisos
   mailer:

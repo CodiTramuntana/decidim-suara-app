@@ -86,6 +86,12 @@ es:
       home:
         hero:
           participate: Participar
+  layouts:
+    decidim:
+      admin:
+        question:
+          attachments: Adjuntos
+          categories: Categorías
   permissions:
     title: Permisos
   mailer:
