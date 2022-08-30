@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "decidim_suara_app",
   "private": true,
   "dependencies": {
     "@decidim/browserslist-config": "file:packages/browserslist-config",
