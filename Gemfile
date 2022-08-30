@@ -11,15 +11,15 @@ gem "decidim-consultations", DECIDIM_VERSION
 gem "decidim-verifications", DECIDIM_VERSION
 
 gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "upgrade/decidim-0_25"
-gem "virtus-multiparams"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "virtus-multiparams"
 
-gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.2"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.25-stable"
+gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.2"
 
 gem "deface"
-gem "wicked_pdf"
 gem "savon", "~> 2.12.0"
+gem "wicked_pdf"
 
 gem "puma"
 gem "uglifier", ">= 1.3.0"
@@ -41,7 +41,6 @@ gem "whenever"
 #   gem "rails_12factor"
 # end
 # endif
-
 
 group :development, :test do
   gem "better_errors"

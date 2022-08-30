@@ -39,7 +39,7 @@ module Decidim
       end
 
       let(:meeting_component) { create(:meeting_component, :with_creation_enabled, participatory_space: participatory_space) }
-      let(:component) { create :meeting, component: meeting_component }
+      let(:component) { create :meeting, :published, component: meeting_component }
 
       before do
         request.env["decidim.current_organization"] = organization
@@ -96,7 +96,6 @@ module Decidim
             let(:participatory_space) { space_with_permissions }
 
             it "can access the component" do
-              byebug
               get :show, params: { id: component.id }
               expect(response).to have_http_status(:success)
             end
