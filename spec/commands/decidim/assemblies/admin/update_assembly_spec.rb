@@ -48,8 +48,8 @@ module Decidim
                 slug: my_assembly.slug,
                 hashtag: my_assembly.hashtag,
                 meta_scope: my_assembly.meta_scope,
-                hero_image: hero_image,
-                banner_image: banner_image,
+                hero_image: hero_image.blob,
+                banner_image: banner_image.blob,
                 promoted: my_assembly.promoted,
                 description_en: my_assembly.description,
                 description_ca: my_assembly.description,
@@ -112,24 +112,6 @@ module Decidim
               my_assembly.reload
 
               expect(my_assembly.title["en"]).not_to eq("Foo title")
-            end
-          end
-
-          context "when the uploaded hero image has too large dimensions" do
-            let(:hero_image) { Decidim::Dev.test_file("5000x5000.png", "image/png") }
-
-            before do
-              # Enable processing for the test in order to catch validation errors
-              Decidim::HeroImageUploader.enable_processing = true
-            end
-
-            after do
-              Decidim::HeroImageUploader.enable_processing = false
-            end
-
-            it "broadcasts invalid" do
-              expect { command.call }.to broadcast(:invalid)
-              expect(form.errors.messages[:hero_image]).to contain_exactly(["The image is too big"])
             end
           end
 
@@ -201,6 +183,7 @@ module Decidim
 
             context "when homepage image is not updated" do
               it "does not replace the homepage image" do
+                params[:assembly].delete(:hero_image)
                 expect(my_assembly).not_to receive(:hero_image=)
 
                 command.call
@@ -212,6 +195,7 @@ module Decidim
 
             context "when banner image is not updated" do
               it "does not replace the banner image" do
+                params[:assembly].delete(:banner_image)
                 expect(my_assembly).not_to receive(:banner_image=)
 
                 command.call

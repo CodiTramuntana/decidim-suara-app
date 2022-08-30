@@ -96,6 +96,7 @@ module Decidim
             let(:participatory_space) { space_with_permissions }
 
             it "can access the component" do
+              byebug
               get :show, params: { id: component.id }
               expect(response).to have_http_status(:success)
             end

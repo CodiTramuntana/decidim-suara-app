@@ -15,14 +15,16 @@ module Decidim::Meetings
         create(
           :meeting,
           component: component,
-          start_time: Time.zone.parse("2021-04-28T11:00:00")
+          start_time: Time.zone.parse("2021-04-28T11:00:00"),
+          published_at: Time.zone.now
         )
       end
       let!(:meeting2) do
         create(
           :meeting,
           component: component,
-          start_time: Time.zone.parse("2021-04-28T14:00:00")
+          start_time: Time.zone.parse("2021-04-28T14:00:00"),
+          published_at: Time.zone.now
         )
       end
 
@@ -30,7 +32,8 @@ module Decidim::Meetings
         create(
           :meeting,
           component: component,
-          start_time: Time.zone.parse("2021-04-26T14:00:00")
+          start_time: Time.zone.parse("2021-04-26T14:00:00"),
+          published_at: Time.zone.now
         )
       end
 
@@ -65,7 +68,7 @@ module Decidim::Meetings
           end
         end
 
-        context "when no day" do
+        context "when no day is set" do
           let(:day) { [""] }
 
           it "returns all meetings" do
