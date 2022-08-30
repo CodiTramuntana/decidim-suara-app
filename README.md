@@ -1,49 +1,35 @@
-# DECIDIM.CLEAN.APP
+# Decidim Suara
 
-This is a clean Decidim app to use as a starting point for other Decidim app projects.
+Free Open-Source participatory democracy, citizen participation and open government for cities and organizations
 
-## Fork the repository
+This is the open-source repository for decidim_application, based on [Decidim](https://github.com/decidim/decidim).
 
-A fork is a copy of a repository. Forking a repository allows you to make changes without affecting the original project.
+## Setting up the application
 
-In the top-right corner of the page, click **Fork**.
+You will need to do some steps before having the app working properly once you've deployed it:
 
-## Keep your fork synced
-
-To keep your fork up-to-date with the upstream repository, i.e., to upgrade decidim, you must configure a remote that points to the upstream repository in Git.
-
-```console
-# List the current configured remote repository for your fork.
-$ git remote -v
-# Specify the new remote upstream repository that will be synced with the fork.
-$ git remote add decidim-clean git@gitlab.coditdev.net:decidim/decidim-clean-app.git
-# Verify the new decidim-clean repository you've specified for your fork.
-$ git remote -v
+1. Open a Rails console in the server: `bundle exec rails console`
+2. Create a System Admin user:
+```ruby
+user = Decidim::System::Admin.new(email: <email>, password: <password>, password_confirmation: <password>)
+user.save!
 ```
-Syncing a fork
-```console
-# Check out your fork's local master branch.
-$ git checkout master
-# Incorporate changes from the decidim-clean repository into the current branch.
-$ git pull decidim-clean
-```
+3. Visit `<your app url>/system` and login with your system admin credentials
+4. Create a new organization. Check the locales you want to use for that organization, and select a default locale.
+5. Set the correct default host for the organization, otherwise the app will not work properly. Note that you need to include any subdomain you might be using.
+6. Fill the rest of the form and submit it.
 
-## Customize your fork
-
-The following files should be modified:
-
-- package.json
-- config/application.rb
-- config/initializers/decidim.rb
+You're good to go!
 
 ## Testing
 
-Run `bin/rake decidim:generate_external_test_app` to generate a dummy application to test both the application and the modules.
+Run `rake decidim:generate_external_test_app` to generate a dummy application.
 
 Require missing factories in `spec/factories.rb`
 
 Add `require "rails_helper"` to your specs and execute them from the **root directory**, i.e.:
- 	
-## Upgrades with clean-app
-	
-Documentation in `docs/upgrade_apps.md`.
+
+`bundle exec rspec spec`
+
+# License
+This engine is distributed under the GNU AFFERO GENERAL PUBLIC LICENSE.
