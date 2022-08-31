@@ -9,17 +9,17 @@ Decidim::ActionDelegator::VotedWithDirectVerification.class_eval do
   def query
     relation
       .joins(:votes)
-      .joins(authorizations_on_author)
+      .joins(join_on_votes_author(decrypted_authorizations))
       .where(direct_verification.or(no_authorization).or(sap_authorization).or(member_picker_authorization))
   end
 
   private
 
   def sap_authorization
-    authorizations[:name].eq("sap_authorization_handler")
+    decrypted_authorizations[:name].eq("sap_authorization_handler")
   end
 
   def member_picker_authorization
-    authorizations[:name].eq("members_picker_authorization_handler")
+    decrypted_authorizations[:name].eq("members_picker_authorization_handler")
   end
 end
