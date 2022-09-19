@@ -21,6 +21,30 @@ user.save!
 
 You're good to go!
 
+## Decorators, overrides and views
+The following files must be checked in each upgrade of Decidim:
+
+### Decorators
+- app/decorators/commands/decidim/assemblies/admin/create_assembly_decorator.rb
+- app/decorators/commands/decidim/consultations/admin/create_consultation_decorator.rb
+- app/decorators/controllers/decidim/meetings/meetings_controller_decorator.rb
+- app/decorators/decidim/consultations/admin/create_response_decorator.rb
+- app/decorators/decidim/consultations/multi_vote_form_decorator.rb
+
+From Module Action Delegator:
+- app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
+
+
+### Overrides
+
+Check all overrides in folder /overrides
+
+
+### Views
+- app/views/decidim/consultations/question_multiple_votes/_form.html.erb
+- app/views/decidim/meetings/meetings/_filters.html.erb
+- app/views/decidim/meetings/meetings/_meetings.html.erb
+
 ## Testing
 
 Run `rake decidim:generate_external_test_app` to generate a dummy application.
