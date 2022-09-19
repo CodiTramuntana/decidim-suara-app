@@ -11,9 +11,12 @@ Decidim::Meetings::MeetingsController.class_eval do
     {
       search_text: "",
       date: %w(upcoming),
+      activity: "all",
       scope_id: default_filter_scope_params,
       category_id: default_filter_category_params,
+      state: nil,
       origin: default_filter_origin_params,
+      type: default_filter_type_params,
       hour: "",
       day: ""
     }
