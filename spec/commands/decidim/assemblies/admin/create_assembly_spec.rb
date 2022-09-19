@@ -69,6 +69,7 @@ module Decidim
             instagram_handler: "lorem",
             youtube_handler: "lorem",
             github_handler: "lorem",
+            announcement: { en: "announcement_lorem" },
             ceco: "ceco",
             ceco_txt: "ceco_txt",
             tipologia: "tipologia",
