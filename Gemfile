@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.25-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.26-stable" }.freeze
 
 ruby RUBY_VERSION
 
@@ -10,12 +10,12 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 gem "decidim-verifications", DECIDIM_VERSION
 
-gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "upgrade/decidim-0_25"
+gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "upgrade/decidim-0_26"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "virtus-multiparams"
 
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.25-stable"
-gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.2"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.26-stable"
+gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", branch: "upgrade/0.26-stable"
 
 gem "deface"
 gem "savon", "~> 2.12.0"
