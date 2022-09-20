@@ -73,10 +73,6 @@ module Decidim
         end
       end
 
-      it "does not raise error to call current_participatory_space" do
-        expect { controller.send(:current_participatory_space) }.not_to raise_error
-      end
-
       describe "#show" do
         context "when user is admin" do
           let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
