@@ -92,6 +92,8 @@ es:
         question:
           attachments: Adjuntos
           categories: Categorías
+      question_header:
+        return_to_questions: Volver al listado de preguntas
   permissions:
     title: Permisos
   mailer:
