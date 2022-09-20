@@ -21,29 +21,43 @@ user.save!
 
 You're good to go!
 
-## Decorators, overrides and views
-The following files must be checked in each upgrade of Decidim:
+## Decorators, overrides with Deface and override complete views
 
-### Decorators
+The following files must be checked in each upgrade of Decidim.
+
+### Blank vote
+
+- app/decorators/decidim/consultations/multi_vote_form_decorator.rb
+- app/decorators/decidim/consultations/admin/create_response_decorator.rb
+----------
+- app/overrides/decidim/consultations/admin/responses/add_blank_vote_to_consultations_responses_form.rb
+- app/overrides/decidim/consultations/admin/responses/add_js_to_consultations_responses_form.rb
+- app/overrides/decidim/consultations/admin/responses/add_js_to_edit_consultations_responses.rb
+- app/overrides/add_blank_vote_to_question_configuration_form.rb
+----------
+- app/views/decidim/consultations/question_multiple_votes/_form.html.erb
+
+### Custom Suara permissions in Participatory Spaces
+
 - app/decorators/commands/decidim/assemblies/admin/create_assembly_decorator.rb
 - app/decorators/commands/decidim/consultations/admin/create_consultation_decorator.rb
+----------
+- app/overrides/decidim/assemblies/admin/assemblies/add_permissions_sections_to_assemblies_form.rb
+- app/overrides/decidim/participatory_processes/admin/participatory_processes/add_permissions_sections_to_participatory_processes_form.rb
+- app/overrides/decidim/consultations/admin/add_permissions_sections_to_consultations_form.rb
+
+### Meetings: Filter by hours
+
 - app/decorators/controllers/decidim/meetings/meetings_controller_decorator.rb
-- app/decorators/decidim/consultations/admin/create_response_decorator.rb
-- app/decorators/decidim/consultations/multi_vote_form_decorator.rb
-
-From Module Action Delegator:
-- app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
-
-
-### Overrides
-
-Check all overrides in folder /overrides
-
-
-### Views
-- app/views/decidim/consultations/question_multiple_votes/_form.html.erb
+----------
 - app/views/decidim/meetings/meetings/_filters.html.erb
+
+### Meetings: Card visualization
+
 - app/views/decidim/meetings/meetings/_meetings.html.erb
+
+### From Module Action Delegator:
+- app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
 
 ## Testing
 
