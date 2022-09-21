@@ -47,6 +47,7 @@ Decidim::Assemblies::Admin::CreateAssembly.class_eval do
       instagram_handler: form.instagram_handler,
       youtube_handler: form.youtube_handler,
       github_handler: form.github_handler,
+      announcement: form.announcement,
       ceco: form.ceco,
       ceco_txt: form.ceco_txt,
       tipologia: form.tipologia,

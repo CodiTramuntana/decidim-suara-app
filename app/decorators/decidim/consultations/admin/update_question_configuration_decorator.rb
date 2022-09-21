@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 Decidim::Consultations::Admin::UpdateQuestionConfiguration.class_eval do
+  alias_method :original_attributes, :attributes
+
   def attributes
-    {
-      max_votes: form.max_votes,
-      min_votes: form.min_votes,
-      instructions: form.instructions,
+    blank_vote_attribute = {
       blank_vote: form.blank_vote
     }
+
+    original_attributes.merge(blank_vote_attribute)
   end
 end

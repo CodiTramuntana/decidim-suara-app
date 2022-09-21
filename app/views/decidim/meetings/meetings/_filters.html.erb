@@ -4,7 +4,7 @@
   <div class="filters__section">
     <div class="filters__search">
       <div class="input-group">
-        <%= form.search_field :search_text, label: false, class: "input-group-field", placeholder: t(".search"), title: t(".search"), data: { disable_dynamic_change: true } %>
+        <%= form.search_field :search_text, label: false, class: "input-group-field", placeholder: t(".search"), title: t(".search"), "aria-label": t(".search"), data: { disable_dynamic_change: true } %>
         <div class="input-group-button">
           <button type="submit" class="button" aria-controls="meetings">
             <%= icon "magnifying-glass", aria_label: t(".search"), role: "img" %>
@@ -14,9 +14,13 @@
     </div>
   </div>
 
+  <%= form.hidden_field "state", value: params.dig("filter", "state") %>
+
   <% unless @forced_past_meetings %>
-    <%= form.check_boxes_tree :date, filter_date_values, legend_title: t(".date") %>
+    <%= form.collection_radio_buttons :date, filter_date_values, :first, :last, legend_title: t(".date") %>
   <% end %>
+
+  <%= form.check_boxes_tree :type, filter_type_values, legend_title: t(".type") %>
 
   <% if current_component.has_subscopes? %>
     <%= form.check_boxes_tree :scope_id, filter_scopes_values, legend_title: t(".scope") %>
@@ -28,6 +32,10 @@
 
   <% if component_settings.creation_enabled_for_participants? %>
     <%= form.check_boxes_tree :origin, filter_origin_values, legend_title: t(".origin") %>
+  <% end %>
+
+  <% if current_user %>
+    <%= form.collection_radio_buttons :activity, activity_filter_values, :first, :last, { legend_title: t(".activity") }, "aria-controls": "meetings" %>
   <% end %>
 
   <%= form.check_boxes_tree :hour, filter_hours_values, legend_title: t(".hours") %>

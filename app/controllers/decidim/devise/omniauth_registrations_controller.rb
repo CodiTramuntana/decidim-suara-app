@@ -55,7 +55,9 @@ module Decidim
       end
 
       def after_sign_in_path_for(user)
-        if !pending_redirect?(user) && first_login_and_not_authorized?(user)
+        if user.present? && user.blocked?
+          check_user_block_status(user)
+        elsif !pending_redirect?(user) && first_login_and_not_authorized?(user)
           decidim_verifications.authorizations_path
         else
           super
@@ -95,6 +97,7 @@ module Decidim
           provider: oauth_data[:provider],
           uid: oauth_data[:uid],
           name: oauth_data[:info][:name],
+          nickname: oauth_data[:info][:nickname],
           oauth_signature: OmniauthRegistrationForm.create_signature(oauth_data[:provider], oauth_data[:uid]),
           avatar_url: oauth_data[:info][:image],
           raw_data: oauth_hash

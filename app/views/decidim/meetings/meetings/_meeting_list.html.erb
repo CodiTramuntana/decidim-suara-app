@@ -1,9 +1,9 @@
 <div class="meeting-list">
   <% month_list = [*1..12] %>
-  <% month_list.each do |month|%>
+  <% month_list.each do |month| %>
     <% month_meetings = month_meetings(meetings, month) %>
     <% if month_meetings.present? %>
-      <h5 class="month"><%= t(".months.#{month}")%></h5>
+      <h5 class="month"><%= t(".months.#{month}") %></h5>
       <% month_meetings.each do |meeting| %>
         <ul>
           <li>
