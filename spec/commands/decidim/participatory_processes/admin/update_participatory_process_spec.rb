@@ -33,8 +33,6 @@ module Decidim
                 slug: my_process.slug,
                 hashtag: my_process.hashtag,
                 meta_scope: my_process.meta_scope,
-                hero_image: my_process.hero_image,
-                banner_image: my_process.banner_image,
                 promoted: my_process.promoted,
                 description_en: my_process.description,
                 description_ca: my_process.description,
@@ -51,7 +49,13 @@ module Decidim
                 show_metrics: my_process.show_metrics,
                 show_statistics: my_process.show_statistics,
                 private_space: my_process.private_space
-              }.merge(suara_permissions)
+              }.merge(attachment_params).merge(suara_permissions)
+            }
+          end
+          let(:attachment_params) do
+            {
+              hero_image: my_process.hero_image.blob,
+              banner_image: my_process.banner_image.blob
             }
           end
           let(:user) { create :user, :admin, :confirmed, organization: my_process.organization }
@@ -142,6 +146,7 @@ module Decidim
 
             context "when no homepage image is set" do
               it "does not replace the homepage image" do
+                attachment_params.delete(:hero_image)
                 expect(my_process).not_to receive(:hero_image=)
 
                 command.call
@@ -153,6 +158,7 @@ module Decidim
 
             context "when no banner image is set" do
               it "does not replace the banner image" do
+                attachment_params.delete(:banner_image)
                 expect(my_process).not_to receive(:banner_image=)
 
                 command.call

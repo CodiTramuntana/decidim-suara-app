@@ -18,8 +18,7 @@ AllCops:
     - db/migrate/*
     - "node_modules/**/*"
     - "spec/decidim_dummy_app/**/*"
-    - "decidim-top_comments/spec/decidim_dummy_app/**/*"
-    - "decidim-home/spec/decidim_dummy_app/**/*"
+
   # Default formatter will be used if no -f/--format option is given.
   DefaultFormatter: progress
   # Cop names are not displayed in offense messages by default. Change behavior
@@ -733,9 +732,6 @@ Style/OptionHash:
     - params
     - parameters
 
-Style/OptionalBooleanParameter:
-  Enabled: false
-
 # Allow safe assignment in conditions.
 Style/ParenthesesAroundCondition:
   AllowSafeAssignment: true
@@ -1210,6 +1206,9 @@ RSpec/MessageSpies:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
 RSpec/NestedGroups:
   Max: 7
 
@@ -1229,9 +1228,6 @@ RSpec/LeakyConstantDeclaration:
   Enabled: false
 
 RSpec/DescribedClass:
-  Enabled: false
-
-RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
 inherit_from: .rubocop_rails.yml

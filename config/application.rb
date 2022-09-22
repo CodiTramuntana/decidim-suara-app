@@ -2,7 +2,11 @@
 
 require_relative "boot"
 
-require "rails/all"
+require "decidim/rails"
+# Add the frameworks used by your app that are not loaded by Decidim.
+# require "action_cable/engine"
+# require "action_mailbox/engine"
+# require "action_text/engine"
 
 require "net/http"
 require "openssl"
@@ -15,6 +19,13 @@ module DecidimApplication
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+
+    # Make decorators available
+    config.to_prepare do
+      # activate Decidim LayoutHelper for the overriden views
+      ::Decidim::Admin::ApplicationController.helper ::Decidim::LayoutHelper
+      ::Decidim::ApplicationController.helper ::Decidim::LayoutHelper
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

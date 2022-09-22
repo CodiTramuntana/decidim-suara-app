@@ -39,7 +39,7 @@ module Decidim
       end
 
       let(:meeting_component) { create(:meeting_component, :with_creation_enabled, participatory_space: participatory_space) }
-      let(:component) { create :meeting, component: meeting_component }
+      let(:component) { create :meeting, :published, component: meeting_component }
 
       before do
         request.env["decidim.current_organization"] = organization

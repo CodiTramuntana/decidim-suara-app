@@ -9,31 +9,33 @@ module Decidim::Meetings
     let(:component) { create :component, manifest_name: "meetings" }
     let(:default_params) { { component: component, organization: component.organization } }
     let(:params) { default_params }
+    let!(:meeting1) do
+      create(
+        :meeting,
+        component: component,
+        start_time: Time.zone.parse("2021-04-28T11:00:00"),
+        published_at: Time.zone.now
+      )
+    end
+    let!(:meeting2) do
+      create(
+        :meeting,
+        component: component,
+        start_time: Time.zone.parse("2021-04-28T14:00:00"),
+        published_at: Time.zone.now
+      )
+    end
+
+    let!(:meeting3) do
+      create(
+        :meeting,
+        component: component,
+        start_time: Time.zone.parse("2021-04-26T14:00:00"),
+        published_at: Time.zone.now
+      )
+    end
 
     describe "filters" do
-      let!(:meeting1) do
-        create(
-          :meeting,
-          component: component,
-          start_time: Time.zone.parse("2021-04-28T11:00:00")
-        )
-      end
-      let!(:meeting2) do
-        create(
-          :meeting,
-          component: component,
-          start_time: Time.zone.parse("2021-04-28T14:00:00")
-        )
-      end
-
-      let!(:meeting3) do
-        create(
-          :meeting,
-          component: component,
-          start_time: Time.zone.parse("2021-04-26T14:00:00")
-        )
-      end
-
       context "with hour" do
         let(:params) { default_params.merge(hour: hour) }
 
@@ -65,7 +67,7 @@ module Decidim::Meetings
           end
         end
 
-        context "when no day" do
+        context "when no day is set" do
           let(:day) { [""] }
 
           it "returns all meetings" do

@@ -13,21 +13,28 @@
 !/log/.keep
 !/tmp/.keep
 
-/node_modules
-/yarn-error.log
-
 .byebug_history
 .rspec-failures
 
 # Ignore public uploads
-public/uploads
-/test/*
+public/uploads/
 # Ignore application configuration
 /config/application.yml
 # Ignore deploy secrets
 /config/deploy.rb
 /config/deploy/*
 /Capfile
-# Ignore test app
+
 spec/decidim_dummy_app/
-.rspec-failures
+
+/public/packs/
+/public/packs-test/
+/public/decidim-packs/
+node_modules/
+storage/
+
+/yarn-error.log
+.yarn-integrity
+yarn-debug.log*
+
+/config/master.key

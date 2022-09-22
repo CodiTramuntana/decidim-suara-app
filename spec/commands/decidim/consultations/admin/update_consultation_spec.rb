@@ -31,13 +31,13 @@ module Decidim
               description_en: consultation.description["en"],
               description_ca: consultation.description["ca"],
               description_es: consultation.description["es"],
+              banner_image: consultation.banner_image.blob,
               slug: consultation.slug,
-              banner_image: consultation.banner_image,
               decidim_highlighted_scope_id: consultation.highlighted_scope.id,
               start_voting_date: consultation.start_voting_date,
               end_voting_date: consultation.end_voting_date,
               introductory_video_url: consultation.introductory_video_url,
-              introductory_image: consultation.introductory_image
+              introductory_image: consultation.introductory_image.blob
             }.merge(suara_permissions)
           }
         end
@@ -99,6 +99,7 @@ module Decidim
 
           context "when banner image is not updated" do
             it "does not replace the banner image" do
+              params[:consultation].delete(:banner_image)
               expect(consultation).not_to receive(:banner_image=)
 
               command.call
@@ -110,6 +111,7 @@ module Decidim
 
           context "when introductory image is not updated" do
             it "does not replace the introductory image" do
+              params[:consultation].delete(:introductory_image)
               expect(consultation).not_to receive(:introductory_image=)
 
               command.call
