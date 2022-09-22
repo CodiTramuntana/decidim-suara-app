@@ -59,6 +59,14 @@ The following files must be checked in each upgrade of Decidim.
 ### From Module Action Delegator:
 - app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
 
+### Consultations: add hours to voting dates
+
+- app/decorators/forms/decidim/consultations/admin/consultation_form_decorator.rb
+- app/decorators/models/decidim/consultation_decorator.rb
+----------
+- app/overrides/decidim/consultations/admin/change_voting_date_to_datetime_field_in_consultations_form.rb
+- app/overrides/layouts/decidim/add_format_to_start_voting_date_in_show.rb
+
 ## Testing
 
 Run `rake decidim:generate_external_test_app` to generate a dummy application.

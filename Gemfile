@@ -15,7 +15,7 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "virtus-multiparams"
 
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.26-stable"
-gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", branch: "upgrade/0.26-stable"
+gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.4"
 
 gem "deface"
 gem "savon", "~> 2.12.0"
