@@ -60,11 +60,11 @@ The following files must be checked in each upgrade of Decidim.
 - app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
 
 ### Consultations: fields improvements
-- app/forms/decidim/consultations/admin/question_form.rb
-----------
+
 - app/overrides/decidim/consultations/questions/remove_fields_in_show_question.rb
 - app/overrides/decidim/consultations/questions/hide_fields_in_technical_data.rb
 - app/overrides/layouts/decidim/add_button_to_consultation_show.rb
+- app/decorators/forms/decidim/consultations/question_form_decorator.rb
 ----------
 - app/views/decidim/consultations/questions/show.html.erb
 
