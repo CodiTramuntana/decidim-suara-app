@@ -67,6 +67,15 @@ The following files must be checked in each upgrade of Decidim.
 - app/overrides/decidim/consultations/admin/change_voting_date_to_datetime_field_in_consultations_form.rb
 - app/overrides/layouts/decidim/add_format_to_start_voting_date_in_show.rb
 
+### Consultations: fields improvements
+
+- app/overrides/decidim/consultations/questions/remove_fields_in_show_question.rb
+- app/overrides/decidim/consultations/questions/hide_fields_in_technical_data.rb
+- app/overrides/layouts/decidim/add_button_to_consultation_show.rb
+- app/decorators/forms/decidim/consultations/question_form_decorator.rb
+----------
+- app/views/decidim/consultations/questions/show.html.erb
+
 ## Testing
 
 Run `rake decidim:generate_external_test_app` to generate a dummy application.

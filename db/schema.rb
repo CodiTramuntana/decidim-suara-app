@@ -486,10 +486,10 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.bigint "decidim_consultation_id"
     t.bigint "decidim_scope_id"
     t.jsonb "title", null: false
-    t.jsonb "subtitle", null: false
-    t.jsonb "what_is_decided", null: false
-    t.jsonb "promoter_group", null: false
-    t.jsonb "participatory_scope", null: false
+    t.jsonb "subtitle"
+    t.jsonb "what_is_decided"
+    t.jsonb "promoter_group"
+    t.jsonb "participatory_scope"
     t.jsonb "question_context"
     t.string "banner_image"
     t.string "reference"
