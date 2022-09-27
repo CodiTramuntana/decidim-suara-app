@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Deface::Override.new(virtual_path: +"decidim/consultations/admin/consultations/_form",
+                     original: "fac70009a095c707bac779562b62145ce393cb41",
                      name: "add_permissions_sections_to_consultations_form",
                      insert_after: "div.card-section:last-child",
                      text: "

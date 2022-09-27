@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_20_104806) do
+ActiveRecord::Schema.define(version: 2022_09_21_061337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -464,12 +464,12 @@ ActiveRecord::Schema.define(version: 2022_09_20_104806) do
     t.jsonb "description", null: false
     t.string "banner_image"
     t.string "introductory_video_url"
-    t.date "start_voting_date", null: false
+    t.datetime "start_voting_date", null: false
     t.integer "decidim_highlighted_scope_id"
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "end_voting_date", null: false
+    t.datetime "end_voting_date", null: false
     t.date "results_published_at"
     t.string "introductory_image"
     t.jsonb "suara_permissions"
