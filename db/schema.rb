@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_19_074626) do
+ActiveRecord::Schema.define(version: 2022_09_20_104806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -486,10 +486,10 @@ ActiveRecord::Schema.define(version: 2022_08_19_074626) do
     t.bigint "decidim_consultation_id"
     t.bigint "decidim_scope_id"
     t.jsonb "title", null: false
-    t.jsonb "subtitle", null: false
-    t.jsonb "what_is_decided", null: false
-    t.jsonb "promoter_group", null: false
-    t.jsonb "participatory_scope", null: false
+    t.jsonb "subtitle"
+    t.jsonb "what_is_decided"
+    t.jsonb "promoter_group"
+    t.jsonb "participatory_scope"
     t.jsonb "question_context"
     t.string "banner_image"
     t.string "reference"

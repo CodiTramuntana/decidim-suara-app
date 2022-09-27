@@ -121,6 +121,8 @@ en:
         question:
           attachments: Attachments
           categories: Categories
+      question_header:
+        return_to_questions: Back to questions list
   permissions:
     title: Permissions
   mailer:

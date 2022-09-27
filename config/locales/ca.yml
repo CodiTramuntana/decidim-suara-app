@@ -92,6 +92,8 @@ ca:
         question:
           attachments: Adjunts
           categories: Categories
+      question_header:
+        return_to_questions: Tornar al llistat de preguntes
   permissions:
     title: Permisos
   mailer:
