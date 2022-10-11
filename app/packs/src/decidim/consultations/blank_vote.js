@@ -1,4 +1,3 @@
-
 function multipleVote(checkbox) {
   const checkboxes = document.querySelectorAll('form .multiple_votes_form input[type="checkbox"]');
   let remainingVotesCount = document.getElementById('remaining-votes-count');

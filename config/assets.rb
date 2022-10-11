@@ -19,9 +19,7 @@ Decidim::Webpacker.register_path("#{base_path}/app/packs")
 # SCSS files within the entrypoints, they become available for inclusion using
 # `stylesheet_pack_tag`.
 Decidim::Webpacker.register_entrypoints(
-  suara_email: "#{base_path}/app/packs/entrypoints/decidim/suara_email.js",
-  admin_blank_vote_js: "#{base_path}/app/packs/entrypoints/decidim/admin/blank_vote.js",
-  consultations_blank_vote_js: "#{base_path}/app/packs/entrypoints/decidim/consultations/blank_vote.js"
+  suara_email: "#{base_path}/app/packs/entrypoints/decidim/suara_email.js"
 )
 
 # If you want to import some extra SCSS files in the Decidim main SCSS file
