@@ -92,6 +92,8 @@ es:
         question:
           attachments: Adjuntos
           categories: Categorías
+      consultation_header:
+        questions_left_to_response: Preguntas por responder
       question_header:
         return_to_questions: Volver al listado de preguntas
   permissions:
