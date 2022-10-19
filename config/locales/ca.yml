@@ -92,6 +92,8 @@ ca:
         question:
           attachments: Adjunts
           categories: Categories
+      consultation_header:
+        questions_left_to_response: Preguntes per respondre
       question_header:
         return_to_questions: Tornar al llistat de preguntes
   permissions:

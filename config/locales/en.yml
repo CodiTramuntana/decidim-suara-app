@@ -121,6 +121,8 @@ en:
         question:
           attachments: Attachments
           categories: Categories
+      consultation_header:
+        questions_left_to_response: Questions left to response
       question_header:
         return_to_questions: Back to questions list
   permissions:
