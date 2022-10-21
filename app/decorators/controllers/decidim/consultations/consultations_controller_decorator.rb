@@ -35,4 +35,7 @@ Decidim::Consultations::ConsultationsController.class_eval do
 
     @questions_left_to_response = (questions - response_questions).count
   end
+
+  def current_participatory_space
+  end
 end
