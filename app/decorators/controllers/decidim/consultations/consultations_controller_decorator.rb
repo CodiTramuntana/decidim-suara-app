@@ -37,5 +37,6 @@ Decidim::Consultations::ConsultationsController.class_eval do
   end
 
   def current_participatory_space
+    current_consultation unless action_name == "index"
   end
 end
