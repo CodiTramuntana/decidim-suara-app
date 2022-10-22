@@ -209,9 +209,9 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.string "facebook_handler"
     t.string "youtube_handler"
     t.string "github_handler"
+    t.jsonb "suara_permissions"
     t.bigint "decidim_assemblies_type_id"
     t.integer "weight", default: 1, null: false
-    t.jsonb "suara_permissions"
     t.integer "follows_count", default: 0, null: false
     t.jsonb "announcement"
     t.index ["decidim_area_id"], name: "index_decidim_assemblies_on_decidim_area_id"
@@ -1091,8 +1091,8 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.string "id_documents_methods", default: ["online"], array: true
     t.jsonb "id_documents_explanation_text", default: {}
     t.boolean "user_groups_enabled", default: false, null: false
-    t.jsonb "smtp_settings"
     t.jsonb "colors", default: {}
+    t.jsonb "smtp_settings"
     t.boolean "force_users_to_authenticate_before_access_organization", default: false
     t.jsonb "omniauth_settings"
     t.boolean "rich_text_editor_in_public_views", default: false
@@ -1193,10 +1193,10 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.boolean "private_space", default: false
     t.string "reference"
     t.bigint "decidim_area_id"
+    t.jsonb "suara_permissions"
     t.bigint "decidim_scope_type_id"
     t.boolean "show_metrics", default: true
     t.integer "weight", default: 1, null: false
-    t.jsonb "suara_permissions"
     t.integer "follows_count", default: 0, null: false
     t.index ["decidim_area_id"], name: "index_decidim_participatory_processes_on_decidim_area_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_process_slug_and_organization", unique: true
@@ -1615,11 +1615,11 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.integer "following_count", default: 0, null: false
     t.integer "followers_count", default: 0, null: false
     t.string "notification_types", default: "all", null: false
+    t.datetime "officialized_at"
+    t.jsonb "officialized_as"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.datetime "officialized_at"
-    t.jsonb "officialized_as"
     t.datetime "admin_terms_accepted_at"
     t.string "session_token"
     t.string "direct_message_types", default: "all", null: false
@@ -1660,21 +1660,6 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["decidim_organization_id"], name: "index_verifications_csv_census_to_organization"
-  end
-
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

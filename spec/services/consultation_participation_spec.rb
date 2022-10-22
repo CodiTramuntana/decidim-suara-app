@@ -38,11 +38,7 @@ module Decidim::Consultations
         end
       end
 
-      context "with one user that registered but not voted" do
-        it "returns results with one registered"
-      end
-
-      context "with one user that did not register but voted" do
+      context "with one user that voted" do
         let!(:vote) do
           response= responses.first
           create(:vote, question: response.question, response: response)
@@ -72,7 +68,8 @@ module Decidim::Consultations
 
         let(:question) { create(:question, consultation: consultation) }
         let(:granter_vote) { create(:vote, author: delegation.granter, question: question) }
-        let!(:grantee_vote) { create(:vote, author: grantee, question: question) }
+        let!(:version) { ::PaperTrail::Version.create(item: granter_vote, event: :create, whodunnit: grantee.id, decidim_action_delegator_delegation_id: delegation.id) }
+        let(:grantee_vote) { create(:vote, author: grantee, question: question) }
 
         it "returns two voters one for its vote and one for the delegated" do
           expected_result = [granter_vote, grantee_vote].collect.with_index do |vote, idx|
@@ -81,20 +78,14 @@ module Decidim::Consultations
             [
               author.name,
               author.email,
-              false,
               true,
-              vote.versions.any?,
+              (idx % 2 == 0),
               vote.created_at.rfc3339
             ]
           end
           expect(subject).to eq(expected_result.sort {|a,b| a.first <=> b.first})
         end
       end
-
-      context "with many users" do
-        it "returns correct results for each user"
-      end
-
     end
   end
 end

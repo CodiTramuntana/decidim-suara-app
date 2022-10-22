@@ -9,7 +9,6 @@ module Decidim
       # [
       #   author.name,
       #   author.email,
-      #   did_register?,
       #   did_vote?,
       #   delegated_vote?,
       #   vote.created_at.rfc3339
@@ -29,9 +28,8 @@ module Decidim
           [
             user.name,
             user.email,
-            false,
             last_vote.present?,
-            false,
+            delegated_vote?(last_vote, user),
             last_vote&.created_at&.rfc3339
           ]
         end
@@ -43,6 +41,10 @@ module Decidim
 
       def any_responded_question_from_user?(user)
         Decidim::Consultations::Question.joins(:votes).where(consultation: consultation).exists?("decidim_consultations_votes.decidim_author_id" => user.id)
+      end
+
+      def delegated_vote?(vote, user)
+        vote.versions.exists?(event: :create)
       end
     end
   end
