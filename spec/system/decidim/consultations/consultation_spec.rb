@@ -26,7 +26,7 @@ describe "Consultation", type: :system do
 
       before do
         allow(Time.zone).to receive(:now).and_return(Time.zone.local(2022, 9, 21, 11, 0, 0))
-        visit decidim_consultations.question_path(question)
+        visit decidim_consultations.question_path(question, locale: I18n.locale)
       end
 
       it "user can vote a question in consultation" do

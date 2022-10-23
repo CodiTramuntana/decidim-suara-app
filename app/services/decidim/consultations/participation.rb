@@ -3,7 +3,7 @@
 module Decidim
   module Consultations
     # Computes the participation into a Conslutation after this Consultation is closed.
-    class Participation < Struct.new(:consultation)
+    Participation = Struct.new(:consultation) do
       # Returns a list of participants as an Array of Arrays.
       # Thus, each user is represented by an Array of the following form:
       # [
@@ -43,7 +43,7 @@ module Decidim
         Decidim::Consultations::Question.joins(:votes).where(consultation: consultation).exists?("decidim_consultations_votes.decidim_author_id" => user.id)
       end
 
-      def delegated_vote?(vote, user)
+      def delegated_vote?(vote, _user)
         vote.versions.exists?(event: :create)
       end
     end

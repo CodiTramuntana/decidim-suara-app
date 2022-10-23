@@ -25,7 +25,7 @@ module Decidim::Consultations
     let!(:vote_4) { question.votes.create(author: yet_another_user, response: other_response) }
 
     let(:expected_csv) do
-      votes= [vote_1,vote_2,vote_3,vote_4].sort {|v1,v2| v1.author.name <=> v2.author.name}
+      votes= [vote_1, vote_2, vote_3, vote_4].sort { |v1, v2| v1.author.name <=> v2.author.name }
       csv_contents = votes.map do |vote|
         user= vote.author
         "#{user.name};#{user.email};true;false;#{vote.created_at.rfc3339}"

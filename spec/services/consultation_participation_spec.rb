@@ -15,13 +15,13 @@ module Decidim::Consultations
 
     describe "open consultation participation" do
       it "#results raises exception" do
-        expect {subject}.to raise_exception("Can not compute results on a Consultation that is not closed.")
+        expect { subject }.to raise_exception("Can not compute results on a Consultation that is not closed.")
       end
     end
 
     describe "closed consultation participation" do
       before do
-        consultation.update(end_voting_date: DateTime.current - 1.minute)
+        consultation.update(end_voting_date: Time.zone.now - 1.minute)
       end
 
       context "without participation" do
@@ -50,7 +50,6 @@ module Decidim::Consultations
             [
               author.name,
               author.email,
-              false,
               true,
               false,
               vote.created_at.rfc3339
@@ -61,7 +60,7 @@ module Decidim::Consultations
       end
 
       context "with delegated votes" do
-        let!(:action_delegator_setting) { create(:setting, consultation: consultation)}
+        let!(:action_delegator_setting) { create(:setting, consultation: consultation) }
         let(:granter) { create(:user, organization: organization) }
         let(:grantee) { create(:user, organization: organization) }
         let!(:delegation) { create(:delegation, setting: action_delegator_setting, granter: granter, grantee: grantee) }
@@ -79,11 +78,11 @@ module Decidim::Consultations
               author.name,
               author.email,
               true,
-              (idx % 2 == 0),
+              idx.even?,
               vote.created_at.rfc3339
             ]
           end
-          expect(subject).to eq(expected_result.sort {|a,b| a.first <=> b.first})
+          expect(subject).to eq(expected_result.sort { |a, b| a.first <=> b.first })
         end
       end
     end
