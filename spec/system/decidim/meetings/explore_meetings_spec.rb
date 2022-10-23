@@ -9,7 +9,6 @@ describe "Explore meetings", :slow, type: :system do
   let(:user) { create :user, :admin, :confirmed, organization: organization }
 
   before do
-    I18n.locale= :ca
     component_scope = create :scope, parent: participatory_process.scope
     component_settings = component["settings"]["global"].merge!(scopes_enabled: true, scope_id: component_scope.id)
     component.update!(settings: component_settings)

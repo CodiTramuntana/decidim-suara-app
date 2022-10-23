@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/CodiTramuntana/decidim-module-action_delegator.git
-  revision: bc082387fb4cc442c2e9ad5ffc66f51ad19678e1
+  revision: b86e07867ad5767efcba39c8e08f501f74efc651
   branch: upgrade/decidim-0_26
   specs:
     decidim-action_delegator (0.6.0)
