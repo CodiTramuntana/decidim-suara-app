@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/CodiTramuntana/decidim-module-action_delegator.git
-  revision: bc082387fb4cc442c2e9ad5ffc66f51ad19678e1
-  branch: upgrade/decidim-0_26
+  revision: 5a4fa7da676c12d8fe600045f97cfc4269519f6d
+  branch: feat/text_link_delegations
   specs:
     decidim-action_delegator (0.6.0)
       decidim-admin (>= 0.26.0, < 0.27.0)
@@ -778,7 +778,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.11)
     tomlrb (2.0.3)
-    twilio-ruby (5.72.0)
+    twilio-ruby (5.73.0)
       faraday (>= 0.9, < 3.0)
       jwt (>= 1.5, <= 2.5)
       nokogiri (>= 1.6, < 2.0)
