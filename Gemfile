@@ -10,7 +10,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 gem "decidim-verifications", DECIDIM_VERSION
 
-gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "upgrade/decidim-0_26"
+gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "feat/text_link_delegations"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "virtus-multiparams"
 

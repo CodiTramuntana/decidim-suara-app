@@ -232,12 +232,6 @@ a{
   color: #fff;
 }
 
-.card--full__image {
-  .button.expanded.button--sc {
-    display: none;
-  }
-}
-
 .card--list__data__icon:hover .icon, .card--list__data__icon--lg:hover .icon{
   fill: $anchor-color-hover;
 }
@@ -365,4 +359,22 @@ div.section#highlighted-questions{
 .consultation__questions-button {
   display: flex !important;
   justify-content: end;
+}
+
+.question-vote-cabin .delegations-notice a {
+  margin-top: 0.5rem;
+  background-color: $orange-suara-dark !important;
+  color: #fff !important;
+  border-radius: 4px;
+}
+
+.questions-left-to-response {
+  width: 16rem;
+  padding: 4px;
+  margin-top: 2rem;
+  background-color: $orange_suara;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
 }

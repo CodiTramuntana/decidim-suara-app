@@ -68,13 +68,19 @@ The following files must be checked in each upgrade of Decidim.
 ----------
 - app/views/decidim/consultations/questions/show.html.erb
 
-### Consultations: add hours to voting dates
+### Consultations 
+
+## Add hours to voting dates
 
 - app/decorators/forms/decidim/consultations/admin/consultation_form_decorator.rb
 - app/decorators/models/decidim/consultation_decorator.rb
 ----------
 - app/overrides/decidim/consultations/admin/change_voting_date_to_datetime_field_in_consultations_form.rb
 - app/overrides/layouts/decidim/add_format_to_start_voting_date_in_show.rb
+
+## Add questions left to response
+
+- app/overrides/layouts/decidim/add_questions_left_to_response.rb
 
 ### Override Quill editor
 - app/packs/src/decidim/editor.js
