@@ -9,7 +9,7 @@ module Admin
       def export
         enforce_permission_to :update, :consultation, consultation: current_consultation
 
-        ExportConsultationParticipantsJob.perform_later(current_user, current_consultation)
+        ::Decidim::Consultations::ExportConsultationParticipantsJob.perform_later(current_user, current_consultation)
 
         flash[:notice] = t("decidim.admin.exports.notice")
         redirect_back(fallback_location: results_consultation_path(current_consultation))
