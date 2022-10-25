@@ -10,7 +10,7 @@ describe "Question", type: :system do
   context "when shows question information" do
     before do
       switch_to_host(organization.host)
-      visit decidim_consultations.question_path(question)
+      visit decidim_consultations.question_path(question, locale: I18n.locale)
     end
 
     it "shows the back to list button" do

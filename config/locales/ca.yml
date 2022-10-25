@@ -86,6 +86,11 @@ ca:
       home:
         hero:
           participate: Participar
+    consultations:
+      admin:
+        consultations:
+          results:
+            participants: Participants
   layouts:
     decidim:
       admin:
