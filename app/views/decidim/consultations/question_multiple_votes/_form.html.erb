@@ -10,9 +10,11 @@
   <div class="card__content multiple_votes_form">
     <% responses.each do |response| %>
       <div>
-        <%= check_box_tag "responses[]", response.id, false, id: "vote_id_#{response.id}", blank_vote: response.blank_vote, onclick: "multipleVote(this)" %>
+        <%= check_box_tag "responses[]", response.id, false, id: "vote_id_#{response.id}", blank_vote: response.blank_vote %>
         <%= form.label :id, translated_attribute(response.title), for: "vote_id_#{response.id}" %>
       </div>
     <% end %>
   </div>
 </div>
+
+<%= javascript_pack_tag "consultations_blank_vote" %>
