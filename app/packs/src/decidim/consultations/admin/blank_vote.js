@@ -1,12 +1,14 @@
-function blankVote(element) {
-  let translations = JSON.parse(element.getAttribute("data-attribute"));
+const checkboxBlankVote = document.querySelector('form input[type="checkbox"]');
 
-  if (element.checked === true) {
+checkboxBlankVote.addEventListener('change', function() {
+  let translations = JSON.parse(this.getAttribute("data-attribute"));
+  
+  if (this.checked === true) {
     getInputTitles(true, translations);
   } else {
     getInputTitles(false, translations);
   }
-}
+})
 
 function getInputTitles (blankVote, translations) {
   for (let i = 0; i < Object.keys(translations).length; i++) { 
