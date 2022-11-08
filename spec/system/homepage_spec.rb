@@ -18,7 +18,7 @@ describe "Homepage", type: :system do
 
   before do
     switch_to_host(organization.host)
-    visit decidim.root_path
+    visit decidim.root_path(locale: I18n.locale)
   end
 
   it "loads and shows organization name and main blocks" do
