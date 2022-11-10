@@ -21,7 +21,7 @@ user.save!
 
 You're good to go!
 
-## Decorators, overrides with Deface and override complete views
+# Decorators, overrides with Deface and override complete views
 
 The following files must be checked in each upgrade of Decidim.
 
@@ -59,18 +59,17 @@ The following files must be checked in each upgrade of Decidim.
 ### From Module Action Delegator:
 - app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
 
-### Consultations: fields improvements
 
+## Consultations 
+
+### Fields improvements
 - app/overrides/decidim/consultations/questions/remove_fields_in_show_question.rb
 - app/overrides/decidim/consultations/questions/hide_fields_in_technical_data.rb
 - app/overrides/layouts/decidim/add_button_to_consultation_show.rb
 - app/decorators/forms/decidim/consultations/question_form_decorator.rb
 ----------
 - app/views/decidim/consultations/questions/show.html.erb
-
-### Consultations 
-
-## Add hours to voting dates
+### Add hours to voting dates
 
 - app/decorators/forms/decidim/consultations/admin/consultation_form_decorator.rb
 - app/decorators/models/decidim/consultation_decorator.rb
@@ -78,11 +77,14 @@ The following files must be checked in each upgrade of Decidim.
 - app/overrides/decidim/consultations/admin/change_voting_date_to_datetime_field_in_consultations_form.rb
 - app/overrides/layouts/decidim/add_format_to_start_voting_date_in_show.rb
 
-## Add questions left to response
+### Add questions left to response
 
 - app/overrides/layouts/decidim/add_questions_left_to_response.rb
 
-### Override Quill editor
+### Remove comments from questions
+- app/views/decidim/consultations/questions/show.html.erb
+
+## Override Quill editor
 - app/packs/src/decidim/editor.js
 
 ## Testing
