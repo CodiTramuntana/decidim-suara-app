@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require "spec_config"
+require "rspec_config"
 ENV["RAILS_ENV"] ||= "test"
 ENV["LANG"] ||= "EN"
 
