@@ -1,13 +1,13 @@
 :concurrency: 5
+# emails are enqueued to the :default queue
 :queues:
   - [active_storage_analysis,2]
   - [active_storage_purge,2]
   - [block_user, 2]
   - [decidim_events, 2]
-  - [default, 2]
+  - [default, 4]
   - [events, 2]
   - [exports,1]
-  - [mailers, 4]
   - [metrics, 1]
   - [newsletter, 2]
   - [newsletters_opt_in, 2]
