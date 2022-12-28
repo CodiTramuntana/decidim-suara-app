@@ -22,13 +22,14 @@ gem "openssl"
 # gem "daemons"
 # gem "delayed_job_active_record"
 # gem "whenever"
-# elsif deploying to Heroku
+# elsif deploying to a PaaS like Heroku
 gem "redis"
 gem "sidekiq"
 group :production do
   gem "fog-aws"
   gem "rack-ssl-enforcer"
   gem "rails_12factor"
+  gem "aws-sdk-s3", require: false
 end
 # endif
 
