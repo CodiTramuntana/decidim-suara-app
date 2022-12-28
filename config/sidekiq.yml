@@ -1,5 +1,4 @@
 :concurrency: 5
-# emails are enqueued to the :default queue
 :queues:
   - [active_storage_analysis,2]
   - [active_storage_purge,2]
