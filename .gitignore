@@ -30,6 +30,9 @@ spec/decidim_dummy_app/
 /public/packs/
 /public/packs-test/
 /public/decidim-packs/
+/public/sw.js
+/public/sw.js.map
+
 node_modules/
 storage/
 
