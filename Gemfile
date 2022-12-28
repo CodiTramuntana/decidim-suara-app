@@ -26,10 +26,10 @@ gem "openssl"
 gem "redis"
 gem "sidekiq"
 group :production do
+  gem "aws-sdk-s3", require: false
   gem "fog-aws"
   gem "rack-ssl-enforcer"
   gem "rails_12factor"
-  gem "aws-sdk-s3", require: false
 end
 # endif
 
