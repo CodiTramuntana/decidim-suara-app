@@ -47,7 +47,7 @@ Decidim.configure do |config|
   }
 
   # Workaround to enable SVG assets cors
-  config.cors_enabled = Rails.application.secrets.decidim[:cors_enabled].present?
+  # config.cors_enabled = Rails.application.secrets.decidim[:cors_enabled].present?
 
   # Max requests in a time period to prevent DoS attacks. Only applied on production.
   config.throttling_max_requests = Rails.application.secrets.decidim[:throttling_max_requests].to_i
