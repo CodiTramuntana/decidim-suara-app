@@ -4,9 +4,13 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.26-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.27-stable" }.freeze
 
 gem "decidim", DECIDIM_VERSION
+
+# temporal solution while gems embrace new psych 4 (the default in Ruby 3.1) behavior.
+gem "psych", "< 4"
+
 gem "puma"
 gem "uglifier", ">= 1.3.0"
 gem "webpacker"
@@ -18,10 +22,11 @@ gem "openssl"
 # gem "daemons"
 # gem "delayed_job_active_record"
 # gem "whenever"
-# elsif deploying to Heroku
+# elsif deploying to a PaaS like Heroku
 gem "redis"
 gem "sidekiq"
 group :production do
+  gem "aws-sdk-s3", require: false
   gem "fog-aws"
   gem "rack-ssl-enforcer"
   gem "rails_12factor"
@@ -39,7 +44,7 @@ end
 
 group :development do
   gem "letter_opener_web"
-  gem "listen", "~> 3.1.0"
+  gem "listen"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console"

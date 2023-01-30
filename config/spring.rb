@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "decidim/spring"
+
 Spring.watch(
   ".ruby-version",
   ".rbenv-vars",

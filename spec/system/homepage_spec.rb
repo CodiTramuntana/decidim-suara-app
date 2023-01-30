@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 describe "Homepage", type: :system do
   include Decidim::SanitizeHelper
@@ -9,7 +9,7 @@ describe "Homepage", type: :system do
     create(
       :organization,
       name: "Decidim Application",
-      default_locale: :ca,
+      default_locale: :en,
       available_locales: [:ca, :en, :es]
     )
   end
