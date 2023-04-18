@@ -10,7 +10,10 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-consultations", DECIDIM_VERSION
 gem "decidim-verifications", DECIDIM_VERSION
 
-gem "decidim-action_delegator", git: "https://github.com/coopdevs/decidim-module-action_delegator.git"
+gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "first_ite/import_delegations_csv"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "virtus-multiparams"
+
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.26-stable"
 gem "decidim-verifications-csv_email", git: "https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git"
 gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.4"
