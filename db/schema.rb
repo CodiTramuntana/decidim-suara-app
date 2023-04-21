@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_21_061337) do
+ActiveRecord::Schema.define(version: 2023_03_28_062532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -209,9 +209,9 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.string "facebook_handler"
     t.string "youtube_handler"
     t.string "github_handler"
-    t.jsonb "suara_permissions"
     t.bigint "decidim_assemblies_type_id"
     t.integer "weight", default: 1, null: false
+    t.jsonb "suara_permissions"
     t.integer "follows_count", default: 0, null: false
     t.jsonb "announcement"
     t.index ["decidim_area_id"], name: "index_decidim_assemblies_on_decidim_area_id"
@@ -1091,8 +1091,8 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.string "id_documents_methods", default: ["online"], array: true
     t.jsonb "id_documents_explanation_text", default: {}
     t.boolean "user_groups_enabled", default: false, null: false
-    t.jsonb "colors", default: {}
     t.jsonb "smtp_settings"
+    t.jsonb "colors", default: {}
     t.boolean "force_users_to_authenticate_before_access_organization", default: false
     t.jsonb "omniauth_settings"
     t.boolean "rich_text_editor_in_public_views", default: false
@@ -1193,10 +1193,10 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.boolean "private_space", default: false
     t.string "reference"
     t.bigint "decidim_area_id"
-    t.jsonb "suara_permissions"
     t.bigint "decidim_scope_type_id"
     t.boolean "show_metrics", default: true
     t.integer "weight", default: 1, null: false
+    t.jsonb "suara_permissions"
     t.integer "follows_count", default: 0, null: false
     t.index ["decidim_area_id"], name: "index_decidim_participatory_processes_on_decidim_area_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_process_slug_and_organization", unique: true
@@ -1615,11 +1615,11 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.integer "following_count", default: 0, null: false
     t.integer "followers_count", default: 0, null: false
     t.string "notification_types", default: "all", null: false
-    t.datetime "officialized_at"
-    t.jsonb "officialized_as"
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.datetime "officialized_at"
+    t.jsonb "officialized_as"
     t.datetime "admin_terms_accepted_at"
     t.string "session_token"
     t.string "direct_message_types", default: "all", null: false
@@ -1660,6 +1660,14 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["decidim_organization_id"], name: "index_verifications_csv_census_to_organization"
+  end
+
+  create_table "decidim_verifications_csv_email_csv_email_data", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id"], name: "index_verifications_csv_email_to_organization"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -1782,6 +1790,7 @@ ActiveRecord::Schema.define(version: 2022_09_21_061337) do
   add_foreign_key "decidim_verifications_conflicts", "decidim_users", column: "current_user_id"
   add_foreign_key "decidim_verifications_conflicts", "decidim_users", column: "managed_user_id"
   add_foreign_key "decidim_verifications_csv_data", "decidim_organizations"
+  add_foreign_key "decidim_verifications_csv_email_csv_email_data", "decidim_organizations"
   add_foreign_key "oauth_access_grants", "decidim_users", column: "resource_owner_id"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "decidim_users", column: "resource_owner_id"
