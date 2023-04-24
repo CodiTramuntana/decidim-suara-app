@@ -12,6 +12,17 @@ GIT
       twilio-ruby
 
 GIT
+  remote: https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git
+  revision: 2074fe95935374f521651c9b48015031093a8b56
+  specs:
+    decidim-verifications-csv_email (0.0.11)
+      decidim (>= 0.25.2)
+      decidim-admin (>= 0.25.2)
+      decidim-verifications (>= 0.25.2)
+      nokogiri (>= 1.12.5)
+      puma (>= 5.5.1)
+
+GIT
   remote: https://github.com/CodiTramuntana/decidim.git
   revision: 99f93dae4d0cc09b7c5e8806e13fe7f5126a2399
   branch: release/0.26-stable
@@ -188,18 +199,6 @@ GIT
       decidim-forms (= 0.26.3)
     decidim-verifications (0.26.3)
       decidim-core (= 0.26.3)
-
-GIT
-  remote: https://github.com/coopdevs/decidim-module-action_delegator.git
-  revision: 141092b4cea2373dd608e73434f0c9f5105f8e86
-  specs:
-    decidim-action_delegator (0.7.0)
-      decidim-admin (>= 0.26.0, < 0.27)
-      decidim-consultations (>= 0.26.0, < 0.27)
-      decidim-core (>= 0.26.0, < 0.27)
-      deface (>= 1.9)
-      savon
-      twilio-ruby
 
 GIT
   remote: https://github.com/gencat/decidim-verifications-members_picker.git
