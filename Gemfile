@@ -18,9 +18,6 @@ gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-te
 gem "decidim-verifications-csv_email", git: "https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git"
 gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.4"
 
-gem "omniauth-rails_csrf_protection", "~> 1.0"
-gem "virtus-multiparams"
-
 gem "deface"
 gem "savon", "~> 2.12.0"
 gem "wicked_pdf"
