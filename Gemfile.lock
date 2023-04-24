@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git
-  revision: ce5c6999754c42089c93caaac2c659b4905aed94
+  revision: fa5d0bcb85b0f762d7069b149450008f4a34cdde
   branch: feat/redirect_user_to_where_she_was_after_verification
   specs:
     decidim-verifications-csv_email (0.1.0)
