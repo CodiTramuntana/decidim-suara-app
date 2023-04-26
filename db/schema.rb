@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_28_062532) do
+ActiveRecord::Schema.define(version: 2023_04_18_124337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -94,11 +94,34 @@ ActiveRecord::Schema.define(version: 2023_03_28_062532) do
     t.index ["granter_id"], name: "index_decidim_action_delegator_delegations_on_granter_id"
   end
 
+  create_table "decidim_action_delegator_participants", force: :cascade do |t|
+    t.bigint "decidim_action_delegator_setting_id", null: false
+    t.bigint "decidim_action_delegator_ponderation_id"
+    t.string "email", null: false
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "decidim_user_id"
+    t.index ["decidim_action_delegator_ponderation_id"], name: "index_decidim_action_delegator_participants_on_ponderation_id"
+    t.index ["decidim_action_delegator_setting_id"], name: "index_decidim_action_delegator_participants_on_setting_id"
+    t.index ["decidim_user_id"], name: "index_decidim_action_delegator_participants_on_decidim_user_id"
+  end
+
+  create_table "decidim_action_delegator_ponderations", force: :cascade do |t|
+    t.bigint "decidim_action_delegator_setting_id", null: false
+    t.string "name", null: false
+    t.decimal "weight", precision: 5, scale: 2, default: "1.0", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["decidim_action_delegator_setting_id"], name: "index_decidim_action_delegator_ponderations_on_setting_id"
+  end
+
   create_table "decidim_action_delegator_settings", force: :cascade do |t|
     t.integer "max_grants", limit: 2, default: 0, null: false
     t.bigint "decidim_consultation_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "authorization_method", default: 0, null: false
     t.index ["decidim_consultation_id"], name: "index_decidim_settings_on_decidim_consultation_id"
   end
 
@@ -1749,6 +1772,7 @@ ActiveRecord::Schema.define(version: 2023_03_28_062532) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "decidim_action_delegator_delegations", "decidim_action_delegator_settings"
+  add_foreign_key "decidim_action_delegator_participants", "decidim_users"
   add_foreign_key "decidim_action_delegator_settings", "decidim_consultations"
   add_foreign_key "decidim_area_types", "decidim_organizations"
   add_foreign_key "decidim_areas", "decidim_area_types", column: "area_type_id"
