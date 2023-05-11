@@ -12,7 +12,7 @@ gem "decidim-verifications", DECIDIM_VERSION
 
 gem "decidim-action_delegator", git: "https://github.com/CodiTramuntana/decidim-module-action_delegator.git", branch: "first_ite/import_delegations_csv"
 gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-module-term_customizer.git", branch: "fix/translation_set_query_consultations_question"
-gem "decidim-verifications-csv_email", git: "https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git", tag: "v0.1.0"
+gem "decidim-verifications-csv_email", git: "https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git", tag: "v0.1.1"
 gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.4"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"

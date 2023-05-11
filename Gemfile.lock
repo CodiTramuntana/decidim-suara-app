@@ -22,10 +22,10 @@ GIT
 
 GIT
   remote: https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git
-  revision: 081ac7ee975040e83c607fc8b5f5891262196c23
-  tag: v0.1.0
+  revision: cacbfd10b315d2304f90e6401183a33dd80829a6
+  tag: v0.1.1
   specs:
-    decidim-verifications-csv_email (0.1.0)
+    decidim-verifications-csv_email (0.1.1)
       decidim (>= 0.25.2)
       decidim-admin (>= 0.25.2)
       decidim-verifications (>= 0.25.2)
@@ -908,4 +908,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.4
+   2.3.6
