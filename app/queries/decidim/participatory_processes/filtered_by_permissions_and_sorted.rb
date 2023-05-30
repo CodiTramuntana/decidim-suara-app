@@ -4,11 +4,11 @@ module Decidim
   module ParticipatoryProcesses
     # This query orders assemblies by importance, prioritizing promoted
     # assemblies.
-    class FilteredByPermissionsAndSorted < Rectify::Query
+    class FilteredByPermissionsAndSorted < Decidim::Query
       include SuaraPermissionsSupervisor
 
       def initialize(current_user, participatory_processes_query)
-        super
+        super(participatory_processes_query)
         @current_user= current_user
         @participatory_processes_query = participatory_processes_query
       end

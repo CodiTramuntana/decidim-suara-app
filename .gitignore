@@ -38,3 +38,6 @@ storage/
 yarn-debug.log*
 
 /config/master.key
+
+public/sw.js
+public/sw.js.map
