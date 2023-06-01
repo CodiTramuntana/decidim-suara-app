@@ -4,7 +4,7 @@ Decidim::Meetings::MeetingsController.class_eval do
   private
 
   def meetings
-    @meetings ||= paginate(search.results.not_hidden.order(start_time: :asc))
+    @meetings ||= paginate(search.result.not_hidden.order(start_time: :asc))
   end
 
   def default_filter_params
