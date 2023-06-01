@@ -4,9 +4,9 @@ require "rails_helper"
 
 describe "Consultation", type: :system do
   let!(:organization) { create(:organization) }
-  let!(:consultation) { create(:consultation, :published, organization: organization, start_voting_date: Time.zone.now) }
-  let!(:user) { create :user, :admin, :confirmed, organization: organization }
-  let!(:question) { create :question, consultation: consultation, scope: consultation.highlighted_scope }
+  let!(:consultation) { create(:consultation, :published, organization:, start_voting_date: Time.zone.now) }
+  let!(:user) { create :user, :admin, :confirmed, organization: }
+  let!(:question) { create :question, consultation:, scope: consultation.highlighted_scope }
 
   before do
     switch_to_host(organization.host)
@@ -22,7 +22,7 @@ describe "Consultation", type: :system do
     end
 
     context "when the end voting date is later than now" do
-      let(:consultation) { create(:consultation, :published, organization: organization, start_voting_date: Time.zone.local(2022, 9, 21, 9, 0, 0), end_voting_date: Time.zone.local(2022, 9, 21, 15, 0, 0)) }
+      let(:consultation) { create(:consultation, :published, organization:, start_voting_date: Time.zone.local(2022, 9, 21, 9, 0, 0), end_voting_date: Time.zone.local(2022, 9, 21, 15, 0, 0)) }
 
       before do
         allow(Time.zone).to receive(:now).and_return(Time.zone.local(2022, 9, 21, 11, 0, 0))
@@ -35,7 +35,7 @@ describe "Consultation", type: :system do
     end
 
     context "when the end voting date is earlier than now" do
-      let(:consultation) { create(:consultation, :published, organization: organization, start_voting_date: Time.zone.local(2022, 9, 21, 9, 0, 0), end_voting_date: Time.zone.local(2022, 9, 21, 15, 0, 0)) }
+      let(:consultation) { create(:consultation, :published, organization:, start_voting_date: Time.zone.local(2022, 9, 21, 9, 0, 0), end_voting_date: Time.zone.local(2022, 9, 21, 15, 0, 0)) }
 
       before do
         allow(Time.zone).to receive(:now).and_return(Time.zone.local(2022, 9, 21, 15, 0o5, 0))
@@ -58,7 +58,7 @@ describe "Consultation", type: :system do
       end
 
       context "and question has one vote" do
-        let!(:response) { create :response, question: question }
+        let!(:response) { create :response, question: }
 
         before do
           visit decidim_consultations.question_path(question)

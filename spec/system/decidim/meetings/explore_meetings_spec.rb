@@ -6,7 +6,7 @@ describe "Explore meetings", :slow, type: :system do
   include_context "with a component"
   let(:manifest_name) { "meetings" }
   # using admin to avoid supervisor permissions checking
-  let(:user) { create :user, :admin, :confirmed, organization: organization }
+  let(:user) { create :user, :admin, :confirmed, organization: }
 
   before do
     component_scope = create :scope, parent: participatory_process.scope
@@ -20,8 +20,8 @@ describe "Explore meetings", :slow, type: :system do
         component_settings = component["settings"]["global"].merge!(enable_cards_visualization: true)
         component.update!(settings: component_settings)
 
-        in_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T11:00:00"))
-        out_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T16:00:00"))
+        in_hour_meeting = create(:meeting, component:, start_time: Time.zone.parse("2021-04-28T11:00:00"))
+        out_hour_meeting = create(:meeting, component:, start_time: Time.zone.parse("2021-04-28T16:00:00"))
         sign_in user
         visit_component
 
@@ -43,7 +43,7 @@ describe "Explore meetings", :slow, type: :system do
       it "allows filtering by day" do
         component_settings = component["settings"]["global"].merge!(enable_cards_visualization: true)
         component.update!(settings: component_settings)
-        monday_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-26T11:00:00"))
+        monday_meeting = create(:meeting, component:, start_time: Time.zone.parse("2021-04-26T11:00:00"))
         sign_in user
         visit_component
 
@@ -60,8 +60,8 @@ describe "Explore meetings", :slow, type: :system do
       it "allows filtering by hour" do
         component_settings = component["settings"]["global"].merge!(enable_cards_visualization: false)
         component.update!(settings: component_settings)
-        in_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T11:00:00"))
-        out_hour_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-28T16:00:00"))
+        in_hour_meeting = create(:meeting, component:, start_time: Time.zone.parse("2021-04-28T11:00:00"))
+        out_hour_meeting = create(:meeting, component:, start_time: Time.zone.parse("2021-04-28T16:00:00"))
         sign_in user
         visit_component
 
@@ -83,7 +83,7 @@ describe "Explore meetings", :slow, type: :system do
       it "allows filtering by day" do
         component_settings = component["settings"]["global"].merge!(enable_cards_visualization: false)
         component.update!(settings: component_settings)
-        monday_meeting = create(:meeting, component: component, start_time: Time.zone.parse("2021-04-26T11:00:00"))
+        monday_meeting = create(:meeting, component:, start_time: Time.zone.parse("2021-04-26T11:00:00"))
         sign_in user
         visit_component
 

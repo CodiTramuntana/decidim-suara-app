@@ -8,15 +8,15 @@ module Decidim
       routes { Decidim::Assemblies::Engine.routes }
 
       let(:organization) { create(:organization) }
-      let(:current_user) { create(:user, :confirmed, organization: organization) }
+      let(:current_user) { create(:user, :confirmed, organization:) }
       let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
-      let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+      let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
       let!(:published) do
         create(
           :assembly,
           :published,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "a", ceco_txt: "b" }
         )
       end
@@ -26,7 +26,7 @@ module Decidim
           :assembly,
           :published,
           :promoted,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "ceco", ceco_txt: "b" }
         )
       end
@@ -36,7 +36,7 @@ module Decidim
           :assembly,
           :published,
           :promoted,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt" }
         )
       end
@@ -46,7 +46,7 @@ module Decidim
           :assembly,
           :published,
           :promoted,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "", ceco_txt: "", tipologia: "" }
         )
       end
@@ -58,8 +58,8 @@ module Decidim
 
       describe "promoted_assemblies" do
         context "when user is admin" do
-          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
-          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+          let!(:current_user) { create(:user, :admin, :confirmed, organization:) }
+          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
           it "includes all promoted" do
             expect(controller.helpers.promoted_assemblies).to include(promoted)
@@ -85,11 +85,11 @@ module Decidim
       end
 
       describe "parent_assemblies" do
-        let!(:child_assembly) { create(:assembly, parent: published, organization: organization) }
+        let!(:child_assembly) { create(:assembly, parent: published, organization:) }
 
         context "when user is admin" do
-          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
-          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+          let!(:current_user) { create(:user, :admin, :confirmed, organization:) }
+          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
           it "includes all parent assemblies" do
             expect(controller.helpers.parent_assemblies).to include(promoted)
@@ -115,7 +115,7 @@ module Decidim
 
         describe "#show" do
           context "when user is admin" do
-            let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
+            let!(:current_user) { create(:user, :admin, :confirmed, organization:) }
 
             it "can access processes with all kind of permissions" do
               get :show, params: { slug: promoted.slug }

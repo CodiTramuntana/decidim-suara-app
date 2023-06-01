@@ -8,15 +8,15 @@ module Decidim
       routes { Decidim::Consultations::Engine.routes }
 
       let(:organization) { create(:organization) }
-      let(:current_user) { create(:user, :confirmed, organization: organization) }
+      let(:current_user) { create(:user, :confirmed, organization:) }
       let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
-      let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+      let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
       let!(:published_with_permissions) do
         create(
           :consultation,
           :published,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt" }
         )
       end
@@ -25,7 +25,7 @@ module Decidim
         create(
           :consultation,
           :published,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "", ceco_txt: "" }
         )
       end
@@ -34,7 +34,7 @@ module Decidim
         create(
           :consultation,
           :published,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "a", ceco_txt: "b" }
         )
       end
@@ -46,8 +46,8 @@ module Decidim
 
       describe "published_consultations" do
         context "when user is admin" do
-          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
-          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+          let!(:current_user) { create(:user, :admin, :confirmed, organization:) }
+          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
           it "includes all consultations" do
             expect(controller.helpers.consultations).to include(published_with_permissions)
@@ -75,7 +75,7 @@ module Decidim
 
       describe "#show" do
         context "when user is admin" do
-          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
+          let!(:current_user) { create(:user, :admin, :confirmed, organization:) }
 
           it "can access processes with all kind of permissions" do
             get :show, params: { slug: published_with_permissions.slug }

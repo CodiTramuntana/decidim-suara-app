@@ -16,8 +16,8 @@ module Decidim
         end
 
         let(:organization) { create :organization }
-        let(:consultation) { create :consultation, organization: organization }
-        let(:scope) { create :scope, organization: organization }
+        let(:consultation) { create :consultation, organization: }
+        let(:scope) { create :scope, organization: }
         let(:slug) { "slug" }
         let(:title) do
           {
@@ -105,7 +105,7 @@ module Decidim
               "origin_url" => origin_url,
               "external_voting" => external_voting,
               "i_frame_url" => i_frame_url,
-              "order": order
+              order:
             }
           }
         end

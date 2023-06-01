@@ -40,7 +40,7 @@ module Decidim
       end
 
       def any_responded_question_from_user?(user)
-        Decidim::Consultations::Question.joins(:votes).where(consultation: consultation).exists?("decidim_consultations_votes.decidim_author_id" => user.id)
+        Decidim::Consultations::Question.joins(:votes).where(consultation:).exists?("decidim_consultations_votes.decidim_author_id" => user.id)
       end
 
       def delegated_vote?(vote, _user)

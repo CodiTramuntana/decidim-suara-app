@@ -8,15 +8,15 @@ module Decidim
       subject { described_class.from_params(attributes).with_context(context) }
 
       let(:question) { create :question, :multiple }
-      let(:response1) { create :response, question: question }
-      let(:response2) { create :response, question: question }
-      let(:response3) { create :response, question: question }
-      let(:response4) { create :response, question: question }
-      let(:response_blank_vote) { create :response, question: question, blank_vote: true }
+      let(:response1) { create :response, question: }
+      let(:response2) { create :response, question: }
+      let(:response3) { create :response, question: }
+      let(:response4) { create :response, question: }
+      let(:response_blank_vote) { create :response, question:, blank_vote: true }
       let(:responses) { [response1.id, response2.id] }
       let(:attributes) do
         {
-          responses: responses
+          responses:
         }
       end
       let(:context) do

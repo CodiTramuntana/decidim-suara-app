@@ -5,7 +5,7 @@ require "rails_helper"
 module Decidim
   describe DecidimDeviseMailer, type: :mailer do
     let(:organization) { create(:organization, name: "Test Organization") }
-    let(:user) { create(:user, :admin, organization: organization) }
+    let(:user) { create(:user, :admin, organization:) }
     let(:mail) { described_class.invitation_instructions(user, "foo", invitation_instructions: "invite_private_user") }
 
     describe "email subject" do

@@ -6,19 +6,19 @@ describe SuaraPermissionsSupervisor do
   include SuaraPermissionsSupervisor
   let(:supervisor) { self }
   let(:organization) { create(:organization) }
-  let(:current_user) { create(:user, :confirmed, organization: organization) }
+  let(:current_user) { create(:user, :confirmed, organization:) }
   let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
-  let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+  let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
   let(:participatory_spaces) do
     [
-      create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt" }),
-      create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt", tipologia: "tipo", grup_empleados: "grup", estat_soci: "soci", derechovoto: "derecho", estat_ocup: "ocup" }),
-      create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: "aa", ceco_txt: "bb", tipologia: "cc" }),
-      create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: "a", ceco_txt: "b", tipologia: "c", grup_empleados: "d", estat_soci: "e", derechovoto: "f", estat_ocup: "g" }),
-      create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: "", ceco_txt: "" }),
-      create(:assembly, :published, :promoted, organization: organization, suara_permissions: {}),
-      create(:assembly, :published, :promoted, organization: organization),
-      create(:assembly, :published, :promoted, organization: organization, suara_permissions: { ceco: nil, ceco_txt: nil })
+      create(:assembly, :published, :promoted, organization:, suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt" }),
+      create(:assembly, :published, :promoted, organization:, suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt", tipologia: "tipo", grup_empleados: "grup", estat_soci: "soci", derechovoto: "derecho", estat_ocup: "ocup" }),
+      create(:assembly, :published, :promoted, organization:, suara_permissions: { ceco: "aa", ceco_txt: "bb", tipologia: "cc" }),
+      create(:assembly, :published, :promoted, organization:, suara_permissions: { ceco: "a", ceco_txt: "b", tipologia: "c", grup_empleados: "d", estat_soci: "e", derechovoto: "f", estat_ocup: "g" }),
+      create(:assembly, :published, :promoted, organization:, suara_permissions: { ceco: "", ceco_txt: "" }),
+      create(:assembly, :published, :promoted, organization:, suara_permissions: {}),
+      create(:assembly, :published, :promoted, organization:),
+      create(:assembly, :published, :promoted, organization:, suara_permissions: { ceco: nil, ceco_txt: nil })
     ]
   end
 

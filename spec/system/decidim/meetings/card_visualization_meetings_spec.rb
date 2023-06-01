@@ -7,12 +7,12 @@ describe "Card visualization meeting", :slow, type: :system do
   let(:manifest_name) { "meetings" }
 
   let!(:category) { create :category, participatory_space: participatory_process }
-  let!(:scope) { create :scope, organization: organization }
+  let!(:scope) { create :scope, organization: }
   # using admin to avoid supervisor permissions checking
-  let(:user) { create :user, :admin, :confirmed, organization: organization }
-  let(:scoped_participatory_process) { create(:participatory_process, :with_steps, organization: organization, scope: scope) }
-  let!(:first_meeting) { create(:meeting, component: component, scope: scope, start_time: Time.zone.parse("2021-04-26T11:00:00")) }
-  let!(:second_meeting) { create(:meeting, component: component, scope: scope_2, start_time: Time.zone.parse("2021-04-28T11:00:00")) }
+  let(:user) { create :user, :admin, :confirmed, organization: }
+  let(:scoped_participatory_process) { create(:participatory_process, :with_steps, organization:, scope:) }
+  let!(:first_meeting) { create(:meeting, component:, scope:, start_time: Time.zone.parse("2021-04-26T11:00:00")) }
+  let!(:second_meeting) { create(:meeting, component:, scope: scope_2, start_time: Time.zone.parse("2021-04-28T11:00:00")) }
 
   describe "when cards visualization is uncheck" do
     let!(:scope_2) { create :scope, organization: participatory_process.organization }

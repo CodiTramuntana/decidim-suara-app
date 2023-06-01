@@ -25,7 +25,7 @@ module Decidim
               set_flash_message :notice, :success, kind: @form.provider.capitalize
               authorization = Decidim::AuthorizationHandler.handler_for(
                 "sap_authorization_handler",
-                user: user
+                user:
               )
               CreateSapAuthorization.call(authorization) do
                 on(:ok) {}

@@ -6,7 +6,7 @@ namespace :sap do
     Decidim::User.find_each do |user|
       authorization = Decidim::AuthorizationHandler.handler_for(
         "sap_authorization_handler",
-        user: user
+        user:
       )
       Decidim::CreateSapAuthorization.call(authorization) do
         on(:ok) do

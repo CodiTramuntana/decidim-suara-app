@@ -8,9 +8,9 @@ module Decidim::Consultations
 
     let!(:consultation) { create :consultation }
     let(:organization) { consultation.organization }
-    let!(:questions) { create_list(:question, 3, consultation: consultation) }
+    let!(:questions) { create_list(:question, 3, consultation:) }
     let!(:responses) do
-      questions.collect { |question| create(:response, question: question) }
+      questions.collect { |question| create(:response, question:) }
     end
 
     describe "open consultation participation" do
@@ -21,7 +21,7 @@ module Decidim::Consultations
 
     describe "closed consultation participation" do
       before do
-        consultation.update(end_voting_date: Time.zone.now - 1.minute)
+        consultation.update(end_voting_date: 1.minute.ago)
       end
 
       context "without participation" do
@@ -31,7 +31,7 @@ module Decidim::Consultations
       end
 
       context "with one user that did not participate" do
-        let!(:non_participating_user) { create(:user, organization: organization) }
+        let!(:non_participating_user) { create(:user, organization:) }
 
         it "returns an empty list" do
           expect(subject).to eq([])
@@ -41,7 +41,7 @@ module Decidim::Consultations
       context "with one user that voted" do
         let!(:vote) do
           response= responses.first
-          create(:vote, question: response.question, response: response)
+          create(:vote, question: response.question, response:)
         end
 
         it "returns results with one voted" do
@@ -60,15 +60,15 @@ module Decidim::Consultations
       end
 
       context "with delegated votes" do
-        let!(:action_delegator_setting) { create(:setting, consultation: consultation) }
-        let(:granter) { create(:user, organization: organization) }
-        let(:grantee) { create(:user, organization: organization) }
-        let!(:delegation) { create(:delegation, setting: action_delegator_setting, granter: granter, grantee: grantee) }
+        let!(:action_delegator_setting) { create(:setting, consultation:) }
+        let(:granter) { create(:user, organization:) }
+        let(:grantee) { create(:user, organization:) }
+        let!(:delegation) { create(:delegation, setting: action_delegator_setting, granter:, grantee:) }
 
-        let(:question) { create(:question, consultation: consultation) }
-        let(:granter_vote) { create(:vote, author: delegation.granter, question: question) }
+        let(:question) { create(:question, consultation:) }
+        let(:granter_vote) { create(:vote, author: delegation.granter, question:) }
         let!(:version) { ::PaperTrail::Version.create(item: granter_vote, event: :create, whodunnit: grantee.id, decidim_action_delegator_delegation_id: delegation.id) }
-        let(:grantee_vote) { create(:vote, author: grantee, question: question) }
+        let(:grantee_vote) { create(:vote, author: grantee, question:) }
 
         it "returns two voters one for its vote and one for the delegated" do
           expected_result = [granter_vote, grantee_vote].collect.with_index do |vote, idx|

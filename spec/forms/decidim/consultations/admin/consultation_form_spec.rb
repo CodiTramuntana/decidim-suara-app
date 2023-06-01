@@ -9,7 +9,7 @@ module Decidim
         subject { described_class.from_params(attributes).with_context(current_organization: organization) }
 
         let(:organization) { create :organization }
-        let(:scope) { create :scope, organization: organization }
+        let(:scope) { create :scope, organization: }
         let(:title) do
           {
             en: "Title",
@@ -33,7 +33,7 @@ module Decidim
         end
         let(:slug) { "slug" }
         let(:start_voting_date) { Time.zone.now }
-        let(:end_voting_date) { Time.zone.now + 1.month }
+        let(:end_voting_date) { 1.month.from_now }
 
         let(:attributes) do
           {

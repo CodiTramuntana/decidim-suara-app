@@ -4,8 +4,8 @@ require "rails_helper"
 
 describe "Question", type: :system do
   let(:organization) { create(:organization) }
-  let(:consultation) { create(:consultation, :published, organization: organization) }
-  let(:question) { create :question, consultation: consultation }
+  let(:consultation) { create(:consultation, :published, organization:) }
+  let(:question) { create :question, consultation: }
 
   context "when shows question information" do
     before do
@@ -27,7 +27,7 @@ describe "Question", type: :system do
     end
 
     context "when field question_context is blank" do
-      let(:question) { create :question, consultation: consultation, question_context: { ca: "", es: "", en: "" } }
+      let(:question) { create :question, consultation:, question_context: { ca: "", es: "", en: "" } }
 
       it "not shows question_context section" do
         click_button("Read more")
@@ -37,7 +37,7 @@ describe "Question", type: :system do
     end
 
     context "when field what_is_decided is blank" do
-      let(:question) { create :question, consultation: consultation, what_is_decided: { ca: "", es: "", en: "" } }
+      let(:question) { create :question, consultation:, what_is_decided: { ca: "", es: "", en: "" } }
 
       it "not shows what_is_decided section" do
         click_button("Read more")

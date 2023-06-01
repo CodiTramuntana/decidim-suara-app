@@ -7,12 +7,12 @@ module Decidim::Meetings
     subject { described_class.new(params).results }
 
     let(:component) { create :component, manifest_name: "meetings" }
-    let(:default_params) { { component: component, organization: component.organization } }
+    let(:default_params) { { component:, organization: component.organization } }
     let(:params) { default_params }
     let!(:meeting1) do
       create(
         :meeting,
-        component: component,
+        component:,
         start_time: Time.zone.parse("2021-04-28T11:00:00"),
         published_at: Time.zone.now
       )
@@ -20,7 +20,7 @@ module Decidim::Meetings
     let!(:meeting2) do
       create(
         :meeting,
-        component: component,
+        component:,
         start_time: Time.zone.parse("2021-04-28T14:00:00"),
         published_at: Time.zone.now
       )
@@ -29,7 +29,7 @@ module Decidim::Meetings
     let!(:meeting3) do
       create(
         :meeting,
-        component: component,
+        component:,
         start_time: Time.zone.parse("2021-04-26T14:00:00"),
         published_at: Time.zone.now
       )
@@ -37,7 +37,7 @@ module Decidim::Meetings
 
     describe "filters" do
       context "with hour" do
-        let(:params) { default_params.merge(hour: hour) }
+        let(:params) { default_params.merge(hour:) }
 
         context "when thirteen_am" do
           let(:hour) { ["thirteen_am"] }
@@ -57,7 +57,7 @@ module Decidim::Meetings
       end
 
       context "with day" do
-        let(:params) { default_params.merge(day: day) }
+        let(:params) { default_params.merge(day:) }
 
         context "when is monday" do
           let(:day) { ["monday"] }

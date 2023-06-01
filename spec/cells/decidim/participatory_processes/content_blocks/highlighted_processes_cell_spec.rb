@@ -9,14 +9,14 @@ module Decidim
         subject { cell(content_block.cell, content_block).call }
 
         let(:organization) { create(:organization) }
-        let(:content_block) { create :content_block, organization: organization, manifest_name: :highlighted_processes, scope_name: :homepage, settings: settings }
-        let(:current_user) { create(:user, :confirmed, organization: organization) }
+        let(:content_block) { create :content_block, organization:, manifest_name: :highlighted_processes, scope_name: :homepage, settings: }
+        let(:current_user) { create(:user, :confirmed, organization:) }
         let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
-        let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+        let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
-        let!(:participatory_process_with_filter) { create(:participatory_process, :published, :promoted, organization: organization, suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt" }) }
-        let!(:participatory_process_with_other_filter) { create(:participatory_process, :published, :promoted, organization: organization, suara_permissions: { ceco: "a", ceco_txt: "b" }) }
-        let!(:participatory_process_without_filter) { create(:participatory_process, :published, :promoted, organization: organization, suara_permissions: { ceco: "", ceco_txt: "" }) }
+        let!(:participatory_process_with_filter) { create(:participatory_process, :published, :promoted, organization:, suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt" }) }
+        let!(:participatory_process_with_other_filter) { create(:participatory_process, :published, :promoted, organization:, suara_permissions: { ceco: "a", ceco_txt: "b" }) }
+        let!(:participatory_process_without_filter) { create(:participatory_process, :published, :promoted, organization:, suara_permissions: { ceco: "", ceco_txt: "" }) }
 
         controller Decidim::HomepageController
 
@@ -25,8 +25,8 @@ module Decidim
         end
 
         context "when user is an admin" do
-          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
-          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+          let!(:current_user) { create(:user, :admin, :confirmed, organization:) }
+          let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
           it "includes all participatory processes" do
             within "#highlighted-processes" do

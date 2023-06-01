@@ -33,11 +33,11 @@ module Decidim
 
       before do
         request.env["omniauth.auth"] = {
-          provider: provider,
-          uid: uid,
+          provider:,
+          uid:,
           info: {
             name: "Google User",
-            email: email
+            email:
           }
         }
       end
@@ -57,7 +57,7 @@ module Decidim
       end
 
       context "when the unverified email address is already in use but left unconfirmed" do
-        let!(:user) { create(:user, organization: organization, email: email) }
+        let!(:user) { create(:user, organization:, email:) }
 
         before do
           user.update!(

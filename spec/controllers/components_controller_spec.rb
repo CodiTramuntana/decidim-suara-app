@@ -9,13 +9,13 @@ module Decidim
 
       let(:organization) { create(:organization) }
       let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
-      let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+      let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata:) }
 
       let!(:space_with_permissions) do
         create(
           :consultation,
           :published,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "ceco", ceco_txt: "ceco_txt" }
         )
       end
@@ -24,7 +24,7 @@ module Decidim
         create(
           :consultation,
           :published,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "", ceco_txt: "" }
         )
       end
@@ -33,12 +33,12 @@ module Decidim
         create(
           :consultation,
           :published,
-          organization: organization,
+          organization:,
           suara_permissions: { ceco: "ceco", ceco_txt: "b" }
         )
       end
 
-      let(:meeting_component) { create(:meeting_component, :with_creation_enabled, participatory_space: participatory_space) }
+      let(:meeting_component) { create(:meeting_component, :with_creation_enabled, participatory_space:) }
       let(:component) { create :meeting, :published, component: meeting_component }
 
       before do
@@ -50,7 +50,7 @@ module Decidim
 
       describe "#show" do
         context "when user is admin" do
-          let!(:current_user) { create(:user, :admin, :confirmed, organization: organization) }
+          let!(:current_user) { create(:user, :admin, :confirmed, organization:) }
 
           context "when space permissions are blank" do
             let(:participatory_space) { space_without_permissions }
@@ -81,7 +81,7 @@ module Decidim
         end
 
         context "when user is NOT admin" do
-          let!(:current_user) { create(:user, :confirmed, organization: organization) }
+          let!(:current_user) { create(:user, :confirmed, organization:) }
 
           context "when space permissions are blank" do
             let(:participatory_space) { space_without_permissions }
