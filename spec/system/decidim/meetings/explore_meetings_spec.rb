@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 describe "Explore meetings", :slow, type: :system do
   include_context "with a component"

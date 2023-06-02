@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module Assemblies
@@ -177,7 +177,7 @@ module Decidim
               it "assembly type is null" do
                 command.call
 
-                expect(my_assembly.assembly_type).to eq(nil)
+                expect(my_assembly.assembly_type).to be_nil
               end
             end
 
@@ -224,7 +224,7 @@ module Decidim
                 my_assembly.reload
                 parent_assembly.reload
 
-                expect(my_assembly.parent).to be(nil)
+                expect(my_assembly.parent).to be_nil
                 expect(parent_assembly.children_count).to eq(parent_assembly.children.count)
               end
             end

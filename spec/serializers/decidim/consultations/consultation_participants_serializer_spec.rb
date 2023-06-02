@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim::Consultations
   describe ConsultationParticipantsSerializer do
-    let(:subject) { described_class.new(result) }
+    subject { described_class.new(result) }
     let(:created_at) { Time.zone.now.rfc3339 }
 
     describe "#serialize" do

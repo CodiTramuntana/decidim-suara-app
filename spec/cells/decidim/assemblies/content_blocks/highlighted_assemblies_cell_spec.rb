@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module Assemblies
@@ -44,7 +44,7 @@ module Decidim
         end
 
         context "when user is not an admin and not has permissions" do
-          let!(:authorization) {}
+          let!(:authorization) { nil }
 
           it "includes only assemblies without permissions" do
             within "#highlighted-assembly" do

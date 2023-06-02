@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module Consultations
@@ -64,7 +64,7 @@ module Decidim
         end
 
         context "when user isn't admin and has not permissions" do
-          let!(:authorization) {}
+          let!(:authorization) { nil }
 
           it "includes consultations with permissions filters and without permissions" do
             expect(controller.helpers.collection).to include(published_with_permissions)
@@ -105,7 +105,7 @@ module Decidim
         end
 
         context "when user is NOT admin and does NOT have permissions" do
-          let!(:authorization) {}
+          let!(:authorization) { nil }
 
           it "can access processes without permissions" do
             get :show, params: { slug: published_without_permissions.slug }

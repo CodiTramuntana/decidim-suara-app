@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module Consultations
@@ -33,7 +33,7 @@ module Decidim
         end
         let(:slug) { "slug" }
         let(:start_voting_date) { Time.zone.now }
-        let(:end_voting_date) { Time.zone.now + 1.month }
+        let(:end_voting_date) { 1.month.from_now }
 
         let(:attributes) do
           {

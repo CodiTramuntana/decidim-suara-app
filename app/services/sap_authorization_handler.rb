@@ -7,7 +7,6 @@ require "digest/md5"
 # This class performs a check against the official census database in order
 # to verify the citizen's residence.
 class SapAuthorizationHandler < Decidim::AuthorizationHandler
-  include Virtus::Multiparams
   include ActionView::Helpers::SanitizeHelper
 
   attribute :ceco, String

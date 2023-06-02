@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 describe "Card visualization meeting", :slow, type: :system do
   include_context "with a component"
@@ -12,10 +12,10 @@ describe "Card visualization meeting", :slow, type: :system do
   let(:user) { create :user, :admin, :confirmed, organization: organization }
   let(:scoped_participatory_process) { create(:participatory_process, :with_steps, organization: organization, scope: scope) }
   let!(:first_meeting) { create(:meeting, component: component, scope: scope, start_time: Time.zone.parse("2021-04-26T11:00:00")) }
-  let!(:second_meeting) { create(:meeting, component: component, scope: scope_2, start_time: Time.zone.parse("2021-04-28T11:00:00")) }
+  let!(:second_meeting) { create(:meeting, component: component, scope: z, start_time: Time.zone.parse("2021-04-28T11:00:00")) }
 
   describe "when cards visualization is uncheck" do
-    let!(:scope_2) { create :scope, organization: participatory_process.organization }
+    let!(:scope2) { create :scope, organization: participatory_process.organization }
 
     before do
       component.settings = { enable_cards_visualization: false }
@@ -31,7 +31,7 @@ describe "Card visualization meeting", :slow, type: :system do
   end
 
   describe "when cards visualization is check" do
-    let!(:scope_2) { create :scope, organization: participatory_process.organization }
+    let!(:scope2) { create :scope, organization: participatory_process.organization }
 
     before do
       component.settings = { enable_cards_visualization: true }

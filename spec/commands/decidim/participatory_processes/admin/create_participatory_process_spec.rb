@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module ParticipatoryProcesses
@@ -102,7 +102,7 @@ module Decidim
           let(:process) { Decidim::ParticipatoryProcess.last }
 
           it "creates a participatory process" do
-            expect { subject.call }.to change { Decidim::ParticipatoryProcess.count }.by(1)
+            expect { subject.call }.to change(Decidim::ParticipatoryProcess, :count).by(1)
           end
 
           it "traces the creation", versioning: true do

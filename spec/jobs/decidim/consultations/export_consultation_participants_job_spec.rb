@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim::Consultations
   describe ExportConsultationParticipantsJob do
@@ -19,13 +19,13 @@ module Decidim::Consultations
     let!(:yet_another_user) { create(:user, :admin, :confirmed, organization: organization) }
 
     let(:votes) { consultation.questions.first.total_votes }
-    let!(:vote_1) { question.votes.create(author: user, response: response) }
-    let!(:vote_2) { question.votes.create(author: other_user, response: response) }
-    let!(:vote_3) { question.votes.create(author: another_user, response: response) }
-    let!(:vote_4) { question.votes.create(author: yet_another_user, response: other_response) }
+    let!(:vote1) { question.votes.create(author: user, response: response) }
+    let!(:vote2) { question.votes.create(author: other_user, response: response) }
+    let!(:vote3) { question.votes.create(author: another_user, response: response) }
+    let!(:vote4) { question.votes.create(author: yet_another_user, response: other_response) }
 
     let(:expected_csv) do
-      votes= [vote_1, vote_2, vote_3, vote_4].sort { |v1, v2| v1.author.name <=> v2.author.name }
+      votes= [vote1, vote2, vote3, vote4].sort { |v1, v2| v1.author.name <=> v2.author.name }
       csv_contents = votes.map do |vote|
         user= vote.author
         "#{user.name};#{user.email};true;false;#{vote.created_at.rfc3339}"
@@ -62,9 +62,12 @@ module Decidim::Consultations
 
       it "fetches data calling participation" do
         participation = instance_double(Participation)
-        expect(Participation)
+        allow(Participation)
           .to receive(:new).with(consultation).and_return(participation)
-        expect(participation).to receive(:results).and_return([])
+        allow(participation).to receive(:results).and_return([])
+
+        expect(Participation).to receive(:new).with(consultation)
+        expect(participation).to receive(:results)
 
         subject.perform_now(user, consultation)
       end
@@ -76,7 +79,7 @@ module Decidim::Consultations
         allow(Decidim::Exporters).to receive(:find_exporter)
           .with("CSV").and_return(exporter_class)
 
-        expect(Decidim::ExportMailer)
+        allow(Decidim::ExportMailer)
           .to receive(:export)
           .with(
             user,
@@ -84,6 +87,14 @@ module Decidim::Consultations
             export_data
           )
           .and_return(mailer)
+
+        expect(Decidim::ExportMailer)
+          .to receive(:export)
+          .with(
+            user,
+            I18n.t("decidim.admin.consultations.participants.export_filename"),
+            export_data
+          )
 
         subject.perform_now(user, consultation)
       end

@@ -17,8 +17,8 @@ gem "decidim-term_customizer", git: "https://github.com/CodiTramuntana/decidim-m
 gem "decidim-verifications-csv_email", git: "https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git", tag: "v0.1.1"
 gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.5"
 
-gem "sassc"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem "sassc"
 gem "virtus-multiparams"
 
 gem "deface"

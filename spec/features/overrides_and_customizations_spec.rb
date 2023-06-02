@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 describe "Overrides and customizations" do
   it "remove config/initializers/doorkeeper.rb after Decidim v0.28" do
