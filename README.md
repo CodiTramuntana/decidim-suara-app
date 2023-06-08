@@ -56,10 +56,6 @@ The following files must be checked in each upgrade of Decidim.
 
 - app/views/decidim/meetings/meetings/_meetings.html.erb
 
-### From Module Action Delegator:
-- app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
-
-
 ## Consultations 
 
 ### Fields improvements

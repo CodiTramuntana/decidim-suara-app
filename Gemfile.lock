@@ -1,17 +1,4 @@
 GIT
-  remote: https://github.com/CodiTramuntana/decidim-module-action_delegator.git
-  revision: abbb805a41d3f6b8787d11da69336f84f03b6390
-  branch: update-to-decidim-0-27
-  specs:
-    decidim-action_delegator (0.8.0)
-      decidim-admin (>= 0.27.0, < 0.28)
-      decidim-consultations (>= 0.27.0, < 0.28)
-      decidim-core (>= 0.27.0, < 0.28)
-      deface (>= 1.9)
-      savon
-      twilio-ruby
-
-GIT
   remote: https://github.com/CodiTramuntana/decidim-module-term_customizer.git
   revision: 5a8d4c67972ef10cd52e774d64a3c7cff9bc9325
   specs:
@@ -217,6 +204,17 @@ GIT
       decidim-core (>= 0.27.2)
       decidim-verifications (>= 0.27.2)
       psych (< 4)
+
+PATH
+  remote: /home/niki/Pulpit/Praca/decidim-module-action_delegator
+  specs:
+    decidim-action_delegator (0.8.0)
+      decidim-admin (>= 0.27.0, < 0.28)
+      decidim-consultations (>= 0.27.0, < 0.28)
+      decidim-core (>= 0.27.0, < 0.28)
+      deface (>= 1.9)
+      savon
+      twilio-ruby
 
 GEM
   remote: https://rubygems.org/

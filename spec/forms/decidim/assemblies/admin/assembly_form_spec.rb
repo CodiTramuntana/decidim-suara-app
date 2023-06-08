@@ -41,7 +41,7 @@ module Decidim
           }
         end
         let(:slug) { "slug" }
-        let(:attachment) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
+        let(:attachment) { upload_test_file(Decidim::Dev.test_file("city.jpeg", "image/jpeg")) }
         let(:show_statistics) { true }
         let(:private_space) { true }
         let(:purpose_of_action) do
@@ -97,6 +97,13 @@ module Decidim
         let(:instagram_handler) { "lorem" }
         let(:youtube_handler) { "lorem" }
         let(:github_handler) { "lorem" }
+        let(:announcement) do
+          {
+            en: "Announcement",
+            es: "Anuncio",
+            ca: "Anunci"
+          }
+        end
         let(:parent_id) { nil }
         let(:assembly_id) { nil }
         let(:ceco) { "ceco" }
@@ -160,7 +167,10 @@ module Decidim
               "grup_empleados" => grup_empleados,
               "estat_soci" => estat_soci,
               "tipologia" => tipologia,
-              "derechovoto" => derechovoto
+              "derechovoto" => derechovoto,
+              "announcement_en" => announcement[:en],
+              "announcement_es" => announcement[:es],
+              "announcement_ca" => announcement[:ca]
             }
           }
         end
@@ -169,30 +179,19 @@ module Decidim
           it { is_expected.to be_valid }
         end
 
-        context "when hero_image is too big" do
+        context "when attachment (hero_image or banner_image) is too big" do
           before do
             organization.settings.tap do |settings|
               settings.upload.maximum_file_size.default = 5
             end
-            expect(subject.hero_image).to receive(:size).twice.and_return(6.megabytes)
-          end
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when banner_image is too big" do
-          before do
-            organization.settings.tap do |settings|
-              settings.upload.maximum_file_size.default = 5
-            end
-            expect(subject.banner_image).to receive(:size).twice.and_return(6.megabytes)
+            ActiveStorage::Blob.find_signed(attachment).update(byte_size: 6.megabytes)
           end
 
           it { is_expected.not_to be_valid }
         end
 
         context "when images are not the expected type" do
-          let(:attachment) { Decidim::Dev.test_file("Exampledocument.pdf", "application/pdf") }
+          let(:attachment) { upload_test_file(Decidim::Dev.test_file("Exampledocument.pdf", "application/pdf")) }
 
           it { is_expected.not_to be_valid }
         end
@@ -347,7 +346,8 @@ module Decidim
                 grup_empleados: assembly.grup_empleados,
                 estat_soci: assembly.estat_soci,
                 tipologia: assembly.tipologia,
-                derechovoto: assembly.derechovoto
+                derechovoto: assembly.derechovoto,
+                announcement: assembly.announcement
               }
             }
           end
@@ -412,7 +412,8 @@ module Decidim
                 grup_empleados: assembly.grup_empleados,
                 estat_soci: assembly.estat_soci,
                 tipologia: assembly.tipologia,
-                derechovoto: assembly.derechovoto
+                derechovoto: assembly.derechovoto,
+                announcement: assembly.announcement
               }
             }
           end
