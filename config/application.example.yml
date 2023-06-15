@@ -14,8 +14,8 @@ default: &default
   DB_PORT: "5432"
   DB_POOL: "<%= ENV.fetch("RAILS_MAX_THREADS") { "5" } %>"
   DB_HOST: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
-  DB_DATABASE: "clean_app_dev"
-  DB_TEST_DATABASE: "clean_app_test"
+  DB_DATABASE: "decidim_suara_app"
+  DB_TEST_DATABASE: "decidim_suara_app_test"
   DB_USERNAME: "db_username"
   DB_PASSWORD: "db_username_password"
   # Mailer configuration

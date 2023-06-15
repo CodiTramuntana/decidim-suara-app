@@ -1,16 +1,31 @@
 /* eslint-disable require-jsdoc */
 
 import lineBreakButtonHandler from "src/decidim/editor/linebreak_module"
+import "src/decidim/editor/clipboard_override";
 import "src/decidim/vendor/image-resize.min"
 import "src/decidim/vendor/image-upload.min"
 // SUARA CUSTOMIZATION
 import htmlEditButton from "quill-html-edit-button";
 // SUARA CUSTOMIZATION
 
-const quillFormats = ["bold", "italic", "link", "underline", "header", "list", "video", "image", "alt", "break", "width", "style", "code", "blockquote", "indent",
-  // SUARA CUSTOMIZATION  
-  "color"];
+const quillFormats = [
+  "bold",
+  "italic",
+  "link",
+  "underline",
+  "header",
+  "list",
+  "alt",
+  "break",
+  "width",
+  "style",
+  "code",
+  "blockquote",
+  "indent",
   // SUARA CUSTOMIZATION
+  "color"
+  // SUARA CUSTOMIZATION
+];
 
 export default function createQuillEditor(container) {
   const toolbar = $(container).data("toolbar");
@@ -21,29 +36,31 @@ export default function createQuillEditor(container) {
     [{ list: "ordered" }, { list: "bullet" }],
     ["link", "clean"],
     ["code", "blockquote"],
-    [{ "indent": "-1"}, { "indent": "+1" }],
+    [{ indent: "-1"}, { indent: "+1" }],
     // SUARA CUSTOMIZATION
     [{ 'color': [] }],
     // SUARA CUSTOMIZATION
   ];
 
-  let addImage = $(container).data("editorImages");
+  let addImage = false;
+  let addVideo = false;
 
-  if (toolbar === "full") {
+  /**
+   * - basic = only basic controls without titles
+   * - content = basic + headings
+   * - full = basic + headings + image + video
+   */
+  if (toolbar === "content") {
+    quillToolbar = [[{ header: [2, 3, 4, 5, 6, false] }], ...quillToolbar];
+  } else if (toolbar === "full") {
+    addImage = true;
+    addVideo = true;
     quillToolbar = [
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ header: [2, 3, 4, 5, 6, false] }],
       ...quillToolbar,
-      ["video"]
+      ["video"],
+      ["image"]
     ];
-  } else if (toolbar === "basic") {
-    quillToolbar = [
-      ...quillToolbar,
-      ["video"]
-    ];
-  }
-
-  if (addImage) {
-    quillToolbar.push(["image"]);
   }
 
   let modules = {
@@ -51,7 +68,7 @@ export default function createQuillEditor(container) {
     toolbar: {
       container: quillToolbar,
       handlers: {
-        "linebreak": lineBreakButtonHandler
+        linebreak: lineBreakButtonHandler
       }
     },
     // SUARA CUSTOMIZATION
@@ -61,10 +78,20 @@ export default function createQuillEditor(container) {
   const $input = $(container).siblings('input[type="hidden"]');
   container.innerHTML = $input.val() || "";
   const token = $('meta[name="csrf-token"]').attr("content");
+
+  if (addVideo) {
+    quillFormats.push("video");
+  }
+
   if (addImage) {
+    // Attempt to allow images only if the image support is enabled at editor support.
+    // see: https://github.com/quilljs/quill/issues/1108
+    quillFormats.push("image");
+
     modules.imageResize = {
       modules: ["Resize", "DisplaySize"]
-    }
+    };
+
     modules.imageUpload = {
       url: $(container).data("uploadImagesPath"),
       method: "POST",
@@ -72,18 +99,22 @@ export default function createQuillEditor(container) {
       withCredentials: false,
       headers: { "X-CSRF-Token": token },
       callbackOK: (serverResponse, next) => {
-        $("div.ql-toolbar").last().removeClass("editor-loading")
+        $("div.ql-toolbar").last().removeClass("editor-loading");
         next(serverResponse.url);
       },
       callbackKO: (serverError) => {
-        $("div.ql-toolbar").last().removeClass("editor-loading")
+        $("div.ql-toolbar").last().removeClass("editor-loading");
         console.log(`Image upload error: ${serverError.message}`);
       },
       checkBeforeSend: (file, next) => {
-        $("div.ql-toolbar").last().addClass("editor-loading")
+        $("div.ql-toolbar").last().addClass("editor-loading");
         next(file);
       }
     }
+    const text = $(container).data("dragAndDropHelpText");
+    $(container).after(
+      `<p class="help-text" style="margin-top:-1.5rem;">${text}</p>`
+    );
   }
 
   // SUARA CUSTOMIZATION
@@ -95,6 +126,11 @@ export default function createQuillEditor(container) {
     formats: quillFormats,
     theme: "snow"
   });
+
+  if (addImage === false) {
+    // Firefox natively implements image drop in contenteditable which is why we need to disable that
+    quill.root.addEventListener("drop", (ev) => ev.preventDefault());
+  }
 
   if (disabled) {
     quill.disable();
@@ -110,20 +146,20 @@ export default function createQuillEditor(container) {
     });
     container.dispatchEvent(event);
 
-    if (text === "\n" || text === "\n\n") {
+    if (
+      (text === "\n" || text === "\n\n") &&
+      quill.root.querySelectorAll(allowedEmptyContentSelector).length === 0
+    ) {
       $input.val("");
     } else {
-      $input.val(quill.root.innerHTML);
+      const emptyParagraph = "<p><br></p>";
+      const cleanHTML = quill.root.innerHTML.replace(
+        new RegExp(`^${emptyParagraph}|${emptyParagraph}$`, "g"),
+        ""
+      );
+      $input.val(cleanHTML);
     }
   });
-  // After editor is ready, linebreak_module deletes two extraneous new lines
-  quill.emitter.emit("editor-ready");
-
-  if (addImage) {
-    const text = $(container).data("dragAndDropHelpText");
-    $(container).after(`<p class="help-text" style="margin-top:-1.5rem;">${text}</p>`);
-  }
-
   // After editor is ready, linebreak_module deletes two extraneous new lines
   quill.emitter.emit("editor-ready");
 

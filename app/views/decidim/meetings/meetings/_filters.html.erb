@@ -14,30 +14,31 @@
     </div>
   </div>
 
-  <%= form.hidden_field "state", value: params.dig("filter", "state") %>
+  <%= form.hidden_field "with_availability", value: params.dig("filter", "with_availability") %>
 
   <% unless @forced_past_meetings %>
-    <%= form.collection_radio_buttons :date, filter_date_values, :first, :last, legend_title: t(".date") %>
+    <%= form.collection_radio_buttons :with_any_date, filter_date_values, :first, :last, legend_title: t(".date") %>
   <% end %>
 
-  <%= form.check_boxes_tree :type, filter_type_values, legend_title: t(".type") %>
+  <%= form.check_boxes_tree :with_any_type, filter_type_values, legend_title: t(".type") %>
 
   <% if current_component.has_subscopes? %>
-    <%= form.check_boxes_tree :scope_id, filter_scopes_values, legend_title: t(".scope") %>
+    <%= form.check_boxes_tree :with_any_scope, filter_scopes_values, legend_title: t(".scope") %>
   <% end %>
 
   <% if current_component.categories.any? %>
-    <%= form.check_boxes_tree :category_id, filter_categories_values, legend_title: t(".category") %>
+    <%= form.check_boxes_tree :with_any_category, filter_categories_values, legend_title: t(".category") %>
   <% end %>
 
   <% if component_settings.creation_enabled_for_participants? %>
-    <%= form.check_boxes_tree :origin, filter_origin_values, legend_title: t(".origin") %>
+    <%= form.check_boxes_tree :with_any_origin, filter_origin_values, legend_title: t(".origin") %>
   <% end %>
 
   <% if current_user %>
     <%= form.collection_radio_buttons :activity, activity_filter_values, :first, :last, { legend_title: t(".activity") }, "aria-controls": "meetings" %>
   <% end %>
 
+  <%# Suara customization %>
   <%= form.check_boxes_tree :hour, filter_hours_values, legend_title: t(".hours") %>
 
   <%= form.days_select :day,
@@ -46,4 +47,5 @@
                       label: "",
                       selected: filter.day,
                       include_blank: t(".weekdays_select") %>
+  <%# Suara customization %>
 <% end %>

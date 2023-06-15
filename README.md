@@ -59,7 +59,6 @@ The following files must be checked in each upgrade of Decidim.
 ## Consultations 
 
 ### Fields improvements
-- app/overrides/decidim/consultations/questions/remove_fields_in_show_question.rb
 - app/overrides/decidim/consultations/questions/hide_fields_in_technical_data.rb
 - app/overrides/layouts/decidim/add_button_to_consultation_show.rb
 - app/decorators/forms/decidim/consultations/question_form_decorator.rb
