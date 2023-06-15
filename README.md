@@ -84,7 +84,8 @@ The following files must be checked in each upgrade of Decidim.
 - app/overrides/layouts/decidim/add_format_to_start_voting_date_in_show.rb
 
 ### Add questions left to response
-
+- app/decorators/controllers/decidim/consultations/consultations_controller_decorator.rb
+----------
 - app/overrides/layouts/decidim/add_questions_left_to_response.rb
 
 ### Remove comments from questions
