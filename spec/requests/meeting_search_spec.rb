@@ -41,15 +41,14 @@ RSpec.describe "Meeting search", type: :request do
       author: user,
       component: component,
       start_time: Time.zone.parse("2023-06-26 14:00:00"),
-      description: Decidim::Faker::Localized.literal("Nulla TestCheck accumsan tincidunt."),
+      description: Decidim::Faker::Localized.literal("Nulla TestCheck accumsan tincidunt.")
     )
   end
 
   let(:request_path) { Decidim::EngineRouter.main_proxy(component).meetings_path }
 
   before do
-    fake_time = Time.zone.parse("2023-06-15 13:30")
-    allow(Time).to receive(:now).and_return(fake_time)
+    allow(Time).to receive(:now).and_return(Time.zone.parse("2023-06-15 13:30"))
 
     get(
       request_path,

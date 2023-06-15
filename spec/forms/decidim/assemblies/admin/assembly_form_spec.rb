@@ -176,7 +176,7 @@ module Decidim
         end
 
         context "when everything is OK" do
-          it { is_expected.to be_valid  }
+          it { is_expected.to be_valid }
         end
 
         context "when suara custom fields are empty is OK" do
@@ -187,7 +187,7 @@ module Decidim
           let(:tipologia) { "" }
           let(:derechovoto) { "" }
 
-          it { is_expected.to be_valid  }
+          it { is_expected.to be_valid }
         end
       end
     end
