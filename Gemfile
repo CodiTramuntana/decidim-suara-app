@@ -18,7 +18,6 @@ gem "decidim-verifications-csv_email", git: "https://github.com/CodiTramuntana/d
 gem "decidim-verifications-members_picker", git: "https://github.com/gencat/decidim-verifications-members_picker.git", tag: "0.0.5"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
-gem "sassc"
 gem "virtus-multiparams"
 
 gem "deface"

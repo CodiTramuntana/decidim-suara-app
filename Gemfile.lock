@@ -778,8 +778,6 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    sassc (2.4.0)
-      ffi (~> 1.9)
     savon (2.12.1)
       akami (~> 1.2)
       builder (>= 2.1.2)
@@ -924,7 +922,6 @@ DEPENDENCIES
   psych (< 4)
   puma
   rails-controller-testing
-  sassc
   savon (~> 2.12.0)
   spring
   spring-watcher-listen (~> 2.0.0)
