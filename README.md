@@ -46,14 +46,25 @@ The following files must be checked in each upgrade of Decidim.
 - app/overrides/decidim/participatory_processes/admin/participatory_processes/add_permissions_sections_to_participatory_processes_form.rb
 - app/overrides/decidim/consultations/admin/add_permissions_sections_to_consultations_form.rb
 
-### Meetings: Filter by hours
+### Meetings
+
+### Filter by hours
 
 - app/decorators/controllers/decidim/meetings/meetings_controller_decorator.rb
+- app/decorators/lib/decidim/filter_form_builder_decorator.rb
+- app/decorators/lib/decidim/form_builder_decorator.rb
+- app/decorators/models/decidim/meeting_decorator.rb
+- app/decorators/services/decidim/meetings/meeting_search_decorator.rb
 ----------
+- app/lib/decidim/meetings/extensions/component_filterable.rb (is the way to decorate a concern)
+----------
+- app/views/decidim/meetings/meetings/_meetings.html.erb
 - app/views/decidim/meetings/meetings/_filters.html.erb
 
-### Meetings: Card visualization
+#### Card visualization
 
+- app/decorators/cells/decidim/ meetings/join_meeting_button_cell_decorator.rb
+----------
 - app/views/decidim/meetings/meetings/_meetings.html.erb
 
 ## Consultations 
