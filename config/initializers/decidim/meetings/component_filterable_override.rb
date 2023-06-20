@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
+require "active_support/concern"
+
 module Decidim
   module Meetings
-    module Extensions
-      module ComponentFilterable
+    # A controller concern to specify default filter parameters for the
+    # controller resources within a meetings component.
+    module ComponentFilterable
+      extend ActiveSupport::Concern
+
+      included do
+        private
+
         def default_filter_params
           {
             search_text_cont: "",
@@ -16,8 +24,8 @@ module Decidim
             with_any_origin: default_filter_origin_params,
             with_any_type: default_filter_type_params,
             # Suara customization
-            hour: "",
-            day: ""
+            with_hour: "",
+            with_day: ""
             # Suara customization
           }
         end

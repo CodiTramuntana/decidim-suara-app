@@ -39,13 +39,13 @@
   <% end %>
 
   <%# Suara customization %>
-  <%= form.check_boxes_tree :hour, filter_hours_values, legend_title: t(".hours") %>
+  <%= form.check_boxes_tree :with_hour, filter_hours_values, legend_title: t(".hours") %>
 
-  <%= form.days_select :day,
+  <%= form.days_select :with_day,
                       filter_weekdays_values,
                       legend_title: t(".weekdays"),
                       label: "",
-                      selected: filter.day,
+                      selected: filter.with_day,
                       include_blank: t(".weekdays_select") %>
   <%# Suara customization %>
 <% end %>

@@ -48,15 +48,13 @@ The following files must be checked in each upgrade of Decidim.
 
 ### Meetings
 
-### Filter by hours
+### Filter by hours and days
 
 - app/decorators/controllers/decidim/meetings/meetings_controller_decorator.rb
 - app/decorators/lib/decidim/filter_form_builder_decorator.rb
 - app/decorators/lib/decidim/form_builder_decorator.rb
 - app/decorators/models/decidim/meeting_decorator.rb
-- app/decorators/services/decidim/meetings/meeting_search_decorator.rb
-----------
-- app/lib/decidim/meetings/extensions/component_filterable.rb (is the way to decorate a concern)
+- config/initializers/decidim/meetings/component_filterable_override.rb
 ----------
 - app/views/decidim/meetings/meetings/_meetings.html.erb
 - app/views/decidim/meetings/meetings/_filters.html.erb
