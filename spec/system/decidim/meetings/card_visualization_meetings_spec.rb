@@ -11,13 +11,15 @@ describe "Card visualization meeting", :slow, type: :system do
   # using admin to avoid supervisor permissions checking
   let(:user) { create :user, :admin, :confirmed, organization: organization }
   let(:scoped_participatory_process) { create(:participatory_process, :with_steps, organization: organization, scope: scope) }
-  let!(:first_meeting) { create(:meeting, component: component, scope: scope, start_time: Time.zone.parse("2021-04-26T11:00:00")) }
-  let!(:second_meeting) { create(:meeting, component: component, scope: scope, start_time: Time.zone.parse("2021-04-28T11:00:00")) }
+  let!(:first_meeting) { create(:meeting, :published, component: component, scope: scope, start_time: Time.zone.parse("2023-07-26 11:00:00")) }
+  let!(:second_meeting) { create(:meeting, :published, component: component, scope: scope, start_time: Time.zone.parse("2023-07-28 11:00:00")) }
 
   describe "when cards visualization is uncheck" do
     let!(:scope2) { create :scope, organization: participatory_process.organization }
 
     before do
+      allow(Time).to receive(:now).and_return(Time.zone.parse("2023-07-15 13:30"))
+
       component.settings = { enable_cards_visualization: false }
       component.save!
       sign_in user

@@ -30,14 +30,14 @@ describe "Explore meetings", :slow, type: :system do
         sign_in user
         visit_component
 
-        within ".hour_check_boxes_tree_filter" do
+        within ".with_hour_check_boxes_tree_filter" do
           check "Before 13am"
         end
 
         expect(page).to have_css(".card--meeting", count: 1)
         expect(page).to have_content(translated(in_hour_meeting.title))
 
-        within ".hour_check_boxes_tree_filter" do
+        within ".with_hour_check_boxes_tree_filter" do
           uncheck "Before 13am"
         end
 
@@ -52,7 +52,7 @@ describe "Explore meetings", :slow, type: :system do
         sign_in user
         visit_component
 
-        within ".day_days_select_filter" do
+        within ".with_day_days_select_filter" do
           find("option[value='monday']").click
         end
 
@@ -70,14 +70,14 @@ describe "Explore meetings", :slow, type: :system do
         sign_in user
         visit_component
 
-        within ".hour_check_boxes_tree_filter" do
+        within ".with_hour_check_boxes_tree_filter" do
           check("Before 13am", allow_label_click: true)
         end
 
         expect(page).to have_css(".meeting-list li", count: 1)
         expect(page).to have_content(translated(in_hour_meeting.title))
 
-        within ".hour_check_boxes_tree_filter" do
+        within ".with_hour_check_boxes_tree_filter" do
           uncheck("Before 13am", allow_label_click: true)
         end
 
@@ -92,7 +92,7 @@ describe "Explore meetings", :slow, type: :system do
         sign_in user
         visit_component
 
-        within ".day_days_select_filter" do
+        within ".with_day_days_select_filter" do
           find("option[value='monday']").click
         end
 
