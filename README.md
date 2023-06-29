@@ -25,7 +25,7 @@ You're good to go!
 
 The following files must be checked in each upgrade of Decidim.
 
-### Blank vote
+## Blank vote
 
 - app/decorators/decidim/consultations/multi_vote_form_decorator.rb
 - app/decorators/decidim/consultations/admin/create_response_decorator.rb
@@ -37,7 +37,7 @@ The following files must be checked in each upgrade of Decidim.
 ----------
 - app/views/decidim/consultations/question_multiple_votes/_form.html.erb
 
-### Custom Suara permissions in Participatory Spaces
+## Custom Suara permissions in Participatory Spaces
 
 - app/decorators/commands/decidim/assemblies/admin/create_assembly_decorator.rb
 - app/decorators/commands/decidim/consultations/admin/create_consultation_decorator.rb
@@ -46,7 +46,7 @@ The following files must be checked in each upgrade of Decidim.
 - app/overrides/decidim/participatory_processes/admin/participatory_processes/add_permissions_sections_to_participatory_processes_form.rb
 - app/overrides/decidim/consultations/admin/add_permissions_sections_to_consultations_form.rb
 
-### Meetings
+## Meetings
 
 ### Filter by hours and days
 
@@ -64,6 +64,9 @@ The following files must be checked in each upgrade of Decidim.
 - app/decorators/cells/decidim/ meetings/join_meeting_button_cell_decorator.rb
 ----------
 - app/views/decidim/meetings/meetings/_meetings.html.erb
+
+## From Module Action Delegator:
+- app/decorators/queries/decidim/action_delegator/voted_with_direct_verification_decorator.rb
 
 ## Consultations 
 
@@ -92,7 +95,7 @@ The following files must be checked in each upgrade of Decidim.
 ## Override Quill editor
 - app/packs/src/decidim/editor.js
 
-## Testing
+# Testing
 
 Run `rake decidim:generate_external_test_app` to generate a dummy application.
 

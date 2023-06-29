@@ -1551,6 +1551,21 @@ ActiveRecord::Schema.define(version: 2023_06_06_083556) do
     t.index ["decidim_proposals_component_id"], name: "index_sortitions__on_proposals_feature"
   end
 
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
   create_table "decidim_static_page_topics", force: :cascade do |t|
     t.jsonb "title", null: false
     t.jsonb "description", null: false

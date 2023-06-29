@@ -9,7 +9,7 @@ describe "Homepage", type: :system do
     create(
       :organization,
       name: "Decidim Application",
-      default_locale: :en,
+      default_locale: :ca,
       available_locales: [:ca, :en, :es]
     )
   end

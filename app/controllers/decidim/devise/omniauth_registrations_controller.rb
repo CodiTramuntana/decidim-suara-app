@@ -23,6 +23,16 @@ module Decidim
             if user.active_for_authentication?
               sign_in_and_redirect user, event: :authentication
               set_flash_message :notice, :success, kind: @form.provider.capitalize
+              authorization = Decidim::AuthorizationHandler.handler_for(
+                "sap_authorization_handler",
+                user: user
+              )
+              # rubocop:disable Lint/EmptyBlock
+              CreateSapAuthorization.call(authorization) do
+                on(:ok) {}
+                on(:invalid) {}
+              end
+              # rubocop:enable Lint/EmptyBlock
             else
               expire_data_after_sign_in!
               user.resend_confirmation_instructions unless user.confirmed?

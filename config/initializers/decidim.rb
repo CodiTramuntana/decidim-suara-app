@@ -49,6 +49,19 @@ Decidim.configure do |config|
   # Workaround to enable SVG assets cors
   # config.cors_enabled = Rails.application.secrets.decidim[:cors_enabled].present?
 
+  Decidim::Verifications.register_workflow(:sap_authorization_handler) do |workflow|
+    workflow.form = "SapAuthorizationHandler"
+    workflow.options do |options|
+      options.attribute :ceco, type: :string
+      options.attribute :ceco_txt, type: :string
+      options.attribute :tipologia, type: :string
+      options.attribute :grup_empleados, type: :string
+      options.attribute :estat_soci, type: :string
+      options.attribute :derechovoto, type: :string
+      options.attribute :estat_ocup, type: :string
+    end
+  end
+
   # Max requests in a time period to prevent DoS attacks. Only applied on production.
   config.throttling_max_requests = Rails.application.secrets.decidim[:throttling_max_requests].to_i
 
