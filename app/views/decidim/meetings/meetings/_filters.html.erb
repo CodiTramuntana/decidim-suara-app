@@ -38,7 +38,7 @@
     <%= form.collection_radio_buttons :activity, activity_filter_values, :first, :last, { legend_title: t(".activity") }, "aria-controls": "meetings" %>
   <% end %>
 
-  <%# Suara customization %>
+  <%# START Suara customization %>
   <%= form.check_boxes_tree :with_hour, filter_hours_values, legend_title: t(".hours") %>
 
   <%= form.days_select :with_day,
@@ -47,5 +47,5 @@
                       label: "",
                       selected: filter.with_day,
                       include_blank: t(".weekdays_select") %>
-  <%# Suara customization %>
+  <%# END Suara customization %>
 <% end %>

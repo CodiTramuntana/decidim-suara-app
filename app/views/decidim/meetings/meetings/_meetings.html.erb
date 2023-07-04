@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<%# Suara customization %>
+<%# START Suara customization %>
 <% if current_component.settings.enable_cards_visualization %>
   <div class="row small-up-1 medium-up-2 card-grid">
     <% meetings.each do |meeting| %>
@@ -40,7 +40,7 @@
 <% else %>
   <%= render partial: "meeting_list", meetings: meetings %>
 <% end %>
-<%# Suara customization %>
+<%# END Suara customization %>
 
 <%= decidim_paginate meetings, order_start_time: params[:order_start_time], scope_id: params[:scope_id] %>
 
