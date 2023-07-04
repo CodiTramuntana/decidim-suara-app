@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: https://github.com/CodiTramuntana/decidim-module-cdtb.git
-  revision: 256f2033bde496e8c3ad59e24abd972b751bbf6b
+  revision: eb8b4add60e2e7b21701243bd427c74d52b6db6b
   branch: feat/upgrade-migrations
   specs:
     decidim-cdtb (0.1.3)
