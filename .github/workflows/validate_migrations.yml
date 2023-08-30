@@ -17,7 +17,24 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      # Term-customizer gem requires db on Rails init
+      postgres:
+        image: postgres:11
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        env:
+          POSTGRES_PASSWORD: postgres
     env:
+      DB_TEST_DATABASE: app-test
+      DB_DATABASE: app
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: localhost
       SECRET_KEY_BASE: "secret_key_base"
 
     steps:
@@ -47,6 +64,9 @@ jobs:
           max_attempts: 3
           retry_on: error
           command: bundle install --jobs 4 --retry 3
+
+      - name: Setup database
+        run: bundle exec rake db:test:prepare
 
       - name: Run specs
         run: bin/rails cdtb:upgrades:validate_migrations
