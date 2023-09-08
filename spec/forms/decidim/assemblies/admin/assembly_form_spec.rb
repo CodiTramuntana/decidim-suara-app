@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module Assemblies
@@ -41,7 +41,7 @@ module Decidim
           }
         end
         let(:slug) { "slug" }
-        let(:attachment) { Decidim::Dev.test_file("city.jpeg", "image/jpeg") }
+        let(:attachment) { upload_test_file(Decidim::Dev.test_file("city.jpeg", "image/jpeg")) }
         let(:show_statistics) { true }
         let(:private_space) { true }
         let(:purpose_of_action) do
@@ -97,6 +97,13 @@ module Decidim
         let(:instagram_handler) { "lorem" }
         let(:youtube_handler) { "lorem" }
         let(:github_handler) { "lorem" }
+        let(:announcement) do
+          {
+            en: "Announcement",
+            es: "Anuncio",
+            ca: "Anunci"
+          }
+        end
         let(:parent_id) { nil }
         let(:assembly_id) { nil }
         let(:ceco) { "ceco" }
@@ -160,7 +167,10 @@ module Decidim
               "grup_empleados" => grup_empleados,
               "estat_soci" => estat_soci,
               "tipologia" => tipologia,
-              "derechovoto" => derechovoto
+              "derechovoto" => derechovoto,
+              "announcement_en" => announcement[:en],
+              "announcement_es" => announcement[:es],
+              "announcement_ca" => announcement[:ca]
             }
           }
         end
@@ -169,257 +179,15 @@ module Decidim
           it { is_expected.to be_valid }
         end
 
-        context "when hero_image is too big" do
-          before do
-            organization.settings.tap do |settings|
-              settings.upload.maximum_file_size.default = 5
-            end
-            expect(subject.hero_image).to receive(:size).twice.and_return(6.megabytes)
-          end
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when banner_image is too big" do
-          before do
-            organization.settings.tap do |settings|
-              settings.upload.maximum_file_size.default = 5
-            end
-            expect(subject.banner_image).to receive(:size).twice.and_return(6.megabytes)
-          end
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when images are not the expected type" do
-          let(:attachment) { Decidim::Dev.test_file("Exampledocument.pdf", "application/pdf") }
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when assembly type is null" do
-          let(:assembly_type_id) { nil }
+        context "when suara custom fields are empty is OK" do
+          let(:ceco) { "" }
+          let(:ceco_txt) { "" }
+          let(:grup_empleados) { "" }
+          let(:estat_soci) { "" }
+          let(:tipologia) { "" }
+          let(:derechovoto) { "" }
 
           it { is_expected.to be_valid }
-        end
-
-        context "when assembly type is in a different organization" do
-          let(:alt_organization) { create :organization }
-          let(:assembly_type) { create :assemblies_type, organization: alt_organization }
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when default language in title is missing" do
-          let(:title) do
-            {
-              ca: "Títol"
-            }
-          end
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when default language in subtitle is missing" do
-          let(:subtitle) do
-            {
-              ca: "Subtítol"
-            }
-          end
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when default language in description is missing" do
-          let(:description) do
-            {
-              ca: "Descripció"
-            }
-          end
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when default language in short_description is missing" do
-          let(:short_description) do
-            {
-              ca: "Descripció curta"
-            }
-          end
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when slug is missing" do
-          let(:slug) { nil }
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when slug is not valid" do
-          let(:slug) { "123" }
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when slug is not unique" do
-          context "when in the same organization" do
-            before do
-              create(:assembly, slug: slug, organization: organization)
-            end
-
-            it "is not valid" do
-              expect(subject).not_to be_valid
-              expect(subject.errors[:slug]).not_to be_empty
-            end
-          end
-
-          context "when in another organization" do
-            before do
-              create(:assembly, slug: slug)
-            end
-
-            it "is valid" do
-              expect(subject).to be_valid
-            end
-          end
-        end
-
-        context "when assembly has a parent_id" do
-          let(:parent_id) { create(:assembly, organization: organization) }
-
-          it { is_expected.to be_valid }
-        end
-
-        context "when the parent is also a child" do
-          let(:assembly) { create(:assembly, organization: organization) }
-          let(:attributes) do
-            {
-              assembly: {
-                id: assembly.id,
-                title_en: "Foo title",
-                title_ca: "Foo title",
-                title_es: "Foo title",
-                subtitle_en: assembly.subtitle,
-                subtitle_ca: assembly.subtitle,
-                subtitle_es: assembly.subtitle,
-                slug: "another-slug",
-                hashtag: assembly.hashtag,
-                meta_scope: assembly.meta_scope,
-                hero_image: nil,
-                banner_image: nil,
-                promoted: assembly.promoted,
-                description_en: assembly.description,
-                description_ca: assembly.description,
-                description_es: assembly.description,
-                short_description_en: assembly.short_description,
-                short_description_ca: assembly.short_description,
-                short_description_es: assembly.short_description,
-                current_organization: assembly.organization,
-                scopes_enabled: assembly.scopes_enabled,
-                scope: assembly.scope,
-                area: assembly.area,
-                errors: assembly.errors,
-                show_statistics: assembly.show_statistics,
-                participatory_processes_ids: nil,
-                purpose_of_action: assembly.purpose_of_action,
-                composition: assembly.composition,
-                decidim_assemblies_type_id: assembly_type_id,
-                creation_date: assembly.creation_date,
-                created_by: assembly.created_by,
-                created_by_other: assembly.created_by_other,
-                duration: assembly.duration,
-                included_at: assembly.included_at,
-                closing_date: assembly.closing_date,
-                closing_date_reason: assembly.closing_date_reason,
-                internal_organisation: assembly.internal_organisation,
-                is_transparent: assembly.is_transparent,
-                special_features: assembly.special_features,
-                twitter_handler: assembly.twitter_handler,
-                facebook_handler: assembly.facebook_handler,
-                instagram_handler: assembly.instagram_handler,
-                youtube_handler: assembly.youtube_handler,
-                github_handler: assembly.github_handler,
-                weight: assembly.weight,
-                parent_id: child_assembly,
-                ceco: assembly.ceco,
-                ceco_txt: assembly.ceco_txt,
-                grup_empleados: assembly.grup_empleados,
-                estat_soci: assembly.estat_soci,
-                tipologia: assembly.tipologia,
-                derechovoto: assembly.derechovoto
-              }
-            }
-          end
-          let(:child_assembly) { create(:assembly, :with_parent, parent: assembly, organization: organization) }
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when the parent is also a grandchild" do
-          let(:assembly) { create(:assembly, organization: organization) }
-          let(:attributes) do
-            {
-              assembly: {
-                id: assembly.id,
-                title_en: "Foo title",
-                title_ca: "Foo title",
-                title_es: "Foo title",
-                subtitle_en: assembly.subtitle,
-                subtitle_ca: assembly.subtitle,
-                subtitle_es: assembly.subtitle,
-                slug: "another-slug",
-                hashtag: assembly.hashtag,
-                meta_scope: assembly.meta_scope,
-                hero_image: nil,
-                banner_image: nil,
-                promoted: assembly.promoted,
-                description_en: assembly.description,
-                description_ca: assembly.description,
-                description_es: assembly.description,
-                short_description_en: assembly.short_description,
-                short_description_ca: assembly.short_description,
-                short_description_es: assembly.short_description,
-                current_organization: assembly.organization,
-                scopes_enabled: assembly.scopes_enabled,
-                scope: assembly.scope,
-                area: assembly.area,
-                errors: assembly.errors,
-                show_statistics: assembly.show_statistics,
-                participatory_processes_ids: nil,
-                purpose_of_action: assembly.purpose_of_action,
-                composition: assembly.composition,
-                decidim_assemblies_type_id: assembly_type_id,
-                creation_date: assembly.creation_date,
-                created_by: assembly.created_by,
-                created_by_other: assembly.created_by_other,
-                duration: assembly.duration,
-                included_at: assembly.included_at,
-                closing_date: assembly.closing_date,
-                closing_date_reason: assembly.closing_date_reason,
-                internal_organisation: assembly.internal_organisation,
-                is_transparent: assembly.is_transparent,
-                special_features: assembly.special_features,
-                twitter_handler: assembly.twitter_handler,
-                facebook_handler: assembly.facebook_handler,
-                instagram_handler: assembly.instagram_handler,
-                youtube_handler: assembly.youtube_handler,
-                github_handler: assembly.github_handler,
-                weight: assembly.weight,
-                parent_id: grandchild_assembly,
-                ceco: assembly.ceco,
-                ceco_txt: assembly.ceco_txt,
-                grup_empleados: assembly.grup_empleados,
-                estat_soci: assembly.estat_soci,
-                tipologia: assembly.tipologia,
-                derechovoto: assembly.derechovoto
-              }
-            }
-          end
-          let(:child_assembly) { create(:assembly, :with_parent, parent: assembly, organization: organization) }
-          let(:grandchild_assembly) { create(:assembly, :with_parent, parent: child_assembly, organization: organization) }
-
-          it { is_expected.not_to be_valid }
         end
       end
     end

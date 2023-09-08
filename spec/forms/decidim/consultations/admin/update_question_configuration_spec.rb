@@ -39,7 +39,7 @@ module Decidim
             command.call
             question.reload
 
-            expect(question.blank_vote).not_to eq(true)
+            expect(question.blank_vote).not_to be(true)
           end
         end
 
@@ -56,7 +56,7 @@ module Decidim
             command.call
             question.reload
 
-            expect(question.blank_vote).not_to eq(true)
+            expect(question.blank_vote).not_to be(true)
           end
         end
 
@@ -72,7 +72,7 @@ module Decidim
             expect(question.min_votes).to eq(3)
             expect(question.max_votes).to eq(5)
             expect(question.instructions["en"]).to eq("Foo instructions")
-            expect(question.blank_vote).to eq(true)
+            expect(question.blank_vote).to be(true)
           end
         end
       end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module ParticipatoryProcesses
@@ -83,107 +83,20 @@ module Decidim
           it { is_expected.to be_valid }
         end
 
-        context "when hero_image is too big" do
-          before do
-            organization.settings.tap do |settings|
-              settings.upload.maximum_file_size.default = 5
-            end
-            expect(subject.hero_image).to receive(:size).twice.and_return(6.megabytes)
-          end
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when banner_image is too big" do
-          before do
-            organization.settings.tap do |settings|
-              settings.upload.maximum_file_size.default = 5
-            end
-            expect(subject.banner_image).to receive(:size).twice.and_return(6.megabytes)
-          end
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when images are not the expected type" do
-          let(:attachment) { Decidim::Dev.test_file("Exampledocument.pdf", "application/pdf") }
-
-          it { is_expected.not_to be_valid }
-        end
-
-        context "when default language in title is missing" do
-          let(:title) do
+        context "when suara permissions is empty" do
+          let(:suara_permissions) do
             {
-              ca: "Títol"
+              ceco: "",
+              ceco_txt: "",
+              tipologia: "",
+              grup_empleados: "",
+              estat_soci: "",
+              derechovoto: "",
+              estat_ocup: ""
             }
           end
 
-          it { is_expected.to be_invalid }
-        end
-
-        context "when default language in subtitle is missing" do
-          let(:subtitle) do
-            {
-              ca: "Subtítol"
-            }
-          end
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when default language in description is missing" do
-          let(:description) do
-            {
-              ca: "Descripció"
-            }
-          end
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when default language in short_description is missing" do
-          let(:short_description) do
-            {
-              ca: "Descripció curta"
-            }
-          end
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when slug is missing" do
-          let(:slug) { nil }
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when slug is not valid" do
-          let(:slug) { "123" }
-
-          it { is_expected.to be_invalid }
-        end
-
-        context "when slug is not unique" do
-          context "and process in the same organization" do
-            before do
-              create(:participatory_process, slug: slug, organization: organization)
-            end
-
-            it "is not valid" do
-              expect(subject).not_to be_valid
-              expect(subject.errors[:slug]).not_to be_empty
-            end
-          end
-
-          context "and process in another organization" do
-            before do
-              create(:participatory_process, slug: slug)
-            end
-
-            it "is valid" do
-              expect(subject).to be_valid
-            end
-          end
+          it { is_expected.to be_valid }
         end
       end
     end

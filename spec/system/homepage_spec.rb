@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 describe "Homepage", type: :system do
   include Decidim::SanitizeHelper

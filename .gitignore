@@ -20,6 +20,7 @@
 public/uploads/
 # Ignore application configuration
 /config/application.yml
+/config/puma.rb
 # Ignore deploy secrets
 /config/deploy.rb
 /config/deploy/*
@@ -30,6 +31,13 @@ spec/decidim_dummy_app/
 /public/packs/
 /public/packs-test/
 /public/decidim-packs/
+/public/sw.js
+/public/sw.js.br
+/public/sw.js.gz
+/public/sw.js.map
+/public/sw.js.map.br
+/public/sw.js.map.gz
+
 node_modules/
 storage/
 

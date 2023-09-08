@@ -58,7 +58,7 @@ es:
           hours: Horas
           hours_values:
             before_thirteen_am: Antes de las 13am
-          weekdays: Weekday
+          weekdays: Día de la semana
           weekdays_select: Selecciona un día
           weekdays_values:
             monday: Lunes
