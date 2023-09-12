@@ -22,8 +22,8 @@ GIT
 
 GIT
   remote: https://github.com/CodiTramuntana/decidim-module-term_customizer.git
-  revision: 71454471cc45e170e2d5227657f3e20b4afb2e29
-  branch: fix/translation_set_query_consultations_question
+  revision: 72560d0f287adb33b57a28fb9a3a02fd8a01724e
+  branch: fix/translation_set_query_consultations
   specs:
     decidim-term_customizer (0.26.0)
       decidim-admin (~> 0.26.0)
