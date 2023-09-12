@@ -11,7 +11,7 @@
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
           <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">4</stringProp>
         <stringProp name="ThreadGroup.ramp_time">300</stringProp>
         <longProp name="ThreadGroup.start_time">1617017416000</longProp>
         <longProp name="ThreadGroup.end_time">1617017416000</longProp>
@@ -187,7 +187,18 @@
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
         </HTTPSamplerProxy>
-        <hashTree/>
+        <hashTree>
+          <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS/JQuery Extractor">
+            <stringProp name="HtmlExtractor.refname">authenticity_token_form</stringProp>
+            <stringProp name="HtmlExtractor.expr">#confirm-vote-form input[name=&apos;authenticity_token&apos;]</stringProp>
+            <stringProp name="HtmlExtractor.attribute">value</stringProp>
+            <stringProp name="HtmlExtractor.default"></stringProp>
+            <stringProp name="HtmlExtractor.match_number">1</stringProp>
+            <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+            <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+          </HtmlExtractor>
+          <hashTree/>
+        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request - Vote Question">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
             <collectionProp name="Arguments.arguments">
@@ -200,7 +211,7 @@
               <elementProp name="authenticity_token" elementType="HTTPArgument">
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.value">${authenticity_token}</stringProp>
+                <stringProp name="Argument.value">${authenticity_token_form}</stringProp>
                 <stringProp name="Argument.name">authenticity_token</stringProp>
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
               </elementProp>
