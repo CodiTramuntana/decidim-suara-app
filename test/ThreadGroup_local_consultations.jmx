@@ -72,20 +72,20 @@
           </collectionProp>
         </Arguments>
         <hashTree/>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Calc user_number" enabled="true">
+        <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="Calc user_number" enabled="true">
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="script">def threadNum = Integer.parseInt(vars.get(&quot;thread_num&quot;))
 vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <stringProp name="scriptLanguage">groovy</stringProp>
-        </JSR223Sampler>
+        </JSR223PreProcessor>
         <hashTree/>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Host</stringProp>
-              <stringProp name="Header.value">${host_pre}</stringProp>
+              <stringProp name="Header.value">${host}</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>
@@ -94,9 +94,8 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">${server_pre}</stringProp>
-          <stringProp name="HTTPSampler.port">${port_pre}</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.embedded_url_re">*${server}*</stringProp>
           <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
         </ConfigTestElement>
@@ -129,7 +128,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -149,7 +147,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/users/sign_in?locale=ca</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -202,7 +199,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/users/sign_in?locale=ca</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -222,7 +218,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -242,7 +237,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/consultations?locale=ca</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -262,7 +256,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/consultations/simulacre-votacio?locale=ca</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -282,7 +275,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/questions/simulacre1?locale=ca</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -353,7 +345,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/questions/simulacre1/vote.js</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
@@ -387,7 +378,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/questions/simulacre2?locale=ca</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -458,7 +448,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/questions/simulacre2/vote.js</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
@@ -492,7 +481,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/questions/simulacre3?locale=ca</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -563,7 +551,6 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.path">/questions/simulacre3/vote.js</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
@@ -641,7 +628,7 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
               <threadCounts>true</threadCounts>
             </value>
           </objProp>
-          <stringProp name="filename">/home/laurajv/decidim-suara-app/test/summary.csv</stringProp>
+          <stringProp name="filename">/home/oliver/prog/decidim/apps/suara-app/test/stress-test-result.csv</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
@@ -674,7 +661,7 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
               <threadCounts>true</threadCounts>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">/home/oliver/prog/decidim/apps/suara-app/test/stress-test-result.graph</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
@@ -711,7 +698,7 @@ vars.put(&quot;USER_NUMBER&quot;, (threadNum + 499).toString())</stringProp>
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">/home/oliver/prog/decidim/apps/suara-app/test/summary.csv</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
