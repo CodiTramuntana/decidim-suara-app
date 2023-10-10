@@ -12,9 +12,18 @@ GIT
       twilio-ruby
 
 GIT
+  remote: https://github.com/CodiTramuntana/decidim-module-cdtb.git
+  revision: 9400048a94c10d13b58ba93158b07169bdc60d8c
+  specs:
+    decidim-cdtb (0.1.2)
+      decidim (>= 0.26.2)
+      rails (>= 6)
+      ruby-progressbar
+
+GIT
   remote: https://github.com/CodiTramuntana/decidim-module-term_customizer.git
-  revision: 71454471cc45e170e2d5227657f3e20b4afb2e29
-  branch: fix/translation_set_query_consultations_question
+  revision: 72560d0f287adb33b57a28fb9a3a02fd8a01724e
+  branch: fix/translation_set_query_consultations
   specs:
     decidim-term_customizer (0.26.0)
       decidim-admin (~> 0.26.0)
@@ -661,8 +670,9 @@ GEM
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
       activesupport (>= 5.0.1.rc1)
-    rails-dom-testing (2.0.3)
-      activesupport (>= 4.2.0)
+    rails-dom-testing (2.1.1)
+      activesupport (>= 5.0.0)
+      minitest
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
@@ -878,6 +888,7 @@ DEPENDENCIES
   daemons
   decidim!
   decidim-action_delegator!
+  decidim-cdtb!
   decidim-consultations!
   decidim-dev!
   decidim-term_customizer!
