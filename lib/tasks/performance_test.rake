@@ -76,3 +76,6 @@ end
 
 # consultation = Decidim::Consultation.find_by(slug: "simulacre-votacio")
 # votes = Decidim::Consultations::Vote.joins(:question).where("decidim_consultations_questions.decidim_consultation_id": consultation.id)
+#
+# PaperTrail::Version.where.not(decidim_action_delegator_delegation_id: nil).count
+
