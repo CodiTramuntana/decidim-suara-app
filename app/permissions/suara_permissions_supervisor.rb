@@ -12,7 +12,7 @@ module SuaraPermissionsSupervisor
   end
 
   def filter_by_suara_permissions(participatory_spaces)
-    user_auth = Decidim::Authorization.find_by(decidim_user_id: current_user)
+    user_auth = Decidim::Authorization.find_by(decidim_user_id: current_user, name: "sap_authorization_handler")
     user_permissions = user_auth.present? && user_auth.metadata.present? ? user_auth.metadata : {}
 
     without_permissions(participatory_spaces) + filter_by_permissions(participatory_spaces, user_permissions)
