@@ -22,15 +22,6 @@ GIT
       ruby-progressbar
 
 GIT
-  remote: https://github.com/CodiTramuntana/decidim-module-term_customizer.git
-  revision: cdbb4d60f5242624d200251fb57033f32edfc4fa
-  branch: fix/translation_set_query_consultations_question
-  specs:
-    decidim-term_customizer (0.27.0)
-      decidim-admin (~> 0.27.0)
-      decidim-core (~> 0.27.0)
-
-GIT
   remote: https://github.com/CodiTramuntana/decidim-verifications-csv_emails.git
   revision: cacbfd10b315d2304f90e6401183a33dd80829a6
   tag: v0.1.1
@@ -228,6 +219,15 @@ GIT
       decidim-core (>= 0.27.2)
       decidim-verifications (>= 0.27.2)
       psych (< 4)
+
+GIT
+  remote: https://github.com/mainio/decidim-module-term_customizer.git
+  revision: abbf0c69e1bcaafebc5aa4f8da22fdb64ce62149
+  branch: master
+  specs:
+    decidim-term_customizer (0.27.0)
+      decidim-admin (~> 0.27.0)
+      decidim-core (~> 0.27.0)
 
 GEM
   remote: https://rubygems.org/

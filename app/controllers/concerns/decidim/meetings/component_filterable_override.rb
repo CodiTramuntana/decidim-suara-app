@@ -6,7 +6,8 @@ module Decidim
   module Meetings
     # A controller concern to specify default filter parameters for the
     # controller resources within a meetings component.
-    module ComponentFilterable
+    module ComponentFilterableOverride
+      extend ActiveSupport::Concern
 
       def self.included(base)
         base.class_eval do
