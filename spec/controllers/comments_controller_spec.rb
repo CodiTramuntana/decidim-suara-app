@@ -9,7 +9,7 @@ module Decidim
 
       let(:organization) { create(:organization) }
       let(:metadata) { { ceco: "ceco", ceco_txt: "ceco_txt" } }
-      let!(:authorization) { create(:authorization, user: current_user, name: "dummy_authorization_handler", metadata: metadata) }
+      let!(:authorization) { create(:authorization, user: current_user, name: "sap_authorization_handler", metadata: metadata) }
       let!(:space_with_other_permissions) do
         create(
           :participatory_process,

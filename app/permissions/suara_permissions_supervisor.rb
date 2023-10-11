@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+# This Supervisor checks User's permissions from SAP.
 module SuaraPermissionsSupervisor
   # Checks whether the given `user` has the same permissions as the given `participatory_space`.
   def suara_permissions_match?(user, participatory_space)
-    user_auth = Decidim::Authorization.find_by(decidim_user_id: user.id)
+    user_auth = Decidim::Authorization.find_by(decidim_user_id: user.id, name: "sap_authorization_handler")
     user_permissions = user_auth&.metadata || {}
     space_permissions= participatory_space.suara_permissions
     # space permissions should be a subgroup of user permissions (ignoring empty keys)
@@ -11,7 +12,7 @@ module SuaraPermissionsSupervisor
   end
 
   def filter_by_suara_permissions(participatory_spaces)
-    user_auth = Decidim::Authorization.find_by(decidim_user_id: current_user)
+    user_auth = Decidim::Authorization.find_by(decidim_user_id: current_user, name: "sap_authorization_handler")
     user_permissions = user_auth.present? && user_auth.metadata.present? ? user_auth.metadata : {}
 
     without_permissions(participatory_spaces) + filter_by_permissions(participatory_spaces, user_permissions)
