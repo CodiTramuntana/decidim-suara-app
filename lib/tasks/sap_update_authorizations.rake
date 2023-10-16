@@ -10,7 +10,8 @@ namespace :sap do
       )
       Decidim::CreateSapAuthorization.call(authorization) do
         on(:ok) do
-          Rails.logger.info "UpdateMetadata: --- INFO: USER #id: #{user.id} -> Authorization updated at: #{Decidim::Authorization.find_by(decidim_user_id: user.id).updated_at}"
+          authorization= Decidim::Authorization.find_by(decidim_user_id: user.id, name: "sap_authorization_handler")
+          Rails.logger.info "UpdateMetadata: --- INFO: USER #id: #{user.id} -> Authorization updated at: #{authorization.updated_at}"
         end
         on(:invalid) do
           Rails.logger.info "UpdateMetadata: --- INFO: authorization is invalid and can't be created for the user #id: #{user.id}."
