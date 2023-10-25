@@ -1,13 +1,38 @@
 # frozen_string_literal: true
 
 Decidim::Meetings::Meeting.class_eval do
-  scope :thirteen_am, -> { where("start_time::time < ?", Time.zone.parse("13:00:00").strftime("%H:%M:%S")) }
+  scope :with_hour, lambda { |hour|
+    case hour
+    when "thirteen_am"
+      where("start_time::time < ?", Time.zone.parse("13:00:00").strftime("%H:%M:%S"))
+    else
+      ""
+    end
+  }
 
-  scope :monday, -> { where("extract(dow from start_time) = ?", 1) }
-  scope :tuesday, -> { where("extract(dow from start_time) = ?", 2) }
-  scope :wednesday, -> { where("extract(dow from start_time) = ?", 3) }
-  scope :thursday, -> { where("extract(dow from start_time) = ?", 4) }
-  scope :friday, -> { where("extract(dow from start_time) = ?", 5) }
-  scope :saturday, -> { where("extract(dow from start_time) = ?", 6) }
-  scope :sunday, -> { where("extract(dow from start_time) = ?", 7) }
+  scope :with_day, lambda { |day|
+    case day
+    when "monday"
+      where("extract(dow from start_time) = ?", 1)
+    when "tuesday"
+      where("extract(dow from start_time) = ?", 2)
+    when "wednesday"
+      where("extract(dow from start_time) = ?", 3)
+    when "thursday"
+      where("extract(dow from start_time) = ?", 4)
+    when "friday"
+      where("extract(dow from start_time) = ?", 5)
+    when "saturday"
+      where("extract(dow from start_time) = ?", 6)
+    when "sunday"
+      where("extract(dow from start_time) = ?", 7)
+    else
+      ""
+    end
+  }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    [:with_any_type, :with_any_date, :with_any_space, :with_any_origin, :with_any_scope, :with_any_category, :with_any_global_category,
+     :with_hour, :with_day]
+  end
 end

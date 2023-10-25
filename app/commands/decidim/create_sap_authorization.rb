@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Decidim
-  class CreateSapAuthorization < Rectify::Command
+  class CreateSapAuthorization < Decidim::Command
     # Public: Initializes the command.
     #
     # authorization - The authorization from which the data in this component comes from.

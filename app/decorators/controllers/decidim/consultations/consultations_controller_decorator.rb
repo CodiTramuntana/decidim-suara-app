@@ -22,7 +22,7 @@ Decidim::Consultations::ConsultationsController.class_eval do
     if current_user&.admin?
       original_consultations
     else
-      @consultations = filter_by_suara_permissions(reorder(search.results))
+      @consultations = filter_by_suara_permissions(reorder(search.result))
       @consultations = Decidim::Consultation.where(id: @consultations.map(&:id))
       @consultations = paginate(@consultations)
     end

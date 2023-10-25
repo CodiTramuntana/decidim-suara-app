@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim::Consultations
   describe Participation do
@@ -21,7 +21,7 @@ module Decidim::Consultations
 
     describe "closed consultation participation" do
       before do
-        consultation.update(end_voting_date: Time.zone.now - 1.minute)
+        consultation.update(end_voting_date: 1.minute.ago)
       end
 
       context "without participation" do

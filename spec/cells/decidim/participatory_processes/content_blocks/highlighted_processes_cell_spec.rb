@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module ParticipatoryProcesses
@@ -44,7 +44,7 @@ module Decidim
         end
 
         context "when user is not an admin and not has permissions" do
-          let!(:authorization) {}
+          let!(:authorization) { nil }
 
           it "includes only participatory processes without permissions" do
             within "#highlighted-processes" do

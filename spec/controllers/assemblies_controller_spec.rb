@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 module Decidim
   module Assemblies
@@ -76,7 +76,7 @@ module Decidim
         end
 
         context "when user isn't admin and has not permissions" do
-          let!(:authorization) {}
+          let!(:authorization) { nil }
 
           it "includes only assemblies without permissions filters" do
             expect(controller.helpers.promoted_assemblies).to contain_exactly(promoted_without_permissions)
@@ -106,7 +106,7 @@ module Decidim
         end
 
         context "when user isn't admin and has not permissions" do
-          let!(:authorization) {}
+          let!(:authorization) { nil }
 
           it "includes only parent assemblies without permissions filters" do
             expect(controller.helpers.parent_assemblies).to contain_exactly(promoted_without_permissions)
@@ -145,7 +145,7 @@ module Decidim
           end
 
           context "when user is NOT admin and does NOT have permissions" do
-            let!(:authorization) {}
+            let!(:authorization) { nil }
 
             it "can access processes without permissions" do
               get :show, params: { slug: promoted_without_permissions.slug }

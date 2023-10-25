@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require "spec_helper"
 
 describe "Consultation", type: :system do
   let!(:organization) { create(:organization) }
@@ -38,7 +38,7 @@ describe "Consultation", type: :system do
       let(:consultation) { create(:consultation, :published, organization: organization, start_voting_date: Time.zone.local(2022, 9, 21, 9, 0, 0), end_voting_date: Time.zone.local(2022, 9, 21, 15, 0, 0)) }
 
       before do
-        allow(Time.zone).to receive(:now).and_return(Time.zone.local(2022, 9, 21, 15, 0o5, 0))
+        allow(Time.zone).to receive(:now).and_return(Time.zone.local(2022, 9, 21, 15, 5, 0))
         visit decidim_consultations.question_path(question)
       end
 
@@ -59,12 +59,11 @@ describe "Consultation", type: :system do
 
       context "and question has one vote" do
         let!(:response) { create :response, question: question }
+        let!(:vote) do
+          consultation.questions.first.votes.create(author: user, response: consultation.questions.first.responses.first)
+        end
 
         before do
-          visit decidim_consultations.question_path(question)
-          click_link(id: "vote_button")
-          click_button translated(response.title)
-          click_button "Confirm"
           visit decidim_consultations.consultation_path(consultation)
         end
 

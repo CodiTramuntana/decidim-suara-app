@@ -27,10 +27,8 @@ module Decidim
                 "sap_authorization_handler",
                 user: user
               )
-              CreateSapAuthorization.call(authorization) do
-                on(:ok) {}
-                on(:invalid) {}
-              end
+
+              CreateSapAuthorization.call(authorization)
             else
               expire_data_after_sign_in!
               user.resend_confirmation_instructions unless user.confirmed?
